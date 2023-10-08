@@ -1,0 +1,345 @@
+# Lisätehtävät
+
+## Ratkaisuavain
+
+Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohtimalla vastausta. Saat apua harjoituksiin kouluttajalta tai osassa tehtävissä painamalla 'Näytä vinkki'- painikkeesta. Kouluttaja antaa lopuksi harjoituksiin ratkaisuavaimen, joka pitää syöttää painamalla alla olevaa painiketta (tai painamalla alla olevia 'Näytä ratkaisu'- painikkeita). Kun avain on syötetty, voit katsoa mallivastaukset harjoituksiin.
+
+<button onclick="enterToken()" class="btn">Syötä ratkaisuavain</button>
+
+## Lisätehtävä 1
+
+Tarkastele maanjäristysaineistoa. Luo uusi attribuuttikenttä (tyyppi: Text (string)) ja anna sen nimeksi Location Country. Muodosta lauseke, jonka avulla uuden kentän arvo pystytään johtamaan Location Name- attribuuttikentän arvosta.
+
+**Aineisto**: ```maanjaristykset.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Location Name- kentässä maan nimi sijaitsee ennen kaksoispistettä ```:```.
+
+- ```substr()```- funktiolla saat "irroitettua" merkkijonosta osion. Argumenteiksi tulee syöttää merkkijonon lisäksi aloitus- ja lopetuskohdat irroitettavalle tekstille.
+- Etsi ```strpos()```- funktiolla oikea lopetuskohta.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+substr(
+	"Location Name", 0, strpos(
+		"Location Name", ':'
+		) - 1
+	)
+```
+:::
+:::
+
+## Lisätehtävä 2
+
+Luo funktio, jonka avulla voidaan selvittää kolmen attribuuttikentän painotettu keskiarvo.
+
+- Yksi luonnollinen käyttötapaus on laskea kolmen ikäryhmittäisen asukasluvun painotettu keskiarvo (esim. markkinoinnin kannalta työikäisillä ihmisillä on lapsia tai vanhuksia enemmän painoarvoa)
+- Rajaa huomioitavat vaestoruudut Select features by area -työkalulla!
+- Luo valmiiksi desimaaliluku-muotoinen attribuuttikenttä, johon tallennat funktion tulosteen
+- Funktion syötteet: muokattavan tason ja attribuuttikentän nimet, hyödynnettävien attribuuttikenttien nimet, sovellettavat painokertoimet
+
+**Aineisto**: ```vaestoruudut.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+1. Luo vaestoruudut-tasoon uusi Decimal-tyyppinen attribuuttikenttä (nimi: weighted_ave)
+2. Luo painotettu_ka-niminen funktio Field Calculatorin Function Editor -välilehdellä
+- Muista painaa lopulta Save and Load functions -painiketta!
+3. Mene vaestoruudut-tason Field Calculatoriin > Update existing field
+4. Kirjoita ao. lauseke Expression-ikkunaan ja paina OK
+
+::: code-box
+``` sql
+painotettu_ka('vaesto_valitut', 'kokeilu', 'ika10_19', 'ika30_39', 'ika70_79', 0.2, 0.7, 0.1)
+```
+:::
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+from qgis.core import *
+from qgis.gui import *
+
+@qgsfunction(args='auto', group='Custom', referenced_columns=[])
+def painotettuka(layer, field, field1, field2, field3, value1, value2, value3, feature, parent):
+    """
+    Finds out the weighted average of three columns.
+    """
+    layer = QgsProject.instance().mapLayersByName(layer)[0]
+
+    field_idx = layer.fields().indexOf(field)
+
+    for feat in layer.getFeatures():
+
+        # HSYn datassa arvo 99 = Tieto puuttuu, joten jos jokin kenttä sisältää tämän arvon,
+        # ei painotetun keskiarvon laskeminen ole mielekästä
+        if feat[field1] == 99 or feat[field2] == 99 or feat[field3] == 99:
+            painka = 99
+        else:
+            painka = value1 * feat[field1] + value2 * feat[field2] + value3 * feat[field3]
+        
+        layer.changeAttributeValue(feat.id(), field_idx, painka)
+    
+    return
+```
+:::
+:::
+
+## Lisätehtävä 3
+
+Luo uusi sarake (nimi: tunnus, tyyppi: string) ja hyödynnä Quick Field Calculation -palkkia tuottaaksesi sarakkeen arvoksi FIN: <kunkin kunnan kuntanumero>.
+
+**Aineisto**: ```hallintoalueet.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+- Valitse päivitettäväksi kentäksi tunnus
+- Kirjoita lauseke-kenttään
+- Napsauta lopuksi Update all -painiketta
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+'FIN: ' || "Kunta"
+```
+:::
+:::
+
+## Lisätehtävä 4
+
+Tarkastele hallintoalueaineistoa. Mikäli kunnalla on olemassa nimi vain yhdellä virallisella kielellä (Kunta_ni2- attribuuttikentän arvo on N_A) korvaa se sanalla ```Puuttuu```.
+
+**Aineisto**: ```hallintoalueet.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Käytä ```if()```- ehtolausekefunktiota.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+if(
+	"Kunta_ni2" = 'N_A', 'Puuttuu', "Kunta_ni2"
+	)
+```
+:::
+:::
+
+## Lisätehtävä 5
+
+Tarkastele Natura-alueaineistoa. Selvitä (**Field Calculatorin General**- ryhmän funktioiden avulla) montako kohdetta ko. karttataso sisältää.
+
+**Aineisto**: ```natura_alueet.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Käytä ```layer_property()```- ehtolausekefunktiota.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+layer_property(
+	'natura_alueet', 'feature_count'
+	)
+```
+:::
+:::
+
+## Lisätehtävä 6
+
+Selvitä sisältääkö kuhunkin Natura-alueeseen liittyvä päätös vesilakia. Luo uusi attribuuttikenttä, johon voit tallentaa selvittämäsi tiedon.
+
+**Aineisto**: ```natura_alueet.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Luo lauseke paloittain:
+
+- Käytä ```string_to_array()```- funktiota
+- Käytä ```array_contains()```- funktiota
+- Käytä ```eval()```- funktiota
+
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+eval(
+	array_contains(
+		string_to_array(
+			"VnPaatosTo"
+			), 'vesilaki'
+		)
+	)
+```
+:::
+:::
+
+## Lisätehtävä 7
+
+Ennen tätä tehtävää tehtävä 2.6 tulee olla tehtynä. Laske kunkin hallintoalueen asukasmäärän prosentuaalinen osuus koko tarkastelemasi maakunnan väestöstä ja tallenna se uuteen attribuuttikenttään.
+
+**Aineistot**: 
+
+- ```hallintoalueet.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+```sum()```- funktiolla voit laskea ```asukkaita```- sarakkeen yhteenlasketun määrän.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+( "asukkaita" / sum(
+	"asukkaita"
+	)
+) * 100.0
+```
+:::
+:::
+
+## Lisätehtävä 8
+
+Selvitä mitkä hallintoaluepolygonit sijaitsevat korkeintaan 20km etäisyydellä Vaasan lyseon lukiosta. Käytä **Field Calculatoria**, älä geoprosessointityökaluja!
+
+**Aineistot**: 
+
+- ```hallintoalueet.gpkg```
+- ```oppilaitokset.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+- Hae Vaasan lyseon lukio- kohde ```get_feature()```- funktiolla.
+- Hae kohteen geometria ```geometry()```- funktiolla.
+- Luo hallintoaluekohteelle 20km buffer.
+- Millä funktiolla voit tarkistaa leikkaako buffer ja lyseon lukion geometria leikkaavat (intersect)?
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+intersects(
+	buffer(
+		$geometry, 20000
+		), geometry(
+		get_feature(
+			'oppilaitokset', 'onimi', 'Vaasan lyseon lukio'
+			)
+		)
+	)
+```
+:::
+:::
+
+## Lisätehtävä 9
+
+Tarkastele väestöruutuaineistoa (älä koko tasoa, **Select features by area**). Kategorisoi aineisto sen mukaan, asuuko ruudussa paljon vai vähän sekä miehiä että naisia. Luo oma kategoria myös vaihtoehdolle, että tietoa ei ole saatavilla miehistä tai naisista.
+
+**Aineisto**: ```vaestoruudut.gpkg (sen alijoukko)```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Käytä ```CASE WHEN .. THEN```- rakennetta.
+
+::: code-box
+``` sql
+CASE
+WHEN ... (ei tietoa)
+	THEN 'Tieto puuttuu'
+WHEN ... (miehiä ja naisia 0-100)
+	THEN 'Vähän molempia'
+WHEN (miehiä yli 100, naisia 0-100)
+	THEN 'Paljon miehiä, vähän naisia'
+WHEN (naisia yli 100, miehiä 0-100)
+	THEN 'Paljon naisia, vähän miehiä'
+ELSE
+	'Paljon molempia'
+END
+```
+:::
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+CASE
+WHEN ("MIEHET"=-1 or "NAISET"=-1)
+	THEN 'Tieto puuttuu'
+WHEN ("MIEHET">0 and "MIEHET"<100 and "NAISET">0 and "NAISET"<100)
+	THEN 'Vähän molempia'
+WHEN ("MIEHET">100 and "NAISET">0 and "NAISET"<100)
+	THEN 'Paljon miehiä, vähän naisia'
+WHEN ("NAISET">100 and "MIEHET">0 and "MIEHET"<100)
+	THEN 'Paljon naisia, vähän miehiä'
+ELSE
+	'Paljon molempia'
+END
+```
+:::
+:::
+
+## Lisätehtävä 10
+
+Tarkastele rakennusaineistoa. Hyödynnä Geometry Generatoria ja luo nimiöinti, jonka avulla saadaan näkyviin jokaisen polygonin ulkorajan segmentin pituus. Ilmoita tämä luku yhden desimaalin tarkkuudella, jotta tieto mahtuu näkymään.
+
+**Aineisto**: ```pikku_rakennukset.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+
+-- Geometry Generator -tasolle
+segments_to_lines(
+	force_rhr(
+		$geometry
+		)
+	)
+
+-- Font marker -tasolle
+format_number(
+	length(
+		geometry_n(
+			$geometry, @geometry_part_num
+			)
+		), 1
+	) || 'm'
+```
+:::
+:::

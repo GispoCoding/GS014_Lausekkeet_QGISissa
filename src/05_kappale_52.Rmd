@@ -1,0 +1,127 @@
+# Kappale 5.2 - Kohteiden muokkaus: Field Calculator (Osa 2)
+
+## Ratkaisuavain
+
+Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohtimalla vastausta. Saat apua harjoituksiin kouluttajalta tai osassa tehtävissä painamalla 'Näytä vinkki'- painikkeesta. Kouluttaja antaa lopuksi harjoituksiin ratkaisuavaimen, joka pitää syöttää painamalla alla olevaa painiketta (tai painamalla alla olevia 'Näytä ratkaisu'- painikkeita). Kun avain on syötetty, voit katsoa mallivastaukset harjoituksiin.
+
+<button onclick="enterToken()" class="btn">Syötä ratkaisuavain</button>
+
+## Tehtävä 5.2.1
+
+::: todo
+Yhdistä tienumeron mukaan, hidas laskea muuten.
+:::
+
+Tarkastele tieviiva-aineistoa. Laske ensimmäiseen prioriteettiluokkaan (```Tieluokka```) kuuluvien teiden yhteenlaskettu pituus.
+
+**Aineisto**: ```tieviiva_suomi.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Käytä ```sum()```- funktiota.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+sum(
+	$length, group_by:="Tienumero", filter:="Tieluokka"='1'
+	)
+```
+:::
+:::
+
+## Tehtävä 5.2.2
+
+Tarkastele ```vaestoruudut.gpkg```- ja hallintoalueaineistoa. Luo hallintoalueaineistoon uusi attribuuttikenttä (```asukkaita```). Laske oman maakuntasi kunnissa asuvan väestön määrä.
+
+**Aineisto**: ```tieviiva_suomi.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Käytä ```aggregate()```- funktiota.
+
+- Tutki lausekkeen muodostajassa ```aggregate()```- funktion käyttöohjetta. Täydennä oikeat argumentit kolmelle ensimmäiselle argumentille.
+- Käytä valinnaista **filter**- argumenttia. Hae ```attribute```- funktiolla hallintoalue- tason kuntanumeron sisältävä kentän arvo ja tarkista onko se yhtäsuuri kuin väestöruudut- tason kuntanumeron sisältävä kentän arvo.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+if(
+	"Maaku_ni1" = 'Pohjanmaa', 
+		aggregate(
+			layer:='vaestoruudut', aggregate:='sum', expression:="vaesto", filter:=attribute(
+				@parent,'Kunta'
+				) = "KUNTA"
+			), NULL)
+```
+:::
+:::
+
+## Tehtävä 5.2.3
+
+Tarkastele korkeusmalli- (```dem2m.tif```) ja Helsingin rakennusaineistoa. Selvitä korkeusmallin pikselin arvo rakennusten painopisteissä.
+
+**Aineistot**: 
+
+- ```tieviiva_suomi.gpkg```
+- ```helsinki_rakennukset.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Käytä ```raster_value()```- funktiota. Korkeusmalli on yksikanavainen rasteri.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+raster_value(
+	'dem2m', 1, centroid($geometry)
+	)
+```
+:::
+:::
+
+## Tehtävä 5.2.4
+
+Käytä tehtävässä rasterilaskinta (Raster Calculator). Työkalu löytyy QGISin prosessointityökaluista.
+
+Luokittele korkeusaineisto kahteen luokkaan, jotka kuvastavat suurin piirtein maa- ja merialueita. Korkeusmallissa pikselin arvo kertoo korkeuden meren pinnasta ja yksikkö on metrejä.
+
+- Luokka 1: rasteritason pikselit, joiden korkeusarvo on alle 1.
+- Luokka 2: loput pikselit.
+
+**Aineisto**: ```dem2m.tif```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Rakenna lauseke paloittain. Lähde liikkeelle tästä:
+
+```("dem2m@1" >= 1)```
+
+- Mitä yllä oleva lauseke palauttaa?
+- Yllä oleva lauseke liittyy luokkaan 2. Mitä voit lisätä lausekkeeseen, että ehdon täyttävät pikselit saavat arvon 2 tehtävänannon mukaisesti?
+- Miten kirjoitat vastaavan lausekkeen luokalle 1?
+- Miten yhdistät lausekkeet siten, että saadaan tehtävänannon mukainen lopputulos?
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+("dem2m@1" < 1) * 1 + ("dem2m@1" >= 1) * 2
+```
+:::
+:::
