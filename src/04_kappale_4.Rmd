@@ -1,4 +1,4 @@
-# Kappale 4 - Kohteiden muokkaus: Quick Field Calculation ja virtuaalikentät
+# Kappale 4: Kohteiden muokkaus - Quick Field Calculation ja virtuaalikentät
 
 ## Ratkaisuavain
 

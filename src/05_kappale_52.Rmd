@@ -1,4 +1,4 @@
-# Kappale 5.2 - Kohteiden muokkaus: Field Calculator (Osa 2)
+# Kappale 5.2: Kohteiden muokkaus - Field Calculator (Osa 2)
 
 ## Ratkaisuavain
 

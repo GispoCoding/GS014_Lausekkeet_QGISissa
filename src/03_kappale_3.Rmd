@@ -1,4 +1,4 @@
-# Kappale 3 - Kohteiden valinta ja suodatus
+# Kappale 3: Kohteiden valinta ja suodatus
 
 ## Ratkaisuavain
 

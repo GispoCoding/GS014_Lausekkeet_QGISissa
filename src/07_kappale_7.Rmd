@@ -1,4 +1,4 @@
-# Kappale 7 - Symbologian kustomointi: lämpökartta ja Geometry Generator
+# Kappale 7: Symbologian kustomointi - lämpökartta ja Geometry Generator
 
 ## Ratkaisuavain
 

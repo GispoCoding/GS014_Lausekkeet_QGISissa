@@ -1,4 +1,4 @@
-# Kappale 2 - Lausekkeiden kirjoittaminen
+# Kappale 2: Lausekkeiden kirjoittaminen
 
 ## Ratkaisuavain
 
