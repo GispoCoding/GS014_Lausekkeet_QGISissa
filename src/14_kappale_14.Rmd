@@ -1,0 +1,295 @@
+# Kappale 14: Kotitehtävät
+
+## Ratkaisuavain
+
+Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohtimalla vastausta. Saat apua harjoituksiin kouluttajalta tai osassa tehtävissä painamalla 'Näytä vinkki'- painikkeesta. Kouluttaja antaa lopuksi harjoituksiin ratkaisuavaimen, joka pitää syöttää painamalla alla olevaa painiketta (tai painamalla alla olevia 'Näytä ratkaisu'- painikkeita). Kun avain on syötetty, voit katsoa mallivastaukset harjoituksiin.
+
+<button onclick="enterToken()" class="btn">Syötä ratkaisuavain</button>
+
+## Kotitehtävä 1
+
+Tarkastele tieviiva-aineistoa. Laske kullekkin tielle sen 50m vyöhykkeen (buffer) pinta-ala uuteen sarakkeeseen.
+
+**Aineisto**: ```tieviiva_lappi.gpkg```
+
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+- Käytä ```buffer()```- funktiota.
+- Millä funktiolla voit laskea pinta-alan?
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+area(
+	buffer(
+		$geometry, 50
+		)
+	)
+```
+:::
+:::
+
+## Kotitehtävä 2
+
+Tarkastele Helsingin alueen väestöruutuaineistoa. Hyödynnä lausekkeita ja laske ruutukohtaisen asukasmäärän (```asukkaita```- kenttä) keskihajonta.
+
+**Aineisto**: ```hsy_vaesto2020_muok.gpkg```
+
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+- Käytä ```buffer()```- funktiota.
+- Millä funktiolla voit laskea pinta-alan?
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+area(
+	buffer(
+		$geometry, 50
+		)
+	)
+```
+:::
+:::
+
+## Kotitehtävä 3 (haastava)
+
+Luo hallintoalueaineistoon uusi attribuuttikenttä, jonka arvo vaihtelee sen mukaan sijaitseeko kullakin hallintoalueella Natura-alueita ja, jos sijaitsee, onko luonnonsuojelualueita yli 10km² alalta.
+
+Käytä seuraavaa logiikkaa: jos hallintoalueella
+
+- on Natura-alueita yli 10km² alalta > arvoksi hallintoalueella osuvien Natura-alueiden lukumäärä
+- on Natura-alueita, mutta ei kuitenkaan yli 10km² alalta > arvoksi hallintoalueella osuvien Natura-alueiden lukumäärä kerrottuna -1:llä
+- ei ole Natura- alueita > arvoksi 0
+
+**Aineistot**: 
+
+- ```hallintoaluee.gpkg```
+- ```natura_alueet.gpkg```
+
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Käytä CASE WHEN ... rakennetta.
+
+- Leikkaako (intersects) Natura-alue taso hallintoalue tason. Helpointa käyttää ```overlay_intersects()```- funktiota.
+- JA onko pinta-ala yli 10km² (huomioi yksikkö). Aggregoi Natura-alueiden geometriat ja laske niille pinta-ala.
+  - Käytä ```aggregate()```- funktiota. 
+  - Kerää (collect) Natura-alueet tasolta geometriat (```$geometry```).
+  - Suodata (filter) sen perusteella leikkaako tällä hetkellä käsiteltävän hallintoalueen geometria Natura-alueiden geometrioita
+    - Käytä ```intersects()``` funktiota.
+    - Hae hallintoaluekohteen geometria ```geometry()```- funktiolla.
+    - Voit viitata tällä hetkellä käsiteltävään hallintoaluekohteeseen ```@parent```- muuttujalla.
+  - Laske geometrioille pinta-ala ```area()```- funktiolla.
+- Jos pinta-ala on yli 10km²...
+  - Käytä jälleen ```aggregate()```- funktiota.
+  - Laske kohteiden määrä (count). Käytä lausekkeena (expression) jotain natura_alueet- tason saraketta.
+  - Suodata (filter) samalla tavalla kuin aikaisemmassa vaiheessa.
+- Toista sama toimenpide, mutta tarkista onko pinta-ala alle 10km².
+  - Jos on, kerro Natura-alueiden lukumäärä -1:llä
+- Jos kumpikaan ehto ei toteudu (ELSE), aseta arvoksi 0
+
+::: code-box
+``` sql
+CASE
+WHEN
+...
+AND
+...
+THEN
+...
+WHEN
+...
+AND
+...
+THEN
+...
+ELSE 0
+END
+```
+:::
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+CASE
+WHEN
+overlay_intersects(
+	'natura_alueet'
+	) = True
+AND
+area(
+	aggregate(
+		layer:='natura_alueet', aggregate:='collect', expression:=$geometry, filter:=intersects(
+			geometry(
+				@parent
+				), $geometry
+			)
+		)
+	) >= 10000000
+THEN
+aggregate(
+	layer:='natura_alueet', aggregate:='count', expression:="Status", filter:=intersects(
+		geometry(
+			@parent
+			), $geometry
+		)
+	)
+WHEN
+overlay_intersects(
+	'natura_alueet') = True
+AND
+area(
+	aggregate(
+		layer:='natura_alueet', aggregate:='collect', expression:=$geometry, filter:=intersects(
+			geometry(
+				@parent
+				), $geometry
+			)
+		)
+	) < 10000000
+THEN
+-1 * ( aggregate(
+	layer:='natura_alueet', aggregate:='count', expression:="Status", filter:=intersects(
+		geometry(
+			@parent
+			), $geometry
+		)
+	)
+)
+ELSE 0
+END
+```
+:::
+:::
+
+## Kotitehtävä 4
+
+Tarkastele globaalia aineistoa paikoista, joissa on asutusta. Luokittele kohteet sen mukaan, mikä on ko. paikassa vallitsevan aikavyöhykkeen (```TIMEZONE```- kenttä) ensimmäinen osamääritelmä (ennen ensimmäistä /- merkkiä).
+
+**Aineisto**: ```pop_places.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Samaan tulokseen pääsee (ainakin) kahdella tavalla:
+
+- **Vaihtoehto 1**:
+  - Käytä ```substr()```- funktiota. Funktio "leikkaa" merkkijonosta palasen annetun merkkivälin perusteella.
+  - Hae ```strpos()```- funktiolla ```/```- symbolin paikka käytä sitä ```substr()```- funktiossa merkkivälin loppuna.
+
+- **Vaihtoehto 2**:
+  - Käytä ```regexp_substr()```- funktiota. Funktioon tulee syöttää merkkijono ja Regex (Regular Expression)- lauseke.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+-- Vaihtoehto 1
+substr(
+  "TIMEZONE", 0, strpos(
+    "TIMEZONE", '/'
+      ) -1
+    )
+
+-- Vaihtoehto 2
+regexp_substr(
+	"TIMEZONE", '(.*?)/'
+	)
+```
+:::
+:::
+
+## Kotitehtävä 5
+
+Luo duplikaatti hallintoalue-aineistosta. Tehtävässä 2.7 selvitimme hallintoalueiden (tai niiden alijoukon) asukasmäärät ja tallensimme ne asukkaita- nimiseen attribuuttikenttään. Luokittele sekä hallintoalue-karttataso että siitä luotu duplikaattitaso porrastusperusteisesti Equal Count (Quantile)- menetelmällä ja samalla väriskaalalla; ensimmäinen asukkaita- kentän arvojen perusteella ja toinen sellaisten arvojen perusteella, jotka saadaan kun asukkaita- kentän arvo suhteutetaan hallintoaluepolygonin pinta-alaan (km²). Mitä havaitset?
+
+**Aineisto**: ```hallintoalueet.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Millä funktiolla saat palautettua kohteen pinta-alan?
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+-- area()- funktiolla
+"asukkaita" / (area(
+	$geometry
+	) / 1000000.0)
+	
+-- suoraviivaisemmin $area- funktiolla
+
+"asukkaita" / ($area / 1000000.0)
+```
+:::
+:::
+
+## Kotitehtävä 6
+
+Tarkastele lentokenttäaineistoa. Muodosta lentokenttäkohteille niiden nimeä vastaava nimiö. Luo nimiö vain niille kohteille, jotka sijaitsevat Suomessa, Ruotsissa tai Norjassa. Mikäli lentokenttä sijaitsee Suomessa, aseta tekstin väriksi sininen ja käytä fonttikokoa 8. Mikäli lentokenttä sijaitsee Ruotsissa tai Norjassa, aseta nimiön väriksi harmaa ja kooksi 5. Kaikissa muissa tapauksissa aseta nimiön kooksi nolla.
+
+**Aineisto**: ```lentokentat.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Käytä CASE WHEN ... - rakennetta.
+
+**Koon määrittäminen**:
+
+- Valitse ```country```- sarakkeesta Suomi, Ruotsi ja Norja ja aseta niille tehtävänannossa kerrottu fonttikoko.
+
+**Värin määrittäminen**:
+
+- Valitse ```country```- sarakkeesta Suomi, Ruotsi ja Norja.
+- Väri määritetään:
+  - joko RGB (red, green, blue)- muodossa jossa luku 0-255 määrittää kunkin värin arvon, 
+  - tai hexadesimaaliformaatissa (esim. '#000000')
+  - tai osa väreistä voidaan kirjoittaa sanana ('red', 'blue') jne.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+-- Koon määrittäminen
+CASE
+WHEN "country" = 'Finland'
+THEN 8
+WHEN "country" in ('Sweden', 'Norway')
+THEN 5
+ELSE 0
+END
+
+-- Värin määrittäminen
+CASE
+WHEN "country"='Finland'
+THEN '0, 0, 255'
+WHEN "country" in ('Sweden', 'Norway')
+THEN '150, 150, 150'
+END
+```
+:::
+:::

@@ -4,7 +4,7 @@
 
 Kurssin materiaalit on tehty QGISin englanninkieliselle versiolle. Mikäli käytät QGISin suomenkielistä versiota, on suositeltavaa vaihtaa kieliasetus.
 
-![](img/sessio_1/image1.png)
+![](img/kappale_1/image1.png)
 
 1.  Klikkaa **Asetukset** -\> **Valinnat** -\> **Yleiset**-välilehti.
 

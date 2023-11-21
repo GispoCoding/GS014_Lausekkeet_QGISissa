@@ -24,12 +24,14 @@ upper(
 ```
 :::
 
+Tarkastele kuvasta tietotyyppejä:
+
+![](img/kappale_2/image1.png)
+
 <button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
 
 ::: hidden-box
-Kannattaa pohtia, mitä mikäkin lausekkeen sisältämä funktio saa syötteenä ja mitä se tuottaa ulos! Tarkastele myös kuvasta näkyviä datatyyppejä.
-
-![](img/sessio_1/image2.png)
+Kannattaa pohtia, mitä mikäkin lausekkeen sisältämä funktio saa syötteenä ja mitä se tuottaa ulos!
 :::
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>

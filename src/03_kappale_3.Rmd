@@ -9,7 +9,7 @@ Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohti
 
 ## Tehtävä 3.1
 
-Klikkaa **Select by Expression**- työkaluikonia QGISissä. Valitse kaikki liikuntakohteet, jotka kuuluvat kotikuntasi alueella, ja jotka voisivat kiinnostaa sinua. Tallenna valitut kohteet uudeksi erilliseksi karttatasoksi.
+Klikkaa **Select by Expression**- työkaluikonia QGISissä. Valitse kaikki liikuntakohteet, jotka sijaitsevat kotikuntasi alueella, ja jotka kiinnostaavat sinua. Tallenna valitut kohteet uudeksi erilliseksi karttatasoksi.
 
 -   Vaihtoehtoinen tehtävänanto: valitse Turusta seuraavat liikuntapaikat: Pallokenttä, Jalkapallostadion tai Jalkapallohalli
 
@@ -19,7 +19,7 @@ Klikkaa **Select by Expression**- työkaluikonia QGISissä. Valitse kaikki liiku
 
 ::: hidden-box
 -   tarkista attribuuttitaulusta, missä sarakkeissa on tieto kunnan nimestä sekä liikuntapaikan tyypistä
--   käytä `ìn` operaattoria ja listaa liikuntapaikan tyypit
+-   käytä `in` operaattoria ja listaa liikuntapaikan tyypit
 -   käytä `and` operaattoria
 :::
 
