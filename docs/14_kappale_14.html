@@ -252,11 +252,11 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb31"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb31-1"><a href="14_kappale_14.html#cb31-1" aria-hidden="true" tabindex="-1"></a>area(</span>
-<span id="cb31-2"><a href="14_kappale_14.html#cb31-2" aria-hidden="true" tabindex="-1"></a>    buffer(</span>
-<span id="cb31-3"><a href="14_kappale_14.html#cb31-3" aria-hidden="true" tabindex="-1"></a>        $geometry, <span class="dv">50</span></span>
-<span id="cb31-4"><a href="14_kappale_14.html#cb31-4" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb31-5"><a href="14_kappale_14.html#cb31-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb39-1"><a href="14_kappale_14.html#cb39-1" aria-hidden="true" tabindex="-1"></a>area(</span>
+<span id="cb39-2"><a href="14_kappale_14.html#cb39-2" aria-hidden="true" tabindex="-1"></a>    buffer(</span>
+<span id="cb39-3"><a href="14_kappale_14.html#cb39-3" aria-hidden="true" tabindex="-1"></a>        $geometry, <span class="dv">50</span></span>
+<span id="cb39-4"><a href="14_kappale_14.html#cb39-4" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb39-5"><a href="14_kappale_14.html#cb39-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -278,11 +278,11 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb32"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb32-1"><a href="14_kappale_14.html#cb32-1" aria-hidden="true" tabindex="-1"></a>area(</span>
-<span id="cb32-2"><a href="14_kappale_14.html#cb32-2" aria-hidden="true" tabindex="-1"></a>    buffer(</span>
-<span id="cb32-3"><a href="14_kappale_14.html#cb32-3" aria-hidden="true" tabindex="-1"></a>        $geometry, <span class="dv">50</span></span>
-<span id="cb32-4"><a href="14_kappale_14.html#cb32-4" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb32-5"><a href="14_kappale_14.html#cb32-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb40-1"><a href="14_kappale_14.html#cb40-1" aria-hidden="true" tabindex="-1"></a>area(</span>
+<span id="cb40-2"><a href="14_kappale_14.html#cb40-2" aria-hidden="true" tabindex="-1"></a>    buffer(</span>
+<span id="cb40-3"><a href="14_kappale_14.html#cb40-3" aria-hidden="true" tabindex="-1"></a>        $geometry, <span class="dv">50</span></span>
+<span id="cb40-4"><a href="14_kappale_14.html#cb40-4" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb40-5"><a href="14_kappale_14.html#cb40-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -332,21 +332,21 @@ vinkki
 <li>Jos kumpikaan ehto ei toteudu (ELSE), aseta arvoksi 0</li>
 </ul>
 <div class="code-box">
-<div class="sourceCode" id="cb33"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb33-1"><a href="14_kappale_14.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
-<span id="cb33-2"><a href="14_kappale_14.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span></span>
-<span id="cb33-3"><a href="14_kappale_14.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
-<span id="cb33-4"><a href="14_kappale_14.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span></span>
-<span id="cb33-5"><a href="14_kappale_14.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
-<span id="cb33-6"><a href="14_kappale_14.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span></span>
-<span id="cb33-7"><a href="14_kappale_14.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
-<span id="cb33-8"><a href="14_kappale_14.html#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span></span>
-<span id="cb33-9"><a href="14_kappale_14.html#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
-<span id="cb33-10"><a href="14_kappale_14.html#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span></span>
-<span id="cb33-11"><a href="14_kappale_14.html#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
-<span id="cb33-12"><a href="14_kappale_14.html#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span></span>
-<span id="cb33-13"><a href="14_kappale_14.html#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
-<span id="cb33-14"><a href="14_kappale_14.html#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span> <span class="dv">0</span></span>
-<span id="cb33-15"><a href="14_kappale_14.html#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb41-1"><a href="14_kappale_14.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
+<span id="cb41-2"><a href="14_kappale_14.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span></span>
+<span id="cb41-3"><a href="14_kappale_14.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
+<span id="cb41-4"><a href="14_kappale_14.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span></span>
+<span id="cb41-5"><a href="14_kappale_14.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
+<span id="cb41-6"><a href="14_kappale_14.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span></span>
+<span id="cb41-7"><a href="14_kappale_14.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
+<span id="cb41-8"><a href="14_kappale_14.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span></span>
+<span id="cb41-9"><a href="14_kappale_14.html#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
+<span id="cb41-10"><a href="14_kappale_14.html#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span></span>
+<span id="cb41-11"><a href="14_kappale_14.html#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
+<span id="cb41-12"><a href="14_kappale_14.html#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span></span>
+<span id="cb41-13"><a href="14_kappale_14.html#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
+<span id="cb41-14"><a href="14_kappale_14.html#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span> <span class="dv">0</span></span>
+<span id="cb41-15"><a href="14_kappale_14.html#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
 </div>
 </div>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
@@ -354,53 +354,53 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb34"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb34-1"><a href="14_kappale_14.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
-<span id="cb34-2"><a href="14_kappale_14.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span></span>
-<span id="cb34-3"><a href="14_kappale_14.html#cb34-3" aria-hidden="true" tabindex="-1"></a>overlay_intersects(</span>
-<span id="cb34-4"><a href="14_kappale_14.html#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;natura_alueet&#39;</span></span>
-<span id="cb34-5"><a href="14_kappale_14.html#cb34-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">=</span> <span class="kw">True</span></span>
-<span id="cb34-6"><a href="14_kappale_14.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span></span>
-<span id="cb34-7"><a href="14_kappale_14.html#cb34-7" aria-hidden="true" tabindex="-1"></a>area(</span>
-<span id="cb34-8"><a href="14_kappale_14.html#cb34-8" aria-hidden="true" tabindex="-1"></a>    aggregate(</span>
-<span id="cb34-9"><a href="14_kappale_14.html#cb34-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">layer</span><span class="op">:=</span><span class="st">&#39;natura_alueet&#39;</span>, aggregate<span class="op">:=</span><span class="st">&#39;collect&#39;</span>, expression<span class="op">:=</span>$geometry, <span class="kw">filter</span><span class="op">:=</span>intersects(</span>
-<span id="cb34-10"><a href="14_kappale_14.html#cb34-10" aria-hidden="true" tabindex="-1"></a>            geometry(</span>
-<span id="cb34-11"><a href="14_kappale_14.html#cb34-11" aria-hidden="true" tabindex="-1"></a>                @parent</span>
-<span id="cb34-12"><a href="14_kappale_14.html#cb34-12" aria-hidden="true" tabindex="-1"></a>                ), $geometry</span>
-<span id="cb34-13"><a href="14_kappale_14.html#cb34-13" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb34-14"><a href="14_kappale_14.html#cb34-14" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb34-15"><a href="14_kappale_14.html#cb34-15" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">&gt;=</span> <span class="dv">10000000</span></span>
-<span id="cb34-16"><a href="14_kappale_14.html#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span></span>
-<span id="cb34-17"><a href="14_kappale_14.html#cb34-17" aria-hidden="true" tabindex="-1"></a>aggregate(</span>
-<span id="cb34-18"><a href="14_kappale_14.html#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">layer</span><span class="op">:=</span><span class="st">&#39;natura_alueet&#39;</span>, aggregate<span class="op">:=</span><span class="st">&#39;count&#39;</span>, expression<span class="op">:=</span><span class="ot">&quot;Status&quot;</span>, <span class="kw">filter</span><span class="op">:=</span>intersects(</span>
-<span id="cb34-19"><a href="14_kappale_14.html#cb34-19" aria-hidden="true" tabindex="-1"></a>        geometry(</span>
-<span id="cb34-20"><a href="14_kappale_14.html#cb34-20" aria-hidden="true" tabindex="-1"></a>            @parent</span>
-<span id="cb34-21"><a href="14_kappale_14.html#cb34-21" aria-hidden="true" tabindex="-1"></a>            ), $geometry</span>
-<span id="cb34-22"><a href="14_kappale_14.html#cb34-22" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb34-23"><a href="14_kappale_14.html#cb34-23" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb34-24"><a href="14_kappale_14.html#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span></span>
-<span id="cb34-25"><a href="14_kappale_14.html#cb34-25" aria-hidden="true" tabindex="-1"></a>overlay_intersects(</span>
-<span id="cb34-26"><a href="14_kappale_14.html#cb34-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;natura_alueet&#39;</span>) <span class="op">=</span> <span class="kw">True</span></span>
-<span id="cb34-27"><a href="14_kappale_14.html#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span></span>
-<span id="cb34-28"><a href="14_kappale_14.html#cb34-28" aria-hidden="true" tabindex="-1"></a>area(</span>
-<span id="cb34-29"><a href="14_kappale_14.html#cb34-29" aria-hidden="true" tabindex="-1"></a>    aggregate(</span>
-<span id="cb34-30"><a href="14_kappale_14.html#cb34-30" aria-hidden="true" tabindex="-1"></a>        <span class="kw">layer</span><span class="op">:=</span><span class="st">&#39;natura_alueet&#39;</span>, aggregate<span class="op">:=</span><span class="st">&#39;collect&#39;</span>, expression<span class="op">:=</span>$geometry, <span class="kw">filter</span><span class="op">:=</span>intersects(</span>
-<span id="cb34-31"><a href="14_kappale_14.html#cb34-31" aria-hidden="true" tabindex="-1"></a>            geometry(</span>
-<span id="cb34-32"><a href="14_kappale_14.html#cb34-32" aria-hidden="true" tabindex="-1"></a>                @parent</span>
-<span id="cb34-33"><a href="14_kappale_14.html#cb34-33" aria-hidden="true" tabindex="-1"></a>                ), $geometry</span>
-<span id="cb34-34"><a href="14_kappale_14.html#cb34-34" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb34-35"><a href="14_kappale_14.html#cb34-35" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb34-36"><a href="14_kappale_14.html#cb34-36" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">&lt;</span> <span class="dv">10000000</span></span>
-<span id="cb34-37"><a href="14_kappale_14.html#cb34-37" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span></span>
-<span id="cb34-38"><a href="14_kappale_14.html#cb34-38" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">1</span> <span class="op">*</span> ( aggregate(</span>
-<span id="cb34-39"><a href="14_kappale_14.html#cb34-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">layer</span><span class="op">:=</span><span class="st">&#39;natura_alueet&#39;</span>, aggregate<span class="op">:=</span><span class="st">&#39;count&#39;</span>, expression<span class="op">:=</span><span class="ot">&quot;Status&quot;</span>, <span class="kw">filter</span><span class="op">:=</span>intersects(</span>
-<span id="cb34-40"><a href="14_kappale_14.html#cb34-40" aria-hidden="true" tabindex="-1"></a>        geometry(</span>
-<span id="cb34-41"><a href="14_kappale_14.html#cb34-41" aria-hidden="true" tabindex="-1"></a>            @parent</span>
-<span id="cb34-42"><a href="14_kappale_14.html#cb34-42" aria-hidden="true" tabindex="-1"></a>            ), $geometry</span>
-<span id="cb34-43"><a href="14_kappale_14.html#cb34-43" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb34-44"><a href="14_kappale_14.html#cb34-44" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb34-45"><a href="14_kappale_14.html#cb34-45" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-46"><a href="14_kappale_14.html#cb34-46" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span> <span class="dv">0</span></span>
-<span id="cb34-47"><a href="14_kappale_14.html#cb34-47" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb42-1"><a href="14_kappale_14.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
+<span id="cb42-2"><a href="14_kappale_14.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span></span>
+<span id="cb42-3"><a href="14_kappale_14.html#cb42-3" aria-hidden="true" tabindex="-1"></a>overlay_intersects(</span>
+<span id="cb42-4"><a href="14_kappale_14.html#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;natura_alueet&#39;</span></span>
+<span id="cb42-5"><a href="14_kappale_14.html#cb42-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">=</span> <span class="kw">True</span></span>
+<span id="cb42-6"><a href="14_kappale_14.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span></span>
+<span id="cb42-7"><a href="14_kappale_14.html#cb42-7" aria-hidden="true" tabindex="-1"></a>area(</span>
+<span id="cb42-8"><a href="14_kappale_14.html#cb42-8" aria-hidden="true" tabindex="-1"></a>    aggregate(</span>
+<span id="cb42-9"><a href="14_kappale_14.html#cb42-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">layer</span><span class="op">:=</span><span class="st">&#39;natura_alueet&#39;</span>, aggregate<span class="op">:=</span><span class="st">&#39;collect&#39;</span>, expression<span class="op">:=</span>$geometry, <span class="kw">filter</span><span class="op">:=</span>intersects(</span>
+<span id="cb42-10"><a href="14_kappale_14.html#cb42-10" aria-hidden="true" tabindex="-1"></a>            geometry(</span>
+<span id="cb42-11"><a href="14_kappale_14.html#cb42-11" aria-hidden="true" tabindex="-1"></a>                @parent</span>
+<span id="cb42-12"><a href="14_kappale_14.html#cb42-12" aria-hidden="true" tabindex="-1"></a>                ), $geometry</span>
+<span id="cb42-13"><a href="14_kappale_14.html#cb42-13" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb42-14"><a href="14_kappale_14.html#cb42-14" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb42-15"><a href="14_kappale_14.html#cb42-15" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">&gt;=</span> <span class="dv">10000000</span></span>
+<span id="cb42-16"><a href="14_kappale_14.html#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span></span>
+<span id="cb42-17"><a href="14_kappale_14.html#cb42-17" aria-hidden="true" tabindex="-1"></a>aggregate(</span>
+<span id="cb42-18"><a href="14_kappale_14.html#cb42-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">layer</span><span class="op">:=</span><span class="st">&#39;natura_alueet&#39;</span>, aggregate<span class="op">:=</span><span class="st">&#39;count&#39;</span>, expression<span class="op">:=</span><span class="ot">&quot;Status&quot;</span>, <span class="kw">filter</span><span class="op">:=</span>intersects(</span>
+<span id="cb42-19"><a href="14_kappale_14.html#cb42-19" aria-hidden="true" tabindex="-1"></a>        geometry(</span>
+<span id="cb42-20"><a href="14_kappale_14.html#cb42-20" aria-hidden="true" tabindex="-1"></a>            @parent</span>
+<span id="cb42-21"><a href="14_kappale_14.html#cb42-21" aria-hidden="true" tabindex="-1"></a>            ), $geometry</span>
+<span id="cb42-22"><a href="14_kappale_14.html#cb42-22" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb42-23"><a href="14_kappale_14.html#cb42-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb42-24"><a href="14_kappale_14.html#cb42-24" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span></span>
+<span id="cb42-25"><a href="14_kappale_14.html#cb42-25" aria-hidden="true" tabindex="-1"></a>overlay_intersects(</span>
+<span id="cb42-26"><a href="14_kappale_14.html#cb42-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;natura_alueet&#39;</span>) <span class="op">=</span> <span class="kw">True</span></span>
+<span id="cb42-27"><a href="14_kappale_14.html#cb42-27" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span></span>
+<span id="cb42-28"><a href="14_kappale_14.html#cb42-28" aria-hidden="true" tabindex="-1"></a>area(</span>
+<span id="cb42-29"><a href="14_kappale_14.html#cb42-29" aria-hidden="true" tabindex="-1"></a>    aggregate(</span>
+<span id="cb42-30"><a href="14_kappale_14.html#cb42-30" aria-hidden="true" tabindex="-1"></a>        <span class="kw">layer</span><span class="op">:=</span><span class="st">&#39;natura_alueet&#39;</span>, aggregate<span class="op">:=</span><span class="st">&#39;collect&#39;</span>, expression<span class="op">:=</span>$geometry, <span class="kw">filter</span><span class="op">:=</span>intersects(</span>
+<span id="cb42-31"><a href="14_kappale_14.html#cb42-31" aria-hidden="true" tabindex="-1"></a>            geometry(</span>
+<span id="cb42-32"><a href="14_kappale_14.html#cb42-32" aria-hidden="true" tabindex="-1"></a>                @parent</span>
+<span id="cb42-33"><a href="14_kappale_14.html#cb42-33" aria-hidden="true" tabindex="-1"></a>                ), $geometry</span>
+<span id="cb42-34"><a href="14_kappale_14.html#cb42-34" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb42-35"><a href="14_kappale_14.html#cb42-35" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb42-36"><a href="14_kappale_14.html#cb42-36" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">&lt;</span> <span class="dv">10000000</span></span>
+<span id="cb42-37"><a href="14_kappale_14.html#cb42-37" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span></span>
+<span id="cb42-38"><a href="14_kappale_14.html#cb42-38" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">1</span> <span class="op">*</span> ( aggregate(</span>
+<span id="cb42-39"><a href="14_kappale_14.html#cb42-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">layer</span><span class="op">:=</span><span class="st">&#39;natura_alueet&#39;</span>, aggregate<span class="op">:=</span><span class="st">&#39;count&#39;</span>, expression<span class="op">:=</span><span class="ot">&quot;Status&quot;</span>, <span class="kw">filter</span><span class="op">:=</span>intersects(</span>
+<span id="cb42-40"><a href="14_kappale_14.html#cb42-40" aria-hidden="true" tabindex="-1"></a>        geometry(</span>
+<span id="cb42-41"><a href="14_kappale_14.html#cb42-41" aria-hidden="true" tabindex="-1"></a>            @parent</span>
+<span id="cb42-42"><a href="14_kappale_14.html#cb42-42" aria-hidden="true" tabindex="-1"></a>            ), $geometry</span>
+<span id="cb42-43"><a href="14_kappale_14.html#cb42-43" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb42-44"><a href="14_kappale_14.html#cb42-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb42-45"><a href="14_kappale_14.html#cb42-45" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-46"><a href="14_kappale_14.html#cb42-46" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span> <span class="dv">0</span></span>
+<span id="cb42-47"><a href="14_kappale_14.html#cb42-47" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -430,17 +430,17 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb35"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb35-1"><a href="14_kappale_14.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Vaihtoehto 1</span></span>
-<span id="cb35-2"><a href="14_kappale_14.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(</span>
-<span id="cb35-3"><a href="14_kappale_14.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="ot">&quot;TIMEZONE&quot;</span>, <span class="dv">0</span>, strpos(</span>
-<span id="cb35-4"><a href="14_kappale_14.html#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;TIMEZONE&quot;</span>, <span class="st">&#39;/&#39;</span></span>
-<span id="cb35-5"><a href="14_kappale_14.html#cb35-5" aria-hidden="true" tabindex="-1"></a>      ) <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb35-6"><a href="14_kappale_14.html#cb35-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb35-7"><a href="14_kappale_14.html#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-8"><a href="14_kappale_14.html#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Vaihtoehto 2</span></span>
-<span id="cb35-9"><a href="14_kappale_14.html#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="fu">regexp_substr</span>(</span>
-<span id="cb35-10"><a href="14_kappale_14.html#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;TIMEZONE&quot;</span>, <span class="st">&#39;(.*?)/&#39;</span></span>
-<span id="cb35-11"><a href="14_kappale_14.html#cb35-11" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb43-1"><a href="14_kappale_14.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Vaihtoehto 1</span></span>
+<span id="cb43-2"><a href="14_kappale_14.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(</span>
+<span id="cb43-3"><a href="14_kappale_14.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="ot">&quot;TIMEZONE&quot;</span>, <span class="dv">0</span>, strpos(</span>
+<span id="cb43-4"><a href="14_kappale_14.html#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;TIMEZONE&quot;</span>, <span class="st">&#39;/&#39;</span></span>
+<span id="cb43-5"><a href="14_kappale_14.html#cb43-5" aria-hidden="true" tabindex="-1"></a>      ) <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb43-6"><a href="14_kappale_14.html#cb43-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb43-7"><a href="14_kappale_14.html#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="14_kappale_14.html#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Vaihtoehto 2</span></span>
+<span id="cb43-9"><a href="14_kappale_14.html#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="fu">regexp_substr</span>(</span>
+<span id="cb43-10"><a href="14_kappale_14.html#cb43-10" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;TIMEZONE&quot;</span>, <span class="st">&#39;(.*?)/&#39;</span></span>
+<span id="cb43-11"><a href="14_kappale_14.html#cb43-11" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -459,14 +459,14 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb36"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb36-1"><a href="14_kappale_14.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- area()- funktiolla</span></span>
-<span id="cb36-2"><a href="14_kappale_14.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;asukkaita&quot;</span> <span class="op">/</span> (area(</span>
-<span id="cb36-3"><a href="14_kappale_14.html#cb36-3" aria-hidden="true" tabindex="-1"></a>    $geometry</span>
-<span id="cb36-4"><a href="14_kappale_14.html#cb36-4" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> <span class="fl">1000000.0</span>)</span>
-<span id="cb36-5"><a href="14_kappale_14.html#cb36-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-6"><a href="14_kappale_14.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- suoraviivaisemmin $area- funktiolla</span></span>
-<span id="cb36-7"><a href="14_kappale_14.html#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-8"><a href="14_kappale_14.html#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;asukkaita&quot;</span> <span class="op">/</span> ($area <span class="op">/</span> <span class="fl">1000000.0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb44-1"><a href="14_kappale_14.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- area()- funktiolla</span></span>
+<span id="cb44-2"><a href="14_kappale_14.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;asukkaita&quot;</span> <span class="op">/</span> (area(</span>
+<span id="cb44-3"><a href="14_kappale_14.html#cb44-3" aria-hidden="true" tabindex="-1"></a>    $geometry</span>
+<span id="cb44-4"><a href="14_kappale_14.html#cb44-4" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> <span class="fl">1000000.0</span>)</span>
+<span id="cb44-5"><a href="14_kappale_14.html#cb44-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb44-6"><a href="14_kappale_14.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- suoraviivaisemmin $area- funktiolla</span></span>
+<span id="cb44-7"><a href="14_kappale_14.html#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="14_kappale_14.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;asukkaita&quot;</span> <span class="op">/</span> ($area <span class="op">/</span> <span class="fl">1000000.0</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -499,22 +499,22 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb37"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb37-1"><a href="14_kappale_14.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Koon määrittäminen</span></span>
-<span id="cb37-2"><a href="14_kappale_14.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
-<span id="cb37-3"><a href="14_kappale_14.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span> <span class="op">=</span> <span class="st">&#39;Finland&#39;</span></span>
-<span id="cb37-4"><a href="14_kappale_14.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="dv">8</span></span>
-<span id="cb37-5"><a href="14_kappale_14.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span> <span class="kw">in</span> (<span class="st">&#39;Sweden&#39;</span>, <span class="st">&#39;Norway&#39;</span>)</span>
-<span id="cb37-6"><a href="14_kappale_14.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="dv">5</span></span>
-<span id="cb37-7"><a href="14_kappale_14.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span> <span class="dv">0</span></span>
-<span id="cb37-8"><a href="14_kappale_14.html#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span>
-<span id="cb37-9"><a href="14_kappale_14.html#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-10"><a href="14_kappale_14.html#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Värin määrittäminen</span></span>
-<span id="cb37-11"><a href="14_kappale_14.html#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
-<span id="cb37-12"><a href="14_kappale_14.html#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span><span class="op">=</span><span class="st">&#39;Finland&#39;</span></span>
-<span id="cb37-13"><a href="14_kappale_14.html#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;0, 0, 255&#39;</span></span>
-<span id="cb37-14"><a href="14_kappale_14.html#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span> <span class="kw">in</span> (<span class="st">&#39;Sweden&#39;</span>, <span class="st">&#39;Norway&#39;</span>)</span>
-<span id="cb37-15"><a href="14_kappale_14.html#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;150, 150, 150&#39;</span></span>
-<span id="cb37-16"><a href="14_kappale_14.html#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb45-1"><a href="14_kappale_14.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Koon määrittäminen</span></span>
+<span id="cb45-2"><a href="14_kappale_14.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
+<span id="cb45-3"><a href="14_kappale_14.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span> <span class="op">=</span> <span class="st">&#39;Finland&#39;</span></span>
+<span id="cb45-4"><a href="14_kappale_14.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="dv">8</span></span>
+<span id="cb45-5"><a href="14_kappale_14.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span> <span class="kw">in</span> (<span class="st">&#39;Sweden&#39;</span>, <span class="st">&#39;Norway&#39;</span>)</span>
+<span id="cb45-6"><a href="14_kappale_14.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="dv">5</span></span>
+<span id="cb45-7"><a href="14_kappale_14.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span> <span class="dv">0</span></span>
+<span id="cb45-8"><a href="14_kappale_14.html#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span>
+<span id="cb45-9"><a href="14_kappale_14.html#cb45-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-10"><a href="14_kappale_14.html#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Värin määrittäminen</span></span>
+<span id="cb45-11"><a href="14_kappale_14.html#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
+<span id="cb45-12"><a href="14_kappale_14.html#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span><span class="op">=</span><span class="st">&#39;Finland&#39;</span></span>
+<span id="cb45-13"><a href="14_kappale_14.html#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;0, 0, 255&#39;</span></span>
+<span id="cb45-14"><a href="14_kappale_14.html#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span> <span class="kw">in</span> (<span class="st">&#39;Sweden&#39;</span>, <span class="st">&#39;Norway&#39;</span>)</span>
+<span id="cb45-15"><a href="14_kappale_14.html#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;150, 150, 150&#39;</span></span>
+<span id="cb45-16"><a href="14_kappale_14.html#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
 </div>
 </div>
 

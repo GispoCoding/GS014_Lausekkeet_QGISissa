@@ -248,16 +248,16 @@ vinkki
 <li>Etsi <code>strpos()</code>- funktiolla oikea lopetuskohta.</li>
 </ul>
 </div>
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb38"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb38-1"><a href="15_kappale_15.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(</span>
-<span id="cb38-2"><a href="15_kappale_15.html#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;Location Name&quot;</span>, <span class="dv">0</span>, strpos(</span>
-<span id="cb38-3"><a href="15_kappale_15.html#cb38-3" aria-hidden="true" tabindex="-1"></a>        <span class="ot">&quot;Location Name&quot;</span>, <span class="st">&#39;:&#39;</span></span>
-<span id="cb38-4"><a href="15_kappale_15.html#cb38-4" aria-hidden="true" tabindex="-1"></a>        ) <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb38-5"><a href="15_kappale_15.html#cb38-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb46-1"><a href="15_kappale_15.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(</span>
+<span id="cb46-2"><a href="15_kappale_15.html#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;Location Name&quot;</span>, <span class="dv">0</span>, strpos(</span>
+<span id="cb46-3"><a href="15_kappale_15.html#cb46-3" aria-hidden="true" tabindex="-1"></a>        <span class="ot">&quot;Location Name&quot;</span>, <span class="st">&#39;:&#39;</span></span>
+<span id="cb46-4"><a href="15_kappale_15.html#cb46-4" aria-hidden="true" tabindex="-1"></a>        ) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb46-5"><a href="15_kappale_15.html#cb46-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -287,38 +287,38 @@ vinkki
 <li>Kirjoita ao. lauseke Expression-ikkunaan ja paina OK</li>
 </ol>
 <div class="code-box">
-<div class="sourceCode" id="cb39"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb39-1"><a href="15_kappale_15.html#cb39-1" aria-hidden="true" tabindex="-1"></a>painotettu_ka(<span class="st">&#39;vaesto_valitut&#39;</span>, <span class="st">&#39;kokeilu&#39;</span>, <span class="st">&#39;ika10_19&#39;</span>, <span class="st">&#39;ika30_39&#39;</span>, <span class="st">&#39;ika70_79&#39;</span>, <span class="fl">0.2</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb47-1"><a href="15_kappale_15.html#cb47-1" aria-hidden="true" tabindex="-1"></a>painotettu_ka(<span class="st">&#39;vaesto_valitut&#39;</span>, <span class="st">&#39;kokeilu&#39;</span>, <span class="st">&#39;ika10_19&#39;</span>, <span class="st">&#39;ika30_39&#39;</span>, <span class="st">&#39;ika70_79&#39;</span>, <span class="fl">0.2</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>)</span></code></pre></div>
 </div>
 </div>
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb40"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb40-1"><a href="15_kappale_15.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> qgis.core import <span class="op">*</span></span>
-<span id="cb40-2"><a href="15_kappale_15.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> qgis.gui import <span class="op">*</span></span>
-<span id="cb40-3"><a href="15_kappale_15.html#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="15_kappale_15.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="ot">@qgsfunction(args=&#39;auto&#39;, group=&#39;Custom&#39;, referenced_columns=[])</span></span>
-<span id="cb40-5"><a href="15_kappale_15.html#cb40-5" aria-hidden="true" tabindex="-1"></a>def painotettuka(<span class="kw">layer</span>, field, field1, field2, field3, value1, value2, value3, feature, <span class="kw">parent</span>):</span>
-<span id="cb40-6"><a href="15_kappale_15.html#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;&quot;&quot;</span></span>
-<span id="cb40-7"><a href="15_kappale_15.html#cb40-7" aria-hidden="true" tabindex="-1"></a>    Finds <span class="kw">out</span> <span class="kw">the</span> weighted average <span class="kw">of</span> three <span class="kw">columns</span>.</span>
-<span id="cb40-8"><a href="15_kappale_15.html#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;&quot;&quot;</span></span>
-<span id="cb40-9"><a href="15_kappale_15.html#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">layer</span> <span class="op">=</span> QgsProject.<span class="kw">instance</span>().mapLayersByName(<span class="kw">layer</span>)[<span class="dv">0</span>]</span>
-<span id="cb40-10"><a href="15_kappale_15.html#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-11"><a href="15_kappale_15.html#cb40-11" aria-hidden="true" tabindex="-1"></a>    field_idx <span class="op">=</span> <span class="kw">layer</span>.fields().indexOf(field)</span>
-<span id="cb40-12"><a href="15_kappale_15.html#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-13"><a href="15_kappale_15.html#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feat <span class="kw">in</span> <span class="kw">layer</span>.getFeatures():</span>
-<span id="cb40-14"><a href="15_kappale_15.html#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-15"><a href="15_kappale_15.html#cb40-15" aria-hidden="true" tabindex="-1"></a>        # HSYn datassa arvo <span class="dv">99</span> <span class="op">=</span> Tieto puuttuu, joten jos jokin kenttä sisältää tämän arvon,</span>
-<span id="cb40-16"><a href="15_kappale_15.html#cb40-16" aria-hidden="true" tabindex="-1"></a>        # ei painotetun keskiarvon laskeminen ole mielekästä</span>
-<span id="cb40-17"><a href="15_kappale_15.html#cb40-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> feat[field1] <span class="op">==</span> <span class="dv">99</span> <span class="kw">or</span> feat[field2] <span class="op">==</span> <span class="dv">99</span> <span class="kw">or</span> feat[field3] <span class="op">==</span> <span class="dv">99</span>:</span>
-<span id="cb40-18"><a href="15_kappale_15.html#cb40-18" aria-hidden="true" tabindex="-1"></a>            painka <span class="op">=</span> <span class="dv">99</span></span>
-<span id="cb40-19"><a href="15_kappale_15.html#cb40-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb40-20"><a href="15_kappale_15.html#cb40-20" aria-hidden="true" tabindex="-1"></a>            painka <span class="op">=</span> value1 <span class="op">*</span> feat[field1] <span class="op">+</span> value2 <span class="op">*</span> feat[field2] <span class="op">+</span> value3 <span class="op">*</span> feat[field3]</span>
-<span id="cb40-21"><a href="15_kappale_15.html#cb40-21" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb40-22"><a href="15_kappale_15.html#cb40-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">layer</span>.changeAttributeValue(feat.<span class="kw">id</span>(), field_idx, painka)</span>
-<span id="cb40-23"><a href="15_kappale_15.html#cb40-23" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb40-24"><a href="15_kappale_15.html#cb40-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb48-1"><a href="15_kappale_15.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> qgis.core import <span class="op">*</span></span>
+<span id="cb48-2"><a href="15_kappale_15.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> qgis.gui import <span class="op">*</span></span>
+<span id="cb48-3"><a href="15_kappale_15.html#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="15_kappale_15.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="ot">@qgsfunction(args=&#39;auto&#39;, group=&#39;Custom&#39;, referenced_columns=[])</span></span>
+<span id="cb48-5"><a href="15_kappale_15.html#cb48-5" aria-hidden="true" tabindex="-1"></a>def painotettuka(<span class="kw">layer</span>, field, field1, field2, field3, value1, value2, value3, feature, <span class="kw">parent</span>):</span>
+<span id="cb48-6"><a href="15_kappale_15.html#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;&quot;&quot;</span></span>
+<span id="cb48-7"><a href="15_kappale_15.html#cb48-7" aria-hidden="true" tabindex="-1"></a>    Finds <span class="kw">out</span> <span class="kw">the</span> weighted average <span class="kw">of</span> three <span class="kw">columns</span>.</span>
+<span id="cb48-8"><a href="15_kappale_15.html#cb48-8" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;&quot;&quot;</span></span>
+<span id="cb48-9"><a href="15_kappale_15.html#cb48-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">layer</span> <span class="op">=</span> QgsProject.<span class="kw">instance</span>().mapLayersByName(<span class="kw">layer</span>)[<span class="dv">0</span>]</span>
+<span id="cb48-10"><a href="15_kappale_15.html#cb48-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-11"><a href="15_kappale_15.html#cb48-11" aria-hidden="true" tabindex="-1"></a>    field_idx <span class="op">=</span> <span class="kw">layer</span>.fields().indexOf(field)</span>
+<span id="cb48-12"><a href="15_kappale_15.html#cb48-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-13"><a href="15_kappale_15.html#cb48-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feat <span class="kw">in</span> <span class="kw">layer</span>.getFeatures():</span>
+<span id="cb48-14"><a href="15_kappale_15.html#cb48-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-15"><a href="15_kappale_15.html#cb48-15" aria-hidden="true" tabindex="-1"></a>        # HSYn datassa arvo <span class="dv">99</span> <span class="op">=</span> Tieto puuttuu, joten jos jokin kenttä sisältää tämän arvon,</span>
+<span id="cb48-16"><a href="15_kappale_15.html#cb48-16" aria-hidden="true" tabindex="-1"></a>        # ei painotetun keskiarvon laskeminen ole mielekästä</span>
+<span id="cb48-17"><a href="15_kappale_15.html#cb48-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> feat[field1] <span class="op">==</span> <span class="dv">99</span> <span class="kw">or</span> feat[field2] <span class="op">==</span> <span class="dv">99</span> <span class="kw">or</span> feat[field3] <span class="op">==</span> <span class="dv">99</span>:</span>
+<span id="cb48-18"><a href="15_kappale_15.html#cb48-18" aria-hidden="true" tabindex="-1"></a>            painka <span class="op">=</span> <span class="dv">99</span></span>
+<span id="cb48-19"><a href="15_kappale_15.html#cb48-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb48-20"><a href="15_kappale_15.html#cb48-20" aria-hidden="true" tabindex="-1"></a>            painka <span class="op">=</span> value1 <span class="op">*</span> feat[field1] <span class="op">+</span> value2 <span class="op">*</span> feat[field2] <span class="op">+</span> value3 <span class="op">*</span> feat[field3]</span>
+<span id="cb48-21"><a href="15_kappale_15.html#cb48-21" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb48-22"><a href="15_kappale_15.html#cb48-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">layer</span>.changeAttributeValue(feat.<span class="kw">id</span>(), field_idx, painka)</span>
+<span id="cb48-23"><a href="15_kappale_15.html#cb48-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb48-24"><a href="15_kappale_15.html#cb48-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -336,12 +336,12 @@ vinkki
 <li>Napsauta lopuksi Update all -painiketta</li>
 </ul>
 </div>
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb41"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb41-1"><a href="15_kappale_15.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;FIN: &#39;</span> <span class="op">||</span> <span class="ot">&quot;Kunta&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb49-1"><a href="15_kappale_15.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;FIN: &#39;</span> <span class="op">||</span> <span class="ot">&quot;Kunta&quot;</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -355,14 +355,14 @@ vinkki
 <div class="hidden-box">
 <p>Käytä <code>if()</code>- ehtolausekefunktiota.</p>
 </div>
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb42"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb42-1"><a href="15_kappale_15.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(</span>
-<span id="cb42-2"><a href="15_kappale_15.html#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;Kunta_ni2&quot;</span> <span class="op">=</span> <span class="st">&#39;N_A&#39;</span>, <span class="st">&#39;Puuttuu&#39;</span>, <span class="ot">&quot;Kunta_ni2&quot;</span></span>
-<span id="cb42-3"><a href="15_kappale_15.html#cb42-3" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb50-1"><a href="15_kappale_15.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(</span>
+<span id="cb50-2"><a href="15_kappale_15.html#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;Kunta_ni2&quot;</span> <span class="op">=</span> <span class="st">&#39;N_A&#39;</span>, <span class="st">&#39;Puuttuu&#39;</span>, <span class="ot">&quot;Kunta_ni2&quot;</span></span>
+<span id="cb50-3"><a href="15_kappale_15.html#cb50-3" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -376,14 +376,14 @@ vinkki
 <div class="hidden-box">
 <p>Käytä <code>layer_property()</code>- ehtolausekefunktiota.</p>
 </div>
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb43"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb43-1"><a href="15_kappale_15.html#cb43-1" aria-hidden="true" tabindex="-1"></a>layer_property(</span>
-<span id="cb43-2"><a href="15_kappale_15.html#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;natura_alueet&#39;</span>, <span class="st">&#39;feature_count&#39;</span></span>
-<span id="cb43-3"><a href="15_kappale_15.html#cb43-3" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb51-1"><a href="15_kappale_15.html#cb51-1" aria-hidden="true" tabindex="-1"></a>layer_property(</span>
+<span id="cb51-2"><a href="15_kappale_15.html#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;natura_alueet&#39;</span>, <span class="st">&#39;feature_count&#39;</span></span>
+<span id="cb51-3"><a href="15_kappale_15.html#cb51-3" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -402,18 +402,18 @@ vinkki
 <li>Käytä <code>eval()</code>- funktiota</li>
 </ul>
 </div>
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb44"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb44-1"><a href="15_kappale_15.html#cb44-1" aria-hidden="true" tabindex="-1"></a>eval(</span>
-<span id="cb44-2"><a href="15_kappale_15.html#cb44-2" aria-hidden="true" tabindex="-1"></a>    array_contains(</span>
-<span id="cb44-3"><a href="15_kappale_15.html#cb44-3" aria-hidden="true" tabindex="-1"></a>        string_to_array(</span>
-<span id="cb44-4"><a href="15_kappale_15.html#cb44-4" aria-hidden="true" tabindex="-1"></a>            <span class="ot">&quot;VnPaatosTo&quot;</span></span>
-<span id="cb44-5"><a href="15_kappale_15.html#cb44-5" aria-hidden="true" tabindex="-1"></a>            ), <span class="st">&#39;vesilaki&#39;</span></span>
-<span id="cb44-6"><a href="15_kappale_15.html#cb44-6" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb44-7"><a href="15_kappale_15.html#cb44-7" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb52-1"><a href="15_kappale_15.html#cb52-1" aria-hidden="true" tabindex="-1"></a>eval(</span>
+<span id="cb52-2"><a href="15_kappale_15.html#cb52-2" aria-hidden="true" tabindex="-1"></a>    array_contains(</span>
+<span id="cb52-3"><a href="15_kappale_15.html#cb52-3" aria-hidden="true" tabindex="-1"></a>        string_to_array(</span>
+<span id="cb52-4"><a href="15_kappale_15.html#cb52-4" aria-hidden="true" tabindex="-1"></a>            <span class="ot">&quot;VnPaatosTo&quot;</span></span>
+<span id="cb52-5"><a href="15_kappale_15.html#cb52-5" aria-hidden="true" tabindex="-1"></a>            ), <span class="st">&#39;vesilaki&#39;</span></span>
+<span id="cb52-6"><a href="15_kappale_15.html#cb52-6" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb52-7"><a href="15_kappale_15.html#cb52-7" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -430,15 +430,15 @@ vinkki
 <div class="hidden-box">
 <p><code>sum()</code>- funktiolla voit laskea <code>asukkaita</code>- sarakkeen yhteenlasketun määrän.</p>
 </div>
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb45"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb45-1"><a href="15_kappale_15.html#cb45-1" aria-hidden="true" tabindex="-1"></a>( <span class="ot">&quot;asukkaita&quot;</span> <span class="op">/</span> <span class="fu">sum</span>(</span>
-<span id="cb45-2"><a href="15_kappale_15.html#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;asukkaita&quot;</span></span>
-<span id="cb45-3"><a href="15_kappale_15.html#cb45-3" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb45-4"><a href="15_kappale_15.html#cb45-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">*</span> <span class="fl">100.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb53-1"><a href="15_kappale_15.html#cb53-1" aria-hidden="true" tabindex="-1"></a>( <span class="ot">&quot;asukkaita&quot;</span> <span class="op">/</span> <span class="fu">sum</span>(</span>
+<span id="cb53-2"><a href="15_kappale_15.html#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;asukkaita&quot;</span></span>
+<span id="cb53-3"><a href="15_kappale_15.html#cb53-3" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb53-4"><a href="15_kappale_15.html#cb53-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">*</span> <span class="fl">100.0</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -461,20 +461,20 @@ vinkki
 <li>Millä funktiolla voit tarkistaa leikkaako buffer ja lyseon lukion geometria leikkaavat (intersect)?</li>
 </ul>
 </div>
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb46"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb46-1"><a href="15_kappale_15.html#cb46-1" aria-hidden="true" tabindex="-1"></a>intersects(</span>
-<span id="cb46-2"><a href="15_kappale_15.html#cb46-2" aria-hidden="true" tabindex="-1"></a>    buffer(</span>
-<span id="cb46-3"><a href="15_kappale_15.html#cb46-3" aria-hidden="true" tabindex="-1"></a>        $geometry, <span class="dv">20000</span></span>
-<span id="cb46-4"><a href="15_kappale_15.html#cb46-4" aria-hidden="true" tabindex="-1"></a>        ), geometry(</span>
-<span id="cb46-5"><a href="15_kappale_15.html#cb46-5" aria-hidden="true" tabindex="-1"></a>        get_feature(</span>
-<span id="cb46-6"><a href="15_kappale_15.html#cb46-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;oppilaitokset&#39;</span>, <span class="st">&#39;onimi&#39;</span>, <span class="st">&#39;Vaasan lyseon lukio&#39;</span></span>
-<span id="cb46-7"><a href="15_kappale_15.html#cb46-7" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb46-8"><a href="15_kappale_15.html#cb46-8" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb46-9"><a href="15_kappale_15.html#cb46-9" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb54-1"><a href="15_kappale_15.html#cb54-1" aria-hidden="true" tabindex="-1"></a>intersects(</span>
+<span id="cb54-2"><a href="15_kappale_15.html#cb54-2" aria-hidden="true" tabindex="-1"></a>    buffer(</span>
+<span id="cb54-3"><a href="15_kappale_15.html#cb54-3" aria-hidden="true" tabindex="-1"></a>        $geometry, <span class="dv">20000</span></span>
+<span id="cb54-4"><a href="15_kappale_15.html#cb54-4" aria-hidden="true" tabindex="-1"></a>        ), geometry(</span>
+<span id="cb54-5"><a href="15_kappale_15.html#cb54-5" aria-hidden="true" tabindex="-1"></a>        get_feature(</span>
+<span id="cb54-6"><a href="15_kappale_15.html#cb54-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;oppilaitokset&#39;</span>, <span class="st">&#39;onimi&#39;</span>, <span class="st">&#39;Vaasan lyseon lukio&#39;</span></span>
+<span id="cb54-7"><a href="15_kappale_15.html#cb54-7" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb54-8"><a href="15_kappale_15.html#cb54-8" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb54-9"><a href="15_kappale_15.html#cb54-9" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -488,37 +488,37 @@ vinkki
 <div class="hidden-box">
 <p>Käytä <code>CASE WHEN .. THEN</code>- rakennetta.</p>
 <div class="code-box">
-<div class="sourceCode" id="cb47"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb47-1"><a href="15_kappale_15.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
-<span id="cb47-2"><a href="15_kappale_15.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="op">..</span>. (ei tietoa)</span>
-<span id="cb47-3"><a href="15_kappale_15.html#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Tieto puuttuu&#39;</span></span>
-<span id="cb47-4"><a href="15_kappale_15.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="op">..</span>. (miehiä ja naisia <span class="dv">0</span><span class="op">-</span><span class="dv">100</span>)</span>
-<span id="cb47-5"><a href="15_kappale_15.html#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Vähän molempia&#39;</span></span>
-<span id="cb47-6"><a href="15_kappale_15.html#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (miehiä yli <span class="dv">100</span>, naisia <span class="dv">0</span><span class="op">-</span><span class="dv">100</span>)</span>
-<span id="cb47-7"><a href="15_kappale_15.html#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Paljon miehiä, vähän naisia&#39;</span></span>
-<span id="cb47-8"><a href="15_kappale_15.html#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (naisia yli <span class="dv">100</span>, miehiä <span class="dv">0</span><span class="op">-</span><span class="dv">100</span>)</span>
-<span id="cb47-9"><a href="15_kappale_15.html#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Paljon naisia, vähän miehiä&#39;</span></span>
-<span id="cb47-10"><a href="15_kappale_15.html#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span></span>
-<span id="cb47-11"><a href="15_kappale_15.html#cb47-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Paljon molempia&#39;</span></span>
-<span id="cb47-12"><a href="15_kappale_15.html#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb55-1"><a href="15_kappale_15.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
+<span id="cb55-2"><a href="15_kappale_15.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="op">..</span>. (ei tietoa)</span>
+<span id="cb55-3"><a href="15_kappale_15.html#cb55-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Tieto puuttuu&#39;</span></span>
+<span id="cb55-4"><a href="15_kappale_15.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="op">..</span>. (miehiä ja naisia <span class="dv">0</span><span class="op">-</span><span class="dv">100</span>)</span>
+<span id="cb55-5"><a href="15_kappale_15.html#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Vähän molempia&#39;</span></span>
+<span id="cb55-6"><a href="15_kappale_15.html#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (miehiä yli <span class="dv">100</span>, naisia <span class="dv">0</span><span class="op">-</span><span class="dv">100</span>)</span>
+<span id="cb55-7"><a href="15_kappale_15.html#cb55-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Paljon miehiä, vähän naisia&#39;</span></span>
+<span id="cb55-8"><a href="15_kappale_15.html#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (naisia yli <span class="dv">100</span>, miehiä <span class="dv">0</span><span class="op">-</span><span class="dv">100</span>)</span>
+<span id="cb55-9"><a href="15_kappale_15.html#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Paljon naisia, vähän miehiä&#39;</span></span>
+<span id="cb55-10"><a href="15_kappale_15.html#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span></span>
+<span id="cb55-11"><a href="15_kappale_15.html#cb55-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Paljon molempia&#39;</span></span>
+<span id="cb55-12"><a href="15_kappale_15.html#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
 </div>
 </div>
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb48"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb48-1"><a href="15_kappale_15.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
-<span id="cb48-2"><a href="15_kappale_15.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (<span class="ot">&quot;MIEHET&quot;</span><span class="op">=-</span><span class="dv">1</span> <span class="kw">or</span> <span class="ot">&quot;NAISET&quot;</span><span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb48-3"><a href="15_kappale_15.html#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Tieto puuttuu&#39;</span></span>
-<span id="cb48-4"><a href="15_kappale_15.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (<span class="ot">&quot;MIEHET&quot;</span><span class="op">&gt;</span><span class="dv">0</span> <span class="kw">and</span> <span class="ot">&quot;MIEHET&quot;</span><span class="op">&lt;</span><span class="dv">100</span> <span class="kw">and</span> <span class="ot">&quot;NAISET&quot;</span><span class="op">&gt;</span><span class="dv">0</span> <span class="kw">and</span> <span class="ot">&quot;NAISET&quot;</span><span class="op">&lt;</span><span class="dv">100</span>)</span>
-<span id="cb48-5"><a href="15_kappale_15.html#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Vähän molempia&#39;</span></span>
-<span id="cb48-6"><a href="15_kappale_15.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (<span class="ot">&quot;MIEHET&quot;</span><span class="op">&gt;</span><span class="dv">100</span> <span class="kw">and</span> <span class="ot">&quot;NAISET&quot;</span><span class="op">&gt;</span><span class="dv">0</span> <span class="kw">and</span> <span class="ot">&quot;NAISET&quot;</span><span class="op">&lt;</span><span class="dv">100</span>)</span>
-<span id="cb48-7"><a href="15_kappale_15.html#cb48-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Paljon miehiä, vähän naisia&#39;</span></span>
-<span id="cb48-8"><a href="15_kappale_15.html#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (<span class="ot">&quot;NAISET&quot;</span><span class="op">&gt;</span><span class="dv">100</span> <span class="kw">and</span> <span class="ot">&quot;MIEHET&quot;</span><span class="op">&gt;</span><span class="dv">0</span> <span class="kw">and</span> <span class="ot">&quot;MIEHET&quot;</span><span class="op">&lt;</span><span class="dv">100</span>)</span>
-<span id="cb48-9"><a href="15_kappale_15.html#cb48-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Paljon naisia, vähän miehiä&#39;</span></span>
-<span id="cb48-10"><a href="15_kappale_15.html#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span></span>
-<span id="cb48-11"><a href="15_kappale_15.html#cb48-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Paljon molempia&#39;</span></span>
-<span id="cb48-12"><a href="15_kappale_15.html#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb56-1"><a href="15_kappale_15.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
+<span id="cb56-2"><a href="15_kappale_15.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (<span class="ot">&quot;MIEHET&quot;</span><span class="op">=-</span><span class="dv">1</span> <span class="kw">or</span> <span class="ot">&quot;NAISET&quot;</span><span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb56-3"><a href="15_kappale_15.html#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Tieto puuttuu&#39;</span></span>
+<span id="cb56-4"><a href="15_kappale_15.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (<span class="ot">&quot;MIEHET&quot;</span><span class="op">&gt;</span><span class="dv">0</span> <span class="kw">and</span> <span class="ot">&quot;MIEHET&quot;</span><span class="op">&lt;</span><span class="dv">100</span> <span class="kw">and</span> <span class="ot">&quot;NAISET&quot;</span><span class="op">&gt;</span><span class="dv">0</span> <span class="kw">and</span> <span class="ot">&quot;NAISET&quot;</span><span class="op">&lt;</span><span class="dv">100</span>)</span>
+<span id="cb56-5"><a href="15_kappale_15.html#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Vähän molempia&#39;</span></span>
+<span id="cb56-6"><a href="15_kappale_15.html#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (<span class="ot">&quot;MIEHET&quot;</span><span class="op">&gt;</span><span class="dv">100</span> <span class="kw">and</span> <span class="ot">&quot;NAISET&quot;</span><span class="op">&gt;</span><span class="dv">0</span> <span class="kw">and</span> <span class="ot">&quot;NAISET&quot;</span><span class="op">&lt;</span><span class="dv">100</span>)</span>
+<span id="cb56-7"><a href="15_kappale_15.html#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Paljon miehiä, vähän naisia&#39;</span></span>
+<span id="cb56-8"><a href="15_kappale_15.html#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> (<span class="ot">&quot;NAISET&quot;</span><span class="op">&gt;</span><span class="dv">100</span> <span class="kw">and</span> <span class="ot">&quot;MIEHET&quot;</span><span class="op">&gt;</span><span class="dv">0</span> <span class="kw">and</span> <span class="ot">&quot;MIEHET&quot;</span><span class="op">&lt;</span><span class="dv">100</span>)</span>
+<span id="cb56-9"><a href="15_kappale_15.html#cb56-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">THEN</span> <span class="st">&#39;Paljon naisia, vähän miehiä&#39;</span></span>
+<span id="cb56-10"><a href="15_kappale_15.html#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span></span>
+<span id="cb56-11"><a href="15_kappale_15.html#cb56-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Paljon molempia&#39;</span></span>
+<span id="cb56-12"><a href="15_kappale_15.html#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -526,27 +526,27 @@ ratkaisu
 <h2><span class="header-section-number">16.10</span> Lisätehtävä 10</h2>
 <p>Tarkastele rakennusaineistoa. Hyödynnä Geometry Generatoria ja luo nimiöinti, jonka avulla saadaan näkyviin jokaisen polygonin ulkorajan segmentin pituus. Ilmoita tämä luku yhden desimaalin tarkkuudella, jotta tieto mahtuu näkymään.</p>
 <p><strong>Aineisto</strong>: <code>pikku_rakennukset.gpkg</code></p>
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb49"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb49-1"><a href="15_kappale_15.html#cb49-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-2"><a href="15_kappale_15.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- Geometry Generator -tasolle</span></span>
-<span id="cb49-3"><a href="15_kappale_15.html#cb49-3" aria-hidden="true" tabindex="-1"></a>segments_to_lines(</span>
-<span id="cb49-4"><a href="15_kappale_15.html#cb49-4" aria-hidden="true" tabindex="-1"></a>    force_rhr(</span>
-<span id="cb49-5"><a href="15_kappale_15.html#cb49-5" aria-hidden="true" tabindex="-1"></a>        $geometry</span>
-<span id="cb49-6"><a href="15_kappale_15.html#cb49-6" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb49-7"><a href="15_kappale_15.html#cb49-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb49-8"><a href="15_kappale_15.html#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-9"><a href="15_kappale_15.html#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Font marker -tasolle</span></span>
-<span id="cb49-10"><a href="15_kappale_15.html#cb49-10" aria-hidden="true" tabindex="-1"></a>format_number(</span>
-<span id="cb49-11"><a href="15_kappale_15.html#cb49-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">length</span>(</span>
-<span id="cb49-12"><a href="15_kappale_15.html#cb49-12" aria-hidden="true" tabindex="-1"></a>        geometry_n(</span>
-<span id="cb49-13"><a href="15_kappale_15.html#cb49-13" aria-hidden="true" tabindex="-1"></a>            $geometry, @geometry_part_num</span>
-<span id="cb49-14"><a href="15_kappale_15.html#cb49-14" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb49-15"><a href="15_kappale_15.html#cb49-15" aria-hidden="true" tabindex="-1"></a>        ), <span class="dv">1</span></span>
-<span id="cb49-16"><a href="15_kappale_15.html#cb49-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">||</span> <span class="st">&#39;m&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb57-1"><a href="15_kappale_15.html#cb57-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-2"><a href="15_kappale_15.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- Geometry Generator -tasolle</span></span>
+<span id="cb57-3"><a href="15_kappale_15.html#cb57-3" aria-hidden="true" tabindex="-1"></a>segments_to_lines(</span>
+<span id="cb57-4"><a href="15_kappale_15.html#cb57-4" aria-hidden="true" tabindex="-1"></a>    force_rhr(</span>
+<span id="cb57-5"><a href="15_kappale_15.html#cb57-5" aria-hidden="true" tabindex="-1"></a>        $geometry</span>
+<span id="cb57-6"><a href="15_kappale_15.html#cb57-6" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb57-7"><a href="15_kappale_15.html#cb57-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb57-8"><a href="15_kappale_15.html#cb57-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-9"><a href="15_kappale_15.html#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Font marker -tasolle</span></span>
+<span id="cb57-10"><a href="15_kappale_15.html#cb57-10" aria-hidden="true" tabindex="-1"></a>format_number(</span>
+<span id="cb57-11"><a href="15_kappale_15.html#cb57-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">length</span>(</span>
+<span id="cb57-12"><a href="15_kappale_15.html#cb57-12" aria-hidden="true" tabindex="-1"></a>        geometry_n(</span>
+<span id="cb57-13"><a href="15_kappale_15.html#cb57-13" aria-hidden="true" tabindex="-1"></a>            $geometry, @geometry_part_num</span>
+<span id="cb57-14"><a href="15_kappale_15.html#cb57-14" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb57-15"><a href="15_kappale_15.html#cb57-15" aria-hidden="true" tabindex="-1"></a>        ), <span class="dv">1</span></span>
+<span id="cb57-16"><a href="15_kappale_15.html#cb57-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">||</span> <span class="st">&#39;m&#39;</span></span></code></pre></div>
 </div>
 </div>
 

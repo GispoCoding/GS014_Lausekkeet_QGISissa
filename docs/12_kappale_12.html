@@ -236,10 +236,140 @@ type="button" onclick="navToggle()" aria-label="Toggle navigation">
 <h1><span class="header-section-number">13</span> Kappale 12: Python- konsoli</h1>
 <div id="tehtävä-12.1" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Tehtävä 12.1</h2>
-<div class="todo">
-<p>Helpompi konsolissa tehtävä tehtävä</p>
-</div>
 <p>Avaa QGISin Python konsoli.</p>
+<p><img src="img/kappale_12/image1.png" />
+<strong>Aineisto:</strong> <code>valtiot.gpkg</code></p>
+<ol style="list-style-type: decimal">
+<li>Lisää <code>valtiot.gpkg</code>- aineisto QGISiin ja valitse taso. Kokeile ensin peruskomentoja konsolissa:</li>
+</ol>
+<div class="code-box">
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="12_kappale_12.html#cb26-1" aria-hidden="true" tabindex="-1"></a>layer <span class="op">=</span> iface.activeLayer()</span></code></pre></div>
+</div>
+<div class="code-box">
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="12_kappale_12.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(layer)</span></code></pre></div>
+</div>
+<div class="code-box">
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="12_kappale_12.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(layer.featureCount())</span></code></pre></div>
+</div>
+<p>Mitä komennot tekevät?</p>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
+ratkaisu
+</button>
+<div class="hidden-box">
+<p><code>layer = iface.activeLayer()</code></p>
+<p>Tallentaa <code>layer</code>- muuttujaan sen taso- olion, joka on klikattu aktiiviseksi QGISin tasot- paneelissa.</p>
+<pre class="print(layer)```"><code>
+Tulostaa konsoliin layer- olion tiedot.
+
+```print(layer.featureCount())```
+
+Laskee tason kohteiden määrän ```featureCount()```- funktiolla ja tulostaa sen.
+:::
+
+2. Käy for- silmukassa läpi &quot;valtiot&quot;- tason 10 ensimmäistä kohdetta ja tulosta kohteen nimi (ADMIN- kenttä).
+
+&lt;button onclick=&quot;toggleAnswer(this)&quot; class=&quot;btn answer_btn&quot;&gt;vinkki&lt;/button&gt;
+
+::: hidden-box
+1. Tallenna valtiot- taso muuttujaan joko activeLayer()- funktiolla kuten äsken. Voit myös hakea tason nimen perusteella seuraavasti:
+
+::: code-box
+``` python
+layer = QgsProject.instance().mapLayersByName(&#39;tason_nimi&#39;)[0]</code></pre>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Kirjoita for- silmukka. Taso- olion getFeatures()- funktio (tai tarkemmin sanottuna metodi) palauttaa iteraattori- olion jota voi käyttää suoraan silmukassa:</li>
+</ol>
+<div class="code-box">
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="12_kappale_12.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> feature <span class="kw">in</span> layer.getFeatures():</span>
+<span id="cb30-2"><a href="12_kappale_12.html#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(feature) <span class="co"># Tämä tulostaa kohde- olion tiedot.</span></span>
+<span id="cb30-3"><a href="12_kappale_12.html#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Miten saat tulostettua &quot;ADMIN&quot;- kentän arvon?</span></span></code></pre></div>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Pythonin hyödyntämistä on dokumentoitu QGISin sivuilla. Dokumentaatiosta löytyy QGISin eri luokkien tietoja esimerkiksi niiden metodeista. Yllä olevassa esimerkissä for- silmukan sisällä ‘feature’- muuttujassa on sillä hetkellä läpi käytävä <code>QgsFeature</code>- olio. Millä funktiolla tai menetelmällä saat palautettua tietyn kentän arvon kohteesta? Lue <a href="https://qgis.org/pyqgis/3.2/core/Feature/QgsFeature.html">dokumentaatiota täältä</a>.
+:::</li>
+</ol>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
+ratkaisu
+</button>
+<div class="hidden-box">
+<div class="code-box">
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="12_kappale_12.html#cb31-1" aria-hidden="true" tabindex="-1"></a>layer <span class="op">=</span> QgsProject.instance().mapLayersByName(<span class="st">&#39;valtiot&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb31-2"><a href="12_kappale_12.html#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="12_kappale_12.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> feature <span class="kw">in</span> layer.getFeatures():</span>
+<span id="cb31-4"><a href="12_kappale_12.html#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(feature[<span class="st">&quot;ADMIN&quot;</span>])</span></code></pre></div>
+</div>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Tarkastele seuraavaa skriptiä. Pohdi mitä skripti tekee sen eri vaiheissa?</li>
+</ol>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
+skripti
+</button>
+<div class="hidden-box">
+<div class="code-box">
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="12_kappale_12.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb32-2"><a href="12_kappale_12.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb32-3"><a href="12_kappale_12.html#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="12_kappale_12.html#cb32-4" aria-hidden="true" tabindex="-1"></a>countries_layer <span class="op">=</span> QgsProject.instance().mapLayersByName(<span class="st">&#39;hallintoalueet&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb32-5"><a href="12_kappale_12.html#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="12_kappale_12.html#cb32-6" aria-hidden="true" tabindex="-1"></a>new_layer <span class="op">=</span> QgsVectorLayer(<span class="st">&#39;Polygon?crs=epsg:3067&#39;</span>, <span class="st">&#39;suomi_vyohyke&#39;</span>, <span class="st">&#39;memory&#39;</span>)</span>
+<span id="cb32-7"><a href="12_kappale_12.html#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="12_kappale_12.html#cb32-8" aria-hidden="true" tabindex="-1"></a>prov <span class="op">=</span> new_layer.dataProvider()</span>
+<span id="cb32-9"><a href="12_kappale_12.html#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="12_kappale_12.html#cb32-10" aria-hidden="true" tabindex="-1"></a>prov.addAttributes([QgsField(<span class="st">&quot;nimi&quot;</span>, QVariant.String)])</span>
+<span id="cb32-11"><a href="12_kappale_12.html#cb32-11" aria-hidden="true" tabindex="-1"></a>new_layer.updateFields()</span>
+<span id="cb32-12"><a href="12_kappale_12.html#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-13"><a href="12_kappale_12.html#cb32-13" aria-hidden="true" tabindex="-1"></a>finland_feature <span class="op">=</span> countries_layer.getFeature(<span class="dv">1</span>)</span>
+<span id="cb32-14"><a href="12_kappale_12.html#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-15"><a href="12_kappale_12.html#cb32-15" aria-hidden="true" tabindex="-1"></a>finland_geometry <span class="op">=</span> finland_feature.geometry()</span>
+<span id="cb32-16"><a href="12_kappale_12.html#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="12_kappale_12.html#cb32-17" aria-hidden="true" tabindex="-1"></a>buffered_geometry <span class="op">=</span> finland_geometry.<span class="bu">buffer</span>(<span class="dv">5</span> <span class="op">*</span> <span class="dv">1000</span>, <span class="dv">4</span>)</span>
+<span id="cb32-18"><a href="12_kappale_12.html#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="12_kappale_12.html#cb32-19" aria-hidden="true" tabindex="-1"></a>new_feature <span class="op">=</span> QgsFeature()</span>
+<span id="cb32-20"><a href="12_kappale_12.html#cb32-20" aria-hidden="true" tabindex="-1"></a>new_feature.setAttributes([<span class="st">&quot;Hanko&quot;</span>])</span>
+<span id="cb32-21"><a href="12_kappale_12.html#cb32-21" aria-hidden="true" tabindex="-1"></a>new_feature.setGeometry(buffered_geometry)</span>
+<span id="cb32-22"><a href="12_kappale_12.html#cb32-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-23"><a href="12_kappale_12.html#cb32-23" aria-hidden="true" tabindex="-1"></a>prov.addFeatures([new_feature])</span>
+<span id="cb32-24"><a href="12_kappale_12.html#cb32-24" aria-hidden="true" tabindex="-1"></a>new_layer.updateExtents()</span>
+<span id="cb32-25"><a href="12_kappale_12.html#cb32-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-26"><a href="12_kappale_12.html#cb32-26" aria-hidden="true" tabindex="-1"></a>QgsProject.instance().addMapLayer(new_layer)</span></code></pre></div>
+</div>
+</div>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
+ratkaisu
+</button>
+<div class="hidden-box">
+<p>Skripti hakee hallintoalueet- tasosta Hanko- kohteen ja luo sen geometriasta 5 km vyöhykkeen. Vyöhyke lisätään uudelle väliaikaiselle hanko_vyohyke tasolle.
+::: code-box</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="12_kappale_12.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb33-2"><a href="12_kappale_12.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb33-3"><a href="12_kappale_12.html#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="12_kappale_12.html#cb33-4" aria-hidden="true" tabindex="-1"></a>countries_layer <span class="op">=</span> QgsProject.instance().mapLayersByName(<span class="st">&#39;hallintoalueet&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb33-5"><a href="12_kappale_12.html#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="12_kappale_12.html#cb33-6" aria-hidden="true" tabindex="-1"></a>new_layer <span class="op">=</span> QgsVectorLayer(<span class="st">&#39;Polygon?crs=epsg:3067&#39;</span>, <span class="st">&#39;suomi_vyohyke&#39;</span>, <span class="st">&#39;memory&#39;</span>)</span>
+<span id="cb33-7"><a href="12_kappale_12.html#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="12_kappale_12.html#cb33-8" aria-hidden="true" tabindex="-1"></a>prov <span class="op">=</span> new_layer.dataProvider()</span>
+<span id="cb33-9"><a href="12_kappale_12.html#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="12_kappale_12.html#cb33-10" aria-hidden="true" tabindex="-1"></a>prov.addAttributes([QgsField(<span class="st">&quot;nimi&quot;</span>, QVariant.String)])</span>
+<span id="cb33-11"><a href="12_kappale_12.html#cb33-11" aria-hidden="true" tabindex="-1"></a>new_layer.updateFields()</span>
+<span id="cb33-12"><a href="12_kappale_12.html#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="12_kappale_12.html#cb33-13" aria-hidden="true" tabindex="-1"></a>finland_feature <span class="op">=</span> countries_layer.getFeature(<span class="dv">1</span>)</span>
+<span id="cb33-14"><a href="12_kappale_12.html#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="12_kappale_12.html#cb33-15" aria-hidden="true" tabindex="-1"></a>finland_geometry <span class="op">=</span> finland_feature.geometry()</span>
+<span id="cb33-16"><a href="12_kappale_12.html#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="12_kappale_12.html#cb33-17" aria-hidden="true" tabindex="-1"></a>buffered_geometry <span class="op">=</span> finland_geometry.<span class="bu">buffer</span>(<span class="dv">5</span> <span class="op">*</span> <span class="dv">1000</span>, <span class="dv">4</span>)</span>
+<span id="cb33-18"><a href="12_kappale_12.html#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-19"><a href="12_kappale_12.html#cb33-19" aria-hidden="true" tabindex="-1"></a>new_feature <span class="op">=</span> QgsFeature()</span>
+<span id="cb33-20"><a href="12_kappale_12.html#cb33-20" aria-hidden="true" tabindex="-1"></a>new_feature.setAttributes([<span class="st">&quot;Hanko&quot;</span>])</span>
+<span id="cb33-21"><a href="12_kappale_12.html#cb33-21" aria-hidden="true" tabindex="-1"></a>new_feature.setGeometry(buffered_geometry)</span>
+<span id="cb33-22"><a href="12_kappale_12.html#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-23"><a href="12_kappale_12.html#cb33-23" aria-hidden="true" tabindex="-1"></a>prov.addFeatures([new_feature])</span>
+<span id="cb33-24"><a href="12_kappale_12.html#cb33-24" aria-hidden="true" tabindex="-1"></a>new_layer.updateExtents()</span>
+<span id="cb33-25"><a href="12_kappale_12.html#cb33-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-26"><a href="12_kappale_12.html#cb33-26" aria-hidden="true" tabindex="-1"></a>QgsProject.instance().addMapLayer(new_layer)</span></code></pre></div>
+</div>
+<p>:::</p>
 </div>
 <div id="tehtävä-12.2" class="section level2" number="13.2">
 <h2><span class="header-section-number">13.2</span> Tehtävä 12.2</h2>
@@ -249,74 +379,74 @@ skriptipohja
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="12_kappale_12.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb26-2"><a href="12_kappale_12.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb26-3"><a href="12_kappale_12.html#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="12_kappale_12.html#cb26-4" aria-hidden="true" tabindex="-1"></a>layera <span class="op">=</span> QgsProject.instance().mapLayersByName(<span class="st">&#39;natura_alueet&#39;</span>)[<span class="dv">0</span>]</span>
-<span id="cb26-5"><a href="12_kappale_12.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">## 1. Luo layerb muuttuja, joka viittaa kunta-nimiseen karttatasoon</span></span>
-<span id="cb26-6"><a href="12_kappale_12.html#cb26-6" aria-hidden="true" tabindex="-1"></a>layerb <span class="op">=</span></span>
-<span id="cb26-7"><a href="12_kappale_12.html#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-8"><a href="12_kappale_12.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new layer, specify the geometry type</span></span>
-<span id="cb26-9"><a href="12_kappale_12.html#cb26-9" aria-hidden="true" tabindex="-1"></a>layer <span class="op">=</span> QgsVectorLayer(<span class="st">&#39;Polygon?crs=epsg:3067&#39;</span>, <span class="st">&#39;tulostaso&#39;</span> , <span class="st">&#39;memory&#39;</span>)</span>
-<span id="cb26-10"><a href="12_kappale_12.html#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="12_kappale_12.html#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the provider to accept the data source</span></span>
-<span id="cb26-12"><a href="12_kappale_12.html#cb26-12" aria-hidden="true" tabindex="-1"></a>prov <span class="op">=</span> layer.dataProvider()</span>
-<span id="cb26-13"><a href="12_kappale_12.html#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-14"><a href="12_kappale_12.html#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the attribute fields</span></span>
-<span id="cb26-15"><a href="12_kappale_12.html#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="co">## 2. Lisää kolmas attribuutti, nimeltään area_dif ja tyypiltään Double</span></span>
-<span id="cb26-16"><a href="12_kappale_12.html#cb26-16" aria-hidden="true" tabindex="-1"></a>prov.addAttributes([QgsField(<span class="st">&quot;id&quot;</span>,  QVariant.Int), QgsField(<span class="st">&quot;name&quot;</span>,  QVariant.String)])</span>
-<span id="cb26-17"><a href="12_kappale_12.html#cb26-17" aria-hidden="true" tabindex="-1"></a>layer.updateFields()</span>
-<span id="cb26-18"><a href="12_kappale_12.html#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-19"><a href="12_kappale_12.html#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co">## HUOM. Arvoksi pitäisi tulla ajettaessa 3</span></span>
-<span id="cb26-20"><a href="12_kappale_12.html#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Ominaisuustietosarakkeita yhteensä:&quot;</span>)</span>
-<span id="cb26-21"><a href="12_kappale_12.html#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(layer.fields()))</span>
-<span id="cb26-22"><a href="12_kappale_12.html#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-23"><a href="12_kappale_12.html#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the variables before entering for loop</span></span>
-<span id="cb26-24"><a href="12_kappale_12.html#cb26-24" aria-hidden="true" tabindex="-1"></a>laskuri <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb26-25"><a href="12_kappale_12.html#cb26-25" aria-hidden="true" tabindex="-1"></a>tempsum <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb26-26"><a href="12_kappale_12.html#cb26-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-27"><a href="12_kappale_12.html#cb26-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Goes through all features in the layera (feat variable refers to each feature in the given layer once)</span></span>
-<span id="cb26-28"><a href="12_kappale_12.html#cb26-28" aria-hidden="true" tabindex="-1"></a><span class="co"># At each round, all the indented rows will be executed</span></span>
-<span id="cb26-29"><a href="12_kappale_12.html#cb26-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> layera.getFeatures():</span>
-<span id="cb26-30"><a href="12_kappale_12.html#cb26-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the geometry of feature a</span></span>
-<span id="cb26-31"><a href="12_kappale_12.html#cb26-31" aria-hidden="true" tabindex="-1"></a>    kpl <span class="op">=</span> a.geometry()</span>
-<span id="cb26-32"><a href="12_kappale_12.html#cb26-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Goes through all features in the layerb (feat variable refers to each feature in the given layer once)</span></span>
-<span id="cb26-33"><a href="12_kappale_12.html#cb26-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># At each round, all the indented rows will be executed</span></span>
-<span id="cb26-34"><a href="12_kappale_12.html#cb26-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> layerb.getFeatures():</span>
-<span id="cb26-35"><a href="12_kappale_12.html#cb26-35" aria-hidden="true" tabindex="-1"></a>        <span class="co">## 3. Tallenna kohteen b geometriaobjekti muuttujaan kpl2</span></span>
-<span id="cb26-36"><a href="12_kappale_12.html#cb26-36" aria-hidden="true" tabindex="-1"></a>        kpl2 <span class="op">=</span></span>
-<span id="cb26-37"><a href="12_kappale_12.html#cb26-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">## 4. Luo ehto, jonka sisään päätyy vain jos kpl leikkaa kpl2:sta</span></span>
-<span id="cb26-38"><a href="12_kappale_12.html#cb26-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> :</span>
-<span id="cb26-39"><a href="12_kappale_12.html#cb26-39" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 5. Kasvata laskuri muuttujan arvoa, joka kerta, kun kpl leikkaa kpl2:sta</span></span>
-<span id="cb26-40"><a href="12_kappale_12.html#cb26-40" aria-hidden="true" tabindex="-1"></a>            laskuri <span class="op">=</span></span>
-<span id="cb26-41"><a href="12_kappale_12.html#cb26-41" aria-hidden="true" tabindex="-1"></a>            <span class="co"># The intersecting part as a geometry object</span></span>
-<span id="cb26-42"><a href="12_kappale_12.html#cb26-42" aria-hidden="true" tabindex="-1"></a>            geomleik <span class="op">=</span> kpl.intersection(kpl2)</span>
-<span id="cb26-43"><a href="12_kappale_12.html#cb26-43" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 6. Tallenna geomhu-nimiseen muuttujaan geomleik objektin konveksi peite (convex hull)</span></span>
-<span id="cb26-44"><a href="12_kappale_12.html#cb26-44" aria-hidden="true" tabindex="-1"></a>            geomhu <span class="op">=</span></span>
-<span id="cb26-45"><a href="12_kappale_12.html#cb26-45" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 7. Laske, kuinka paljon isompi konveksin peitteen pinta-ala on verrattuna geomleik ja tallenna se muuttujaan temp</span></span>
-<span id="cb26-46"><a href="12_kappale_12.html#cb26-46" aria-hidden="true" tabindex="-1"></a>            temp <span class="op">=</span></span>
-<span id="cb26-47"><a href="12_kappale_12.html#cb26-47" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 8. Pidä yllä tietoa siitä, kuinka paljon uutta pinta-alaa on syntynyt tähän mennessä konveksien peitteiden luonnista</span></span>
-<span id="cb26-48"><a href="12_kappale_12.html#cb26-48" aria-hidden="true" tabindex="-1"></a>            tempsum <span class="op">=</span></span>
-<span id="cb26-49"><a href="12_kappale_12.html#cb26-49" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Add new feature to the layer</span></span>
-<span id="cb26-50"><a href="12_kappale_12.html#cb26-50" aria-hidden="true" tabindex="-1"></a>            feat <span class="op">=</span> QgsFeature()</span>
-<span id="cb26-51"><a href="12_kappale_12.html#cb26-51" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 9. Muokkaa siten, että ao. käsky asettaa myös area_dif attribuuttikentän arvoksi temp muuttujan sisältämä arvo</span></span>
-<span id="cb26-52"><a href="12_kappale_12.html#cb26-52" aria-hidden="true" tabindex="-1"></a>            feat.setAttributes([laskuri, a[<span class="st">&#39;Nimi&#39;</span>]])</span>
-<span id="cb26-53"><a href="12_kappale_12.html#cb26-53" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Set geometry for the new feature to be added to the layer</span></span>
-<span id="cb26-54"><a href="12_kappale_12.html#cb26-54" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 10. Lisää sen muuttujan nimi (sulkeiden sisään), josta geometriatieto tulee hakea, jotta uuden tason kohteiden</span></span>
-<span id="cb26-55"><a href="12_kappale_12.html#cb26-55" aria-hidden="true" tabindex="-1"></a>            <span class="co">## geometriat tulevat vastaamaan leikkaavien polygonien konvekseja peitteitä</span></span>
-<span id="cb26-56"><a href="12_kappale_12.html#cb26-56" aria-hidden="true" tabindex="-1"></a>            feat.setGeometry()</span>
-<span id="cb26-57"><a href="12_kappale_12.html#cb26-57" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Add new feature to the layer</span></span>
-<span id="cb26-58"><a href="12_kappale_12.html#cb26-58" aria-hidden="true" tabindex="-1"></a>            prov.addFeatures([feat])</span>
-<span id="cb26-59"><a href="12_kappale_12.html#cb26-59" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Update extent of the layer</span></span>
-<span id="cb26-60"><a href="12_kappale_12.html#cb26-60" aria-hidden="true" tabindex="-1"></a>            layer.updateExtents()</span>
-<span id="cb26-61"><a href="12_kappale_12.html#cb26-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-62"><a href="12_kappale_12.html#cb26-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Konveksin peitteen luomisesta seurasi&quot;</span>)</span>
-<span id="cb26-63"><a href="12_kappale_12.html#cb26-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert m2 to km2</span></span>
-<span id="cb26-64"><a href="12_kappale_12.html#cb26-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>((tempsum <span class="op">/</span> <span class="fl">1000000.0</span>), <span class="dv">1</span>))</span>
-<span id="cb26-65"><a href="12_kappale_12.html#cb26-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;km2 pinta-alan lisäys.&quot;</span>)</span>
-<span id="cb26-66"><a href="12_kappale_12.html#cb26-66" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb26-67"><a href="12_kappale_12.html#cb26-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the layer to the Layers panel</span></span>
-<span id="cb26-68"><a href="12_kappale_12.html#cb26-68" aria-hidden="true" tabindex="-1"></a>QgsProject.instance().addMapLayers([layer])</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="12_kappale_12.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb34-2"><a href="12_kappale_12.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb34-3"><a href="12_kappale_12.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="12_kappale_12.html#cb34-4" aria-hidden="true" tabindex="-1"></a>layera <span class="op">=</span> QgsProject.instance().mapLayersByName(<span class="st">&#39;natura_alueet&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb34-5"><a href="12_kappale_12.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">## 1. Luo layerb muuttuja, joka viittaa kunta-nimiseen karttatasoon</span></span>
+<span id="cb34-6"><a href="12_kappale_12.html#cb34-6" aria-hidden="true" tabindex="-1"></a>layerb <span class="op">=</span></span>
+<span id="cb34-7"><a href="12_kappale_12.html#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="12_kappale_12.html#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new layer, specify the geometry type</span></span>
+<span id="cb34-9"><a href="12_kappale_12.html#cb34-9" aria-hidden="true" tabindex="-1"></a>layer <span class="op">=</span> QgsVectorLayer(<span class="st">&#39;Polygon?crs=epsg:3067&#39;</span>, <span class="st">&#39;tulostaso&#39;</span> , <span class="st">&#39;memory&#39;</span>)</span>
+<span id="cb34-10"><a href="12_kappale_12.html#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="12_kappale_12.html#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the provider to accept the data source</span></span>
+<span id="cb34-12"><a href="12_kappale_12.html#cb34-12" aria-hidden="true" tabindex="-1"></a>prov <span class="op">=</span> layer.dataProvider()</span>
+<span id="cb34-13"><a href="12_kappale_12.html#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-14"><a href="12_kappale_12.html#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the attribute fields</span></span>
+<span id="cb34-15"><a href="12_kappale_12.html#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co">## 2. Lisää kolmas attribuutti, nimeltään area_dif ja tyypiltään Double</span></span>
+<span id="cb34-16"><a href="12_kappale_12.html#cb34-16" aria-hidden="true" tabindex="-1"></a>prov.addAttributes([QgsField(<span class="st">&quot;id&quot;</span>,  QVariant.Int), QgsField(<span class="st">&quot;name&quot;</span>,  QVariant.String)])</span>
+<span id="cb34-17"><a href="12_kappale_12.html#cb34-17" aria-hidden="true" tabindex="-1"></a>layer.updateFields()</span>
+<span id="cb34-18"><a href="12_kappale_12.html#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="12_kappale_12.html#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co">## HUOM. Arvoksi pitäisi tulla ajettaessa 3</span></span>
+<span id="cb34-20"><a href="12_kappale_12.html#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Ominaisuustietosarakkeita yhteensä:&quot;</span>)</span>
+<span id="cb34-21"><a href="12_kappale_12.html#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(layer.fields()))</span>
+<span id="cb34-22"><a href="12_kappale_12.html#cb34-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-23"><a href="12_kappale_12.html#cb34-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the variables before entering for loop</span></span>
+<span id="cb34-24"><a href="12_kappale_12.html#cb34-24" aria-hidden="true" tabindex="-1"></a>laskuri <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb34-25"><a href="12_kappale_12.html#cb34-25" aria-hidden="true" tabindex="-1"></a>tempsum <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb34-26"><a href="12_kappale_12.html#cb34-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-27"><a href="12_kappale_12.html#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Goes through all features in the layera (feat variable refers to each feature in the given layer once)</span></span>
+<span id="cb34-28"><a href="12_kappale_12.html#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="co"># At each round, all the indented rows will be executed</span></span>
+<span id="cb34-29"><a href="12_kappale_12.html#cb34-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> layera.getFeatures():</span>
+<span id="cb34-30"><a href="12_kappale_12.html#cb34-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the geometry of feature a</span></span>
+<span id="cb34-31"><a href="12_kappale_12.html#cb34-31" aria-hidden="true" tabindex="-1"></a>    kpl <span class="op">=</span> a.geometry()</span>
+<span id="cb34-32"><a href="12_kappale_12.html#cb34-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Goes through all features in the layerb (feat variable refers to each feature in the given layer once)</span></span>
+<span id="cb34-33"><a href="12_kappale_12.html#cb34-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># At each round, all the indented rows will be executed</span></span>
+<span id="cb34-34"><a href="12_kappale_12.html#cb34-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> layerb.getFeatures():</span>
+<span id="cb34-35"><a href="12_kappale_12.html#cb34-35" aria-hidden="true" tabindex="-1"></a>        <span class="co">## 3. Tallenna kohteen b geometriaobjekti muuttujaan kpl2</span></span>
+<span id="cb34-36"><a href="12_kappale_12.html#cb34-36" aria-hidden="true" tabindex="-1"></a>        kpl2 <span class="op">=</span></span>
+<span id="cb34-37"><a href="12_kappale_12.html#cb34-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">## 4. Luo ehto, jonka sisään päätyy vain jos kpl leikkaa kpl2:sta</span></span>
+<span id="cb34-38"><a href="12_kappale_12.html#cb34-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> :</span>
+<span id="cb34-39"><a href="12_kappale_12.html#cb34-39" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 5. Kasvata laskuri muuttujan arvoa, joka kerta, kun kpl leikkaa kpl2:sta</span></span>
+<span id="cb34-40"><a href="12_kappale_12.html#cb34-40" aria-hidden="true" tabindex="-1"></a>            laskuri <span class="op">=</span></span>
+<span id="cb34-41"><a href="12_kappale_12.html#cb34-41" aria-hidden="true" tabindex="-1"></a>            <span class="co"># The intersecting part as a geometry object</span></span>
+<span id="cb34-42"><a href="12_kappale_12.html#cb34-42" aria-hidden="true" tabindex="-1"></a>            geomleik <span class="op">=</span> kpl.intersection(kpl2)</span>
+<span id="cb34-43"><a href="12_kappale_12.html#cb34-43" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 6. Tallenna geomhu-nimiseen muuttujaan geomleik objektin konveksi peite (convex hull)</span></span>
+<span id="cb34-44"><a href="12_kappale_12.html#cb34-44" aria-hidden="true" tabindex="-1"></a>            geomhu <span class="op">=</span></span>
+<span id="cb34-45"><a href="12_kappale_12.html#cb34-45" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 7. Laske, kuinka paljon isompi konveksin peitteen pinta-ala on verrattuna geomleik ja tallenna se muuttujaan temp</span></span>
+<span id="cb34-46"><a href="12_kappale_12.html#cb34-46" aria-hidden="true" tabindex="-1"></a>            temp <span class="op">=</span></span>
+<span id="cb34-47"><a href="12_kappale_12.html#cb34-47" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 8. Pidä yllä tietoa siitä, kuinka paljon uutta pinta-alaa on syntynyt tähän mennessä konveksien peitteiden luonnista</span></span>
+<span id="cb34-48"><a href="12_kappale_12.html#cb34-48" aria-hidden="true" tabindex="-1"></a>            tempsum <span class="op">=</span></span>
+<span id="cb34-49"><a href="12_kappale_12.html#cb34-49" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Add new feature to the layer</span></span>
+<span id="cb34-50"><a href="12_kappale_12.html#cb34-50" aria-hidden="true" tabindex="-1"></a>            feat <span class="op">=</span> QgsFeature()</span>
+<span id="cb34-51"><a href="12_kappale_12.html#cb34-51" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 9. Muokkaa siten, että ao. käsky asettaa myös area_dif attribuuttikentän arvoksi temp muuttujan sisältämä arvo</span></span>
+<span id="cb34-52"><a href="12_kappale_12.html#cb34-52" aria-hidden="true" tabindex="-1"></a>            feat.setAttributes([laskuri, a[<span class="st">&#39;Nimi&#39;</span>]])</span>
+<span id="cb34-53"><a href="12_kappale_12.html#cb34-53" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Set geometry for the new feature to be added to the layer</span></span>
+<span id="cb34-54"><a href="12_kappale_12.html#cb34-54" aria-hidden="true" tabindex="-1"></a>            <span class="co">## 10. Lisää sen muuttujan nimi (sulkeiden sisään), josta geometriatieto tulee hakea, jotta uuden tason kohteiden</span></span>
+<span id="cb34-55"><a href="12_kappale_12.html#cb34-55" aria-hidden="true" tabindex="-1"></a>            <span class="co">## geometriat tulevat vastaamaan leikkaavien polygonien konvekseja peitteitä</span></span>
+<span id="cb34-56"><a href="12_kappale_12.html#cb34-56" aria-hidden="true" tabindex="-1"></a>            feat.setGeometry()</span>
+<span id="cb34-57"><a href="12_kappale_12.html#cb34-57" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Add new feature to the layer</span></span>
+<span id="cb34-58"><a href="12_kappale_12.html#cb34-58" aria-hidden="true" tabindex="-1"></a>            prov.addFeatures([feat])</span>
+<span id="cb34-59"><a href="12_kappale_12.html#cb34-59" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Update extent of the layer</span></span>
+<span id="cb34-60"><a href="12_kappale_12.html#cb34-60" aria-hidden="true" tabindex="-1"></a>            layer.updateExtents()</span>
+<span id="cb34-61"><a href="12_kappale_12.html#cb34-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-62"><a href="12_kappale_12.html#cb34-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Konveksin peitteen luomisesta seurasi&quot;</span>)</span>
+<span id="cb34-63"><a href="12_kappale_12.html#cb34-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert m2 to km2</span></span>
+<span id="cb34-64"><a href="12_kappale_12.html#cb34-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>((tempsum <span class="op">/</span> <span class="fl">1000000.0</span>), <span class="dv">1</span>))</span>
+<span id="cb34-65"><a href="12_kappale_12.html#cb34-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;km2 pinta-alan lisäys.&quot;</span>)</span>
+<span id="cb34-66"><a href="12_kappale_12.html#cb34-66" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb34-67"><a href="12_kappale_12.html#cb34-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the layer to the Layers panel</span></span>
+<span id="cb34-68"><a href="12_kappale_12.html#cb34-68" aria-hidden="true" tabindex="-1"></a>QgsProject.instance().addMapLayers([layer])</span></code></pre></div>
 </div>
 </div>
 <p><strong>Aineistot</strong>:</p>
@@ -329,7 +459,7 @@ vinkki
 </button>
 <div class="hidden-box">
 <p>Täydennä skriptipohjaan merkityt kohdat.
-<img src="img/kappale_12/image1.png" /></p>
+<img src="img/kappale_12/image2.png" /></p>
 <ol style="list-style-type: decimal">
 <li>Avaa Python- konsoli.</li>
 <li>Avaa Python- skriptieditori.</li>
@@ -351,69 +481,69 @@ ratkaisu
 </ul>
 <p>Täydennetty skripti:</p>
 <div class="code-box">
-<div class="sourceCode" id="cb27"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb27-1"><a href="12_kappale_12.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> qgis.core import <span class="op">*</span></span>
-<span id="cb27-2"><a href="12_kappale_12.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> qgis.gui import <span class="op">*</span></span>
-<span id="cb27-3"><a href="12_kappale_12.html#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="12_kappale_12.html#cb27-4" aria-hidden="true" tabindex="-1"></a>layera <span class="op">=</span> QgsProject.<span class="kw">instance</span>().mapLayersByName(<span class="st">&#39;natura_alueet&#39;</span>)[<span class="dv">0</span>]</span>
-<span id="cb27-5"><a href="12_kappale_12.html#cb27-5" aria-hidden="true" tabindex="-1"></a>layerb <span class="op">=</span> QgsProject.<span class="kw">instance</span>().mapLayersByName(<span class="st">&#39;kunta&#39;</span>)[<span class="dv">0</span>]</span>
-<span id="cb27-6"><a href="12_kappale_12.html#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="12_kappale_12.html#cb27-7" aria-hidden="true" tabindex="-1"></a># <span class="kw">Create</span> <span class="kw">new</span> <span class="kw">layer</span>, specify <span class="kw">the</span> geometry <span class="kw">type</span></span>
-<span id="cb27-8"><a href="12_kappale_12.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="kw">layer</span> <span class="op">=</span> QgsVectorLayer(<span class="st">&#39;Polygon?crs=epsg:3067&#39;</span>, <span class="st">&#39;tulostaso&#39;</span> , <span class="st">&#39;memory&#39;</span>)</span>
-<span id="cb27-9"><a href="12_kappale_12.html#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-10"><a href="12_kappale_12.html#cb27-10" aria-hidden="true" tabindex="-1"></a># <span class="kw">Set</span> <span class="kw">the</span> provider <span class="kw">to</span> accept <span class="kw">the</span> <span class="kw">data</span> <span class="kw">source</span></span>
-<span id="cb27-11"><a href="12_kappale_12.html#cb27-11" aria-hidden="true" tabindex="-1"></a>prov <span class="op">=</span> <span class="kw">layer</span>.dataProvider()</span>
-<span id="cb27-12"><a href="12_kappale_12.html#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-13"><a href="12_kappale_12.html#cb27-13" aria-hidden="true" tabindex="-1"></a># <span class="kw">Create</span> <span class="kw">the</span> <span class="kw">attribute</span> fields</span>
-<span id="cb27-14"><a href="12_kappale_12.html#cb27-14" aria-hidden="true" tabindex="-1"></a>prov.addAttributes([QgsField(<span class="ot">&quot;id&quot;</span>,  QVariant.<span class="dt">Int</span>), QgsField(<span class="ot">&quot;name&quot;</span>,  QVariant.String), QgsField(<span class="ot">&quot;area_dif&quot;</span>,  QVariant.<span class="dt">Double</span>)])</span>
-<span id="cb27-15"><a href="12_kappale_12.html#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="kw">layer</span>.updateFields()</span>
-<span id="cb27-16"><a href="12_kappale_12.html#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-17"><a href="12_kappale_12.html#cb27-17" aria-hidden="true" tabindex="-1"></a>print(<span class="ot">&quot;Ominaisuustietosarakkeita yhteensä:&quot;</span>)</span>
-<span id="cb27-18"><a href="12_kappale_12.html#cb27-18" aria-hidden="true" tabindex="-1"></a>print(len(<span class="kw">layer</span>.fields()))</span>
-<span id="cb27-19"><a href="12_kappale_12.html#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-20"><a href="12_kappale_12.html#cb27-20" aria-hidden="true" tabindex="-1"></a># Initialize <span class="kw">the</span> variables <span class="kw">before</span> entering <span class="cf">for</span> <span class="cf">loop</span></span>
-<span id="cb27-21"><a href="12_kappale_12.html#cb27-21" aria-hidden="true" tabindex="-1"></a>laskuri <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb27-22"><a href="12_kappale_12.html#cb27-22" aria-hidden="true" tabindex="-1"></a>tempsum <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb27-23"><a href="12_kappale_12.html#cb27-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-24"><a href="12_kappale_12.html#cb27-24" aria-hidden="true" tabindex="-1"></a># Goes <span class="kw">through</span> <span class="kw">all</span> features <span class="kw">in</span> <span class="kw">the</span> layera (feat variable refers <span class="kw">to</span> <span class="kw">each</span> feature <span class="kw">in</span> <span class="kw">the</span> given <span class="kw">layer</span> once)</span>
-<span id="cb27-25"><a href="12_kappale_12.html#cb27-25" aria-hidden="true" tabindex="-1"></a># <span class="kw">At</span> <span class="kw">each</span> <span class="fu">round</span>, <span class="kw">all</span> <span class="kw">the</span> indented <span class="kw">rows</span> will be executed</span>
-<span id="cb27-26"><a href="12_kappale_12.html#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> layera.getFeatures():</span>
-<span id="cb27-27"><a href="12_kappale_12.html#cb27-27" aria-hidden="true" tabindex="-1"></a>    # Get <span class="kw">the</span> geometry <span class="kw">of</span> feature a</span>
-<span id="cb27-28"><a href="12_kappale_12.html#cb27-28" aria-hidden="true" tabindex="-1"></a>    kpl <span class="op">=</span> a.geometry()</span>
-<span id="cb27-29"><a href="12_kappale_12.html#cb27-29" aria-hidden="true" tabindex="-1"></a>    # Goes <span class="kw">through</span> <span class="kw">all</span> features <span class="kw">in</span> <span class="kw">the</span> layerb (feat variable refers <span class="kw">to</span> <span class="kw">each</span> feature <span class="kw">in</span> <span class="kw">the</span> given <span class="kw">layer</span> once)</span>
-<span id="cb27-30"><a href="12_kappale_12.html#cb27-30" aria-hidden="true" tabindex="-1"></a>    # <span class="kw">At</span> <span class="kw">each</span> <span class="fu">round</span>, <span class="kw">all</span> <span class="kw">the</span> indented <span class="kw">rows</span> will be executed</span>
-<span id="cb27-31"><a href="12_kappale_12.html#cb27-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> layerb.getFeatures():</span>
-<span id="cb27-32"><a href="12_kappale_12.html#cb27-32" aria-hidden="true" tabindex="-1"></a>        # Get <span class="kw">the</span> geometry <span class="kw">of</span> feature b</span>
-<span id="cb27-33"><a href="12_kappale_12.html#cb27-33" aria-hidden="true" tabindex="-1"></a>        kpl2 <span class="op">=</span> b.geometry()</span>
-<span id="cb27-34"><a href="12_kappale_12.html#cb27-34" aria-hidden="true" tabindex="-1"></a>        # <span class="kw">Check</span> <span class="cf">if</span> kpl intersects <span class="kw">with</span> kpl2</span>
-<span id="cb27-35"><a href="12_kappale_12.html#cb27-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> kpl.intersects(kpl2):</span>
-<span id="cb27-36"><a href="12_kappale_12.html#cb27-36" aria-hidden="true" tabindex="-1"></a>            # Counter <span class="kw">to</span> stay track <span class="kw">on</span> how many intersecting features we have found</span>
-<span id="cb27-37"><a href="12_kappale_12.html#cb27-37" aria-hidden="true" tabindex="-1"></a>            laskuri <span class="op">=</span> laskuri <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb27-38"><a href="12_kappale_12.html#cb27-38" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">The</span> intersecting part <span class="kw">as</span> a geometry <span class="dt">object</span></span>
-<span id="cb27-39"><a href="12_kappale_12.html#cb27-39" aria-hidden="true" tabindex="-1"></a>            geomleik <span class="op">=</span> kpl.intersection(kpl2)</span>
-<span id="cb27-40"><a href="12_kappale_12.html#cb27-40" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">Create</span> <span class="kw">the</span> convex hull <span class="kw">of</span> <span class="kw">the</span> intersecting geometry <span class="dt">object</span></span>
-<span id="cb27-41"><a href="12_kappale_12.html#cb27-41" aria-hidden="true" tabindex="-1"></a>            geomhu <span class="op">=</span> geomleik.convexHull()</span>
-<span id="cb27-42"><a href="12_kappale_12.html#cb27-42" aria-hidden="true" tabindex="-1"></a>            # Calculate <span class="kw">the</span> increase <span class="kw">on</span> area <span class="kw">size</span> <span class="cf">when</span> moving <span class="kw">from</span> intersecting <span class="dt">object</span> <span class="kw">to</span> its convex hull</span>
-<span id="cb27-43"><a href="12_kappale_12.html#cb27-43" aria-hidden="true" tabindex="-1"></a>            temp <span class="op">=</span> geomhu.area() <span class="op">-</span> geomleik.area()</span>
-<span id="cb27-44"><a href="12_kappale_12.html#cb27-44" aria-hidden="true" tabindex="-1"></a>            # Stay track <span class="kw">on</span> <span class="kw">the</span> total increase <span class="kw">on</span> area <span class="kw">size</span></span>
-<span id="cb27-45"><a href="12_kappale_12.html#cb27-45" aria-hidden="true" tabindex="-1"></a>            tempsum <span class="op">=</span> tempsum <span class="op">+</span> temp</span>
-<span id="cb27-46"><a href="12_kappale_12.html#cb27-46" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">Add</span> <span class="kw">new</span> feature <span class="kw">to</span> <span class="kw">the</span> <span class="kw">layer</span></span>
-<span id="cb27-47"><a href="12_kappale_12.html#cb27-47" aria-hidden="true" tabindex="-1"></a>            feat <span class="op">=</span> QgsFeature()</span>
-<span id="cb27-48"><a href="12_kappale_12.html#cb27-48" aria-hidden="true" tabindex="-1"></a>             # <span class="kw">Set</span> <span class="kw">attribute</span> <span class="kw">values</span> <span class="cf">for</span> <span class="kw">the</span> <span class="kw">new</span> feature <span class="kw">to</span> be added <span class="kw">to</span> <span class="kw">the</span> <span class="kw">layer</span></span>
-<span id="cb27-49"><a href="12_kappale_12.html#cb27-49" aria-hidden="true" tabindex="-1"></a>            feat.setAttributes([laskuri, a[<span class="st">&#39;Nimi&#39;</span>], temp])</span>
-<span id="cb27-50"><a href="12_kappale_12.html#cb27-50" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">Set</span> geometry <span class="cf">for</span> <span class="kw">the</span> <span class="kw">new</span> feature <span class="kw">to</span> be added <span class="kw">to</span> <span class="kw">the</span> <span class="kw">layer</span></span>
-<span id="cb27-51"><a href="12_kappale_12.html#cb27-51" aria-hidden="true" tabindex="-1"></a>            feat.setGeometry(geomhu)</span>
-<span id="cb27-52"><a href="12_kappale_12.html#cb27-52" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">Add</span> <span class="kw">new</span> feature <span class="kw">to</span> <span class="kw">the</span> <span class="kw">layer</span></span>
-<span id="cb27-53"><a href="12_kappale_12.html#cb27-53" aria-hidden="true" tabindex="-1"></a>            prov.addFeatures([feat])</span>
-<span id="cb27-54"><a href="12_kappale_12.html#cb27-54" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">Update</span> <span class="kw">extent</span> <span class="kw">of</span> <span class="kw">the</span> <span class="kw">layer</span></span>
-<span id="cb27-55"><a href="12_kappale_12.html#cb27-55" aria-hidden="true" tabindex="-1"></a>            <span class="kw">layer</span>.updateExtents()</span>
-<span id="cb27-56"><a href="12_kappale_12.html#cb27-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-57"><a href="12_kappale_12.html#cb27-57" aria-hidden="true" tabindex="-1"></a>print(<span class="ot">&quot;Konveksin peitteen luomisesta seurasi&quot;</span>)</span>
-<span id="cb27-58"><a href="12_kappale_12.html#cb27-58" aria-hidden="true" tabindex="-1"></a># <span class="fu">Convert</span> m2 <span class="kw">to</span> km2</span>
-<span id="cb27-59"><a href="12_kappale_12.html#cb27-59" aria-hidden="true" tabindex="-1"></a>print(<span class="fu">round</span>((tempsum <span class="op">/</span> <span class="fl">1000000.0</span>), <span class="dv">1</span>))</span>
-<span id="cb27-60"><a href="12_kappale_12.html#cb27-60" aria-hidden="true" tabindex="-1"></a>print(<span class="ot">&quot;km2 pinta-alan lisäys.&quot;</span>)</span>
-<span id="cb27-61"><a href="12_kappale_12.html#cb27-61" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb27-62"><a href="12_kappale_12.html#cb27-62" aria-hidden="true" tabindex="-1"></a># <span class="kw">Add</span> <span class="kw">the</span> <span class="kw">layer</span> <span class="kw">to</span> <span class="kw">the</span> Layers panel</span>
-<span id="cb27-63"><a href="12_kappale_12.html#cb27-63" aria-hidden="true" tabindex="-1"></a>QgsProject.<span class="kw">instance</span>().addMapLayers([<span class="kw">layer</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb35-1"><a href="12_kappale_12.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> qgis.core import <span class="op">*</span></span>
+<span id="cb35-2"><a href="12_kappale_12.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> qgis.gui import <span class="op">*</span></span>
+<span id="cb35-3"><a href="12_kappale_12.html#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="12_kappale_12.html#cb35-4" aria-hidden="true" tabindex="-1"></a>layera <span class="op">=</span> QgsProject.<span class="kw">instance</span>().mapLayersByName(<span class="st">&#39;natura_alueet&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb35-5"><a href="12_kappale_12.html#cb35-5" aria-hidden="true" tabindex="-1"></a>layerb <span class="op">=</span> QgsProject.<span class="kw">instance</span>().mapLayersByName(<span class="st">&#39;kunta&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb35-6"><a href="12_kappale_12.html#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="12_kappale_12.html#cb35-7" aria-hidden="true" tabindex="-1"></a># <span class="kw">Create</span> <span class="kw">new</span> <span class="kw">layer</span>, specify <span class="kw">the</span> geometry <span class="kw">type</span></span>
+<span id="cb35-8"><a href="12_kappale_12.html#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="kw">layer</span> <span class="op">=</span> QgsVectorLayer(<span class="st">&#39;Polygon?crs=epsg:3067&#39;</span>, <span class="st">&#39;tulostaso&#39;</span> , <span class="st">&#39;memory&#39;</span>)</span>
+<span id="cb35-9"><a href="12_kappale_12.html#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="12_kappale_12.html#cb35-10" aria-hidden="true" tabindex="-1"></a># <span class="kw">Set</span> <span class="kw">the</span> provider <span class="kw">to</span> accept <span class="kw">the</span> <span class="kw">data</span> <span class="kw">source</span></span>
+<span id="cb35-11"><a href="12_kappale_12.html#cb35-11" aria-hidden="true" tabindex="-1"></a>prov <span class="op">=</span> <span class="kw">layer</span>.dataProvider()</span>
+<span id="cb35-12"><a href="12_kappale_12.html#cb35-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="12_kappale_12.html#cb35-13" aria-hidden="true" tabindex="-1"></a># <span class="kw">Create</span> <span class="kw">the</span> <span class="kw">attribute</span> fields</span>
+<span id="cb35-14"><a href="12_kappale_12.html#cb35-14" aria-hidden="true" tabindex="-1"></a>prov.addAttributes([QgsField(<span class="ot">&quot;id&quot;</span>,  QVariant.<span class="dt">Int</span>), QgsField(<span class="ot">&quot;name&quot;</span>,  QVariant.String), QgsField(<span class="ot">&quot;area_dif&quot;</span>,  QVariant.<span class="dt">Double</span>)])</span>
+<span id="cb35-15"><a href="12_kappale_12.html#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="kw">layer</span>.updateFields()</span>
+<span id="cb35-16"><a href="12_kappale_12.html#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="12_kappale_12.html#cb35-17" aria-hidden="true" tabindex="-1"></a>print(<span class="ot">&quot;Ominaisuustietosarakkeita yhteensä:&quot;</span>)</span>
+<span id="cb35-18"><a href="12_kappale_12.html#cb35-18" aria-hidden="true" tabindex="-1"></a>print(len(<span class="kw">layer</span>.fields()))</span>
+<span id="cb35-19"><a href="12_kappale_12.html#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-20"><a href="12_kappale_12.html#cb35-20" aria-hidden="true" tabindex="-1"></a># Initialize <span class="kw">the</span> variables <span class="kw">before</span> entering <span class="cf">for</span> <span class="cf">loop</span></span>
+<span id="cb35-21"><a href="12_kappale_12.html#cb35-21" aria-hidden="true" tabindex="-1"></a>laskuri <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb35-22"><a href="12_kappale_12.html#cb35-22" aria-hidden="true" tabindex="-1"></a>tempsum <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb35-23"><a href="12_kappale_12.html#cb35-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-24"><a href="12_kappale_12.html#cb35-24" aria-hidden="true" tabindex="-1"></a># Goes <span class="kw">through</span> <span class="kw">all</span> features <span class="kw">in</span> <span class="kw">the</span> layera (feat variable refers <span class="kw">to</span> <span class="kw">each</span> feature <span class="kw">in</span> <span class="kw">the</span> given <span class="kw">layer</span> once)</span>
+<span id="cb35-25"><a href="12_kappale_12.html#cb35-25" aria-hidden="true" tabindex="-1"></a># <span class="kw">At</span> <span class="kw">each</span> <span class="fu">round</span>, <span class="kw">all</span> <span class="kw">the</span> indented <span class="kw">rows</span> will be executed</span>
+<span id="cb35-26"><a href="12_kappale_12.html#cb35-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> layera.getFeatures():</span>
+<span id="cb35-27"><a href="12_kappale_12.html#cb35-27" aria-hidden="true" tabindex="-1"></a>    # Get <span class="kw">the</span> geometry <span class="kw">of</span> feature a</span>
+<span id="cb35-28"><a href="12_kappale_12.html#cb35-28" aria-hidden="true" tabindex="-1"></a>    kpl <span class="op">=</span> a.geometry()</span>
+<span id="cb35-29"><a href="12_kappale_12.html#cb35-29" aria-hidden="true" tabindex="-1"></a>    # Goes <span class="kw">through</span> <span class="kw">all</span> features <span class="kw">in</span> <span class="kw">the</span> layerb (feat variable refers <span class="kw">to</span> <span class="kw">each</span> feature <span class="kw">in</span> <span class="kw">the</span> given <span class="kw">layer</span> once)</span>
+<span id="cb35-30"><a href="12_kappale_12.html#cb35-30" aria-hidden="true" tabindex="-1"></a>    # <span class="kw">At</span> <span class="kw">each</span> <span class="fu">round</span>, <span class="kw">all</span> <span class="kw">the</span> indented <span class="kw">rows</span> will be executed</span>
+<span id="cb35-31"><a href="12_kappale_12.html#cb35-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> layerb.getFeatures():</span>
+<span id="cb35-32"><a href="12_kappale_12.html#cb35-32" aria-hidden="true" tabindex="-1"></a>        # Get <span class="kw">the</span> geometry <span class="kw">of</span> feature b</span>
+<span id="cb35-33"><a href="12_kappale_12.html#cb35-33" aria-hidden="true" tabindex="-1"></a>        kpl2 <span class="op">=</span> b.geometry()</span>
+<span id="cb35-34"><a href="12_kappale_12.html#cb35-34" aria-hidden="true" tabindex="-1"></a>        # <span class="kw">Check</span> <span class="cf">if</span> kpl intersects <span class="kw">with</span> kpl2</span>
+<span id="cb35-35"><a href="12_kappale_12.html#cb35-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> kpl.intersects(kpl2):</span>
+<span id="cb35-36"><a href="12_kappale_12.html#cb35-36" aria-hidden="true" tabindex="-1"></a>            # Counter <span class="kw">to</span> stay track <span class="kw">on</span> how many intersecting features we have found</span>
+<span id="cb35-37"><a href="12_kappale_12.html#cb35-37" aria-hidden="true" tabindex="-1"></a>            laskuri <span class="op">=</span> laskuri <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb35-38"><a href="12_kappale_12.html#cb35-38" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">The</span> intersecting part <span class="kw">as</span> a geometry <span class="dt">object</span></span>
+<span id="cb35-39"><a href="12_kappale_12.html#cb35-39" aria-hidden="true" tabindex="-1"></a>            geomleik <span class="op">=</span> kpl.intersection(kpl2)</span>
+<span id="cb35-40"><a href="12_kappale_12.html#cb35-40" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">Create</span> <span class="kw">the</span> convex hull <span class="kw">of</span> <span class="kw">the</span> intersecting geometry <span class="dt">object</span></span>
+<span id="cb35-41"><a href="12_kappale_12.html#cb35-41" aria-hidden="true" tabindex="-1"></a>            geomhu <span class="op">=</span> geomleik.convexHull()</span>
+<span id="cb35-42"><a href="12_kappale_12.html#cb35-42" aria-hidden="true" tabindex="-1"></a>            # Calculate <span class="kw">the</span> increase <span class="kw">on</span> area <span class="kw">size</span> <span class="cf">when</span> moving <span class="kw">from</span> intersecting <span class="dt">object</span> <span class="kw">to</span> its convex hull</span>
+<span id="cb35-43"><a href="12_kappale_12.html#cb35-43" aria-hidden="true" tabindex="-1"></a>            temp <span class="op">=</span> geomhu.area() <span class="op">-</span> geomleik.area()</span>
+<span id="cb35-44"><a href="12_kappale_12.html#cb35-44" aria-hidden="true" tabindex="-1"></a>            # Stay track <span class="kw">on</span> <span class="kw">the</span> total increase <span class="kw">on</span> area <span class="kw">size</span></span>
+<span id="cb35-45"><a href="12_kappale_12.html#cb35-45" aria-hidden="true" tabindex="-1"></a>            tempsum <span class="op">=</span> tempsum <span class="op">+</span> temp</span>
+<span id="cb35-46"><a href="12_kappale_12.html#cb35-46" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">Add</span> <span class="kw">new</span> feature <span class="kw">to</span> <span class="kw">the</span> <span class="kw">layer</span></span>
+<span id="cb35-47"><a href="12_kappale_12.html#cb35-47" aria-hidden="true" tabindex="-1"></a>            feat <span class="op">=</span> QgsFeature()</span>
+<span id="cb35-48"><a href="12_kappale_12.html#cb35-48" aria-hidden="true" tabindex="-1"></a>             # <span class="kw">Set</span> <span class="kw">attribute</span> <span class="kw">values</span> <span class="cf">for</span> <span class="kw">the</span> <span class="kw">new</span> feature <span class="kw">to</span> be added <span class="kw">to</span> <span class="kw">the</span> <span class="kw">layer</span></span>
+<span id="cb35-49"><a href="12_kappale_12.html#cb35-49" aria-hidden="true" tabindex="-1"></a>            feat.setAttributes([laskuri, a[<span class="st">&#39;Nimi&#39;</span>], temp])</span>
+<span id="cb35-50"><a href="12_kappale_12.html#cb35-50" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">Set</span> geometry <span class="cf">for</span> <span class="kw">the</span> <span class="kw">new</span> feature <span class="kw">to</span> be added <span class="kw">to</span> <span class="kw">the</span> <span class="kw">layer</span></span>
+<span id="cb35-51"><a href="12_kappale_12.html#cb35-51" aria-hidden="true" tabindex="-1"></a>            feat.setGeometry(geomhu)</span>
+<span id="cb35-52"><a href="12_kappale_12.html#cb35-52" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">Add</span> <span class="kw">new</span> feature <span class="kw">to</span> <span class="kw">the</span> <span class="kw">layer</span></span>
+<span id="cb35-53"><a href="12_kappale_12.html#cb35-53" aria-hidden="true" tabindex="-1"></a>            prov.addFeatures([feat])</span>
+<span id="cb35-54"><a href="12_kappale_12.html#cb35-54" aria-hidden="true" tabindex="-1"></a>            # <span class="kw">Update</span> <span class="kw">extent</span> <span class="kw">of</span> <span class="kw">the</span> <span class="kw">layer</span></span>
+<span id="cb35-55"><a href="12_kappale_12.html#cb35-55" aria-hidden="true" tabindex="-1"></a>            <span class="kw">layer</span>.updateExtents()</span>
+<span id="cb35-56"><a href="12_kappale_12.html#cb35-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-57"><a href="12_kappale_12.html#cb35-57" aria-hidden="true" tabindex="-1"></a>print(<span class="ot">&quot;Konveksin peitteen luomisesta seurasi&quot;</span>)</span>
+<span id="cb35-58"><a href="12_kappale_12.html#cb35-58" aria-hidden="true" tabindex="-1"></a># <span class="fu">Convert</span> m2 <span class="kw">to</span> km2</span>
+<span id="cb35-59"><a href="12_kappale_12.html#cb35-59" aria-hidden="true" tabindex="-1"></a>print(<span class="fu">round</span>((tempsum <span class="op">/</span> <span class="fl">1000000.0</span>), <span class="dv">1</span>))</span>
+<span id="cb35-60"><a href="12_kappale_12.html#cb35-60" aria-hidden="true" tabindex="-1"></a>print(<span class="ot">&quot;km2 pinta-alan lisäys.&quot;</span>)</span>
+<span id="cb35-61"><a href="12_kappale_12.html#cb35-61" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb35-62"><a href="12_kappale_12.html#cb35-62" aria-hidden="true" tabindex="-1"></a># <span class="kw">Add</span> <span class="kw">the</span> <span class="kw">layer</span> <span class="kw">to</span> <span class="kw">the</span> Layers panel</span>
+<span id="cb35-63"><a href="12_kappale_12.html#cb35-63" aria-hidden="true" tabindex="-1"></a>QgsProject.<span class="kw">instance</span>().addMapLayers([<span class="kw">layer</span>])</span></code></pre></div>
 </div>
 </div>
 
