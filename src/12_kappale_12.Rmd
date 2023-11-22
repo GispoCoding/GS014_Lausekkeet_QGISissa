@@ -2,10 +2,161 @@
 
 ## Tehtävä 12.1
 
-::: todo
-Helpompi konsolissa tehtävä tehtävä
-:::
 Avaa QGISin Python konsoli.
+
+![](img/kappale_12/image1.png)
+**Aineisto:** ```valtiot.gpkg```
+
+1. Lisää ```valtiot.gpkg```- aineisto QGISiin ja valitse taso. Kokeile ensin peruskomentoja konsolissa:
+
+::: code-box
+``` python
+layer = iface.activeLayer()
+```
+:::
+
+::: code-box
+``` python
+print(layer)
+```
+:::
+
+::: code-box
+``` python
+print(layer.featureCount())
+```
+:::
+
+Mitä komennot tekevät?
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
+
+::: hidden-box
+```layer = iface.activeLayer()```
+
+Tallentaa ```layer```- muuttujaan sen taso- olion, joka on klikattu aktiiviseksi QGISin tasot- paneelissa.
+
+```print(layer)```
+
+Tulostaa konsoliin layer- olion tiedot.
+
+```print(layer.featureCount())```
+
+Laskee tason kohteiden määrän ```featureCount()```- funktiolla ja tulostaa sen.
+:::
+
+2. Käy for- silmukassa läpi "valtiot"- tason 10 ensimmäistä kohdetta ja tulosta kohteen nimi (ADMIN- kenttä).
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+1. Tallenna valtiot- taso muuttujaan joko activeLayer()- funktiolla kuten äsken. Voit myös hakea tason nimen perusteella seuraavasti:
+
+::: code-box
+``` python
+layer = QgsProject.instance().mapLayersByName('tason_nimi')[0]
+```
+:::
+2. Kirjoita for- silmukka. Taso- olion getFeatures()- funktio (tai tarkemmin sanottuna metodi) palauttaa iteraattori- olion jota voi käyttää suoraan silmukassa:
+
+::: code-box
+``` python
+for feature in layer.getFeatures():
+    print(feature) # Tämä tulostaa kohde- olion tiedot.
+    # Miten saat tulostettua "ADMIN"- kentän arvon?
+```
+:::
+
+3. Pythonin hyödyntämistä on dokumentoitu QGISin sivuilla. Dokumentaatiosta löytyy QGISin eri luokkien tietoja esimerkiksi niiden metodeista. Yllä olevassa esimerkissä for- silmukan sisällä 'feature'- muuttujassa on sillä hetkellä läpi käytävä ```QgsFeature```- olio. Millä funktiolla tai menetelmällä saat palautettua tietyn kentän arvon kohteesta? Lue [dokumentaatiota täältä](https://qgis.org/pyqgis/3.2/core/Feature/QgsFeature.html).
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` python
+layer = QgsProject.instance().mapLayersByName('valtiot')[0]
+
+for feature in layer.getFeatures():
+    print(feature["ADMIN"])
+```
+:::
+:::
+
+3. Tarkastele seuraavaa skriptiä. Pohdi mitä skripti tekee sen eri vaiheissa?
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">skripti</button>
+
+::: hidden-box
+::: code-box
+``` python
+from qgis.core import *
+from qgis.gui import *
+
+countries_layer = QgsProject.instance().mapLayersByName('hallintoalueet')[0]
+
+new_layer = QgsVectorLayer('Polygon?crs=epsg:3067', 'suomi_vyohyke', 'memory')
+
+prov = new_layer.dataProvider()
+
+prov.addAttributes([QgsField("nimi", QVariant.String)])
+new_layer.updateFields()
+
+finland_feature = countries_layer.getFeature(1)
+
+finland_geometry = finland_feature.geometry()
+
+buffered_geometry = finland_geometry.buffer(5 * 1000, 4)
+
+new_feature = QgsFeature()
+new_feature.setAttributes(["Hanko"])
+new_feature.setGeometry(buffered_geometry)
+
+prov.addFeatures([new_feature])
+new_layer.updateExtents()
+
+QgsProject.instance().addMapLayer(new_layer)
+```
+:::
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
+
+::: hidden-box
+Skripti hakee hallintoalueet- tasosta Hanko- kohteen ja luo sen geometriasta 5 km vyöhykkeen. Vyöhyke lisätään uudelle väliaikaiselle hanko_vyohyke tasolle.
+::: code-box
+``` python
+from qgis.core import *
+from qgis.gui import *
+
+countries_layer = QgsProject.instance().mapLayersByName('hallintoalueet')[0]
+
+new_layer = QgsVectorLayer('Polygon?crs=epsg:3067', 'suomi_vyohyke', 'memory')
+
+prov = new_layer.dataProvider()
+
+prov.addAttributes([QgsField("nimi", QVariant.String)])
+new_layer.updateFields()
+
+finland_feature = countries_layer.getFeature(1)
+
+finland_geometry = finland_feature.geometry()
+
+buffered_geometry = finland_geometry.buffer(5 * 1000, 4)
+
+new_feature = QgsFeature()
+new_feature.setAttributes(["Hanko"])
+new_feature.setGeometry(buffered_geometry)
+
+prov.addFeatures([new_feature])
+new_layer.updateExtents()
+
+QgsProject.instance().addMapLayer(new_layer)
+```
+:::
+:::
+
+
 
 ## Tehtävä 12.2
 
@@ -97,7 +248,7 @@ QgsProject.instance().addMapLayers([layer])
 
 ::: hidden-box
 Täydennä skriptipohjaan merkityt kohdat.
-![](img/kappale_12/image1.png)
+![](img/kappale_12/image2.png)
 
 1. Avaa Python- konsoli.
 2. Avaa Python- skriptieditori.

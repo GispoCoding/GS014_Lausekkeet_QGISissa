@@ -15,7 +15,7 @@ Location Name- kentässä maan nimi sijaitsee ennen kaksoispistettä ```:```.
 - Etsi ```strpos()```- funktiolla oikea lopetuskohta.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -56,7 +56,7 @@ painotettu_ka('vaesto_valitut', 'kokeilu', 'ika10_19', 'ika30_39', 'ika70_79', 0
 :::
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -103,7 +103,7 @@ Luo uusi sarake (nimi: tunnus, tyyppi: string) ja hyödynnä Quick Field Calcula
 - Napsauta lopuksi Update all -painiketta
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -125,7 +125,7 @@ Tarkastele hallintoalueaineistoa. Mikäli kunnalla on olemassa nimi vain yhdell�
 Käytä ```if()```- ehtolausekefunktiota.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -149,7 +149,7 @@ Tarkastele Natura-alueaineistoa. Selvitä (**Field Calculatorin General**- ryhm�
 Käytä ```layer_property()```- ehtolausekefunktiota.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -178,7 +178,7 @@ Luo lauseke paloittain:
 
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -208,7 +208,7 @@ Ennen tätä tehtävää tehtävä 2.6 tulee olla tehtynä. Laske kunkin hallint
 ```sum()```- funktiolla voit laskea ```asukkaita```- sarakkeen yhteenlasketun määrän.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -239,7 +239,7 @@ Selvitä mitkä hallintoaluepolygonit sijaitsevat korkeintaan 20km etäisyydell�
 - Millä funktiolla voit tarkistaa leikkaako buffer ja lyseon lukion geometria leikkaavat (intersect)?
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -286,7 +286,7 @@ END
 :::
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -313,7 +313,7 @@ Tarkastele rakennusaineistoa. Hyödynnä Geometry Generatoria ja luo nimiöinti,
 
 **Aineisto**: ```pikku_rakennukset.gpkg```
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
