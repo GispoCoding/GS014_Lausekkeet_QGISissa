@@ -1,11 +1,5 @@
 # Kappale 14: Kotitehtävät
 
-## Ratkaisuavain
-
-Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohtimalla vastausta. Saat apua harjoituksiin kouluttajalta tai osassa tehtävissä painamalla 'Näytä vinkki'- painikkeesta. Kouluttaja antaa lopuksi harjoituksiin ratkaisuavaimen, joka pitää syöttää painamalla alla olevaa painiketta (tai painamalla alla olevia 'Näytä ratkaisu'- painikkeita). Kun avain on syötetty, voit katsoa mallivastaukset harjoituksiin.
-
-<button onclick="enterToken()" class="btn">Syötä ratkaisuavain</button>
-
 ## Kotitehtävä 1
 
 Tarkastele tieviiva-aineistoa. Laske kullekkin tielle sen 50m vyöhykkeen (buffer) pinta-ala uuteen sarakkeeseen.
@@ -20,7 +14,7 @@ Tarkastele tieviiva-aineistoa. Laske kullekkin tielle sen 50m vyöhykkeen (buffe
 - Millä funktiolla voit laskea pinta-alan?
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -48,7 +42,7 @@ Tarkastele Helsingin alueen väestöruutuaineistoa. Hyödynnä lausekkeita ja la
 - Millä funktiolla voit laskea pinta-alan?
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -121,7 +115,7 @@ END
 :::
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -196,7 +190,7 @@ Samaan tulokseen pääsee (ainakin) kahdella tavalla:
   - Käytä ```regexp_substr()```- funktiota. Funktioon tulee syöttää merkkijono ja Regex (Regular Expression)- lauseke.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -228,7 +222,7 @@ Luo duplikaatti hallintoalue-aineistosta. Tehtävässä 2.7 selvitimme hallintoa
 Millä funktiolla saat palautettua kohteen pinta-alan?
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -269,7 +263,7 @@ Käytä CASE WHEN ... - rakennetta.
   - tai osa väreistä voidaan kirjoittaa sanana ('red', 'blue') jne.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box

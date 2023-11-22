@@ -16,12 +16,6 @@ Kurssin materiaalit on tehty QGISin englanninkieliselle versiolle. Mikäli käyt
 
 5.  Käynnistä QGIS uudelleen. Kieliasetus vaihtuu vasta uudelleenkäynnistyksen jälkeen.
 
-## Ratkaisuavain
-
-Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohtimalla vastausta. Saat apua harjoituksiin kouluttajalta tai osassa tehtävissä painamalla 'Näytä vinkki'- painikkeesta. Kouluttaja antaa lopuksi harjoituksiin ratkaisuavaimen, joka pitää syöttää painamalla alla olevaa painiketta (tai painamalla alla olevia 'Näytä ratkaisu'- painikkeita). Kun avain on syötetty, voit katsoa mallivastaukset harjoituksiin.
-
-<button onclick="enterToken()" class="btn">Syötä ratkaisuavain</button>
-
 ## Tehtävä 1.1
 
 Tunnista, mitä
@@ -37,7 +31,7 @@ seuraava lauseke sisältää?
 ```
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 
 ratkaisu
 

@@ -1,12 +1,5 @@
 # Kappale 3: Kohteiden valinta ja suodatus
 
-## Ratkaisuavain
-
-Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohtimalla vastausta. Saat apua harjoituksiin kouluttajalta tai osassa tehtävissä painamalla 'Näytä vinkki'- painikkeesta. Kouluttaja antaa lopuksi harjoituksiin ratkaisuavaimen, joka pitää syöttää painamalla alla olevaa painiketta (tai painamalla alla olevia 'Näytä ratkaisu'- painikkeita). Kun avain on syötetty, voit katsoa mallivastaukset harjoituksiin.
-
-
-<button onclick="enterToken()" class="btn">Syötä ratkaisuavain</button>
-
 ## Tehtävä 3.1
 
 Klikkaa **Select by Expression**- työkaluikonia QGISissä. Valitse kaikki liikuntakohteet, jotka sijaitsevat kotikuntasi alueella, ja jotka kiinnostaavat sinua. Tallenna valitut kohteet uudeksi erilliseksi karttatasoksi.
@@ -23,7 +16,7 @@ Klikkaa **Select by Expression**- työkaluikonia QGISissä. Valitse kaikki liiku
 -   käytä `and` operaattoria
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -51,7 +44,7 @@ vinkki
 -   muuta pinta-alat samaan yksikköön joko kerto- tai jakolaskulla (1 ha = 10 000 m²)
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 
 ratkaisu
 
@@ -91,7 +84,7 @@ Lähde rakentamaan lauseketta pala kerrallaan:
 -   JA rajataan Itä-Suomi sekä Lappi pois aluehallintoviraston perusteella (AVI_ni1)
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
 
 ratkaisu
 

@@ -1,11 +1,5 @@
 # Kappale 4: Kohteiden muokkaus - Field Calculator (Osa 1)
 
-## Ratkaisuavain
-
-Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohtimalla vastausta. Saat apua harjoituksiin kouluttajalta tai osassa tehtävissä painamalla 'Näytä vinkki'- painikkeesta. Kouluttaja antaa lopuksi harjoituksiin ratkaisuavaimen, joka pitää syöttää painamalla alla olevaa painiketta (tai painamalla alla olevia 'Näytä ratkaisu'- painikkeita). Kun avain on syötetty, voit katsoa mallivastaukset harjoituksiin.
-
-<button onclick="enterToken()" class="btn">Syötä ratkaisuavain</button>
-
 ## Tehtävä 4.1
 
 Tarkastele hallintoalueaineistoa. Luo uusi attribuuttikenttä (boolean), joka pitää sisällää tiedon siitä, sijaitseeko kukin hallintoalue 50km säteellä Tampereesta.
@@ -26,7 +20,7 @@ Luo lauseke pala palalta. Laske etäisyys polygonien painopisteiden välillä (c
 - Tarkista onko etäisyys alle 50km. Huomioi yksikkö!
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -62,7 +56,7 @@ Rakenna lauseke pala palalta:
 - Käytä ```ìf()```- ehtolausefunktiota.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -106,7 +100,7 @@ Kun ```uusi_pvm```- sarake on luotu:
 - ```Interval```- arvo pitää ajaa vielä yhden funktion läpi. ```day()```- funktiolla saat rakennuksen iän päivinä, ```year()```- funktiolla vuosina jne.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -152,7 +146,7 @@ Lausekkeeseen tulee syöttää monta sisäkkäistä funktiota:
 - Käytä lopuksi ```round()``` funktiota. Miten saat tuloksen kahden desimaalin tarkkuudella?
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box

@@ -1,11 +1,5 @@
 # Kappale 7: Symbologian kustomointi
 
-## Ratkaisuavain
-
-Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohtimalla vastausta. Saat apua harjoituksiin kouluttajalta tai osassa tehtävissä painamalla 'Näytä vinkki'- painikkeesta. Kouluttaja antaa lopuksi harjoituksiin ratkaisuavaimen, joka pitää syöttää painamalla alla olevaa painiketta (tai painamalla alla olevia 'Näytä ratkaisu'- painikkeita). Kun avain on syötetty, voit katsoa mallivastaukset harjoituksiin.
-
-<button onclick="enterToken()" class="btn">Syötä ratkaisuavain</button>
-
 ## Tehtävä 7.1
 
 Tarkastele maanjäristysaineistoa. Visualisoi maanjäristykset siten, että niiden koko (millimetreinä) määräytyy järistyksen voimakkuuden perusteella (```Mag```). Lisää kuvaustekniikkaan myös symbolin väriin vaikuttava logiikka seuraavasti vuodenajan mukaan seuraavasti:
@@ -44,7 +38,7 @@ Paina lopuksi **Classify** painiketta. Muokkaa symbolien värit tehtävänannon 
 :::
 
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box

@@ -1,11 +1,5 @@
 # Kappale 5: Kohteiden muokkaus - Field Calculator (Osa 2)
 
-## Ratkaisuavain
-
-Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohtimalla vastausta. Saat apua harjoituksiin kouluttajalta tai osassa tehtävissä painamalla 'Näytä vinkki'- painikkeesta. Kouluttaja antaa lopuksi harjoituksiin ratkaisuavaimen, joka pitää syöttää painamalla alla olevaa painiketta (tai painamalla alla olevia 'Näytä ratkaisu'- painikkeita). Kun avain on syötetty, voit katsoa mallivastaukset harjoituksiin.
-
-<button onclick="enterToken()" class="btn">Syötä ratkaisuavain</button>
-
 ## Tehtävä 5.1
 
 Tarkastele tieviiva-aineistoa. Laske ensimmäiseen prioriteettiluokkaan (```Tieluokka```) kuuluvien teiden yhteenlaskettu pituus.
@@ -18,7 +12,7 @@ Tarkastele tieviiva-aineistoa. Laske ensimmäiseen prioriteettiluokkaan (```Tiel
 Käytä ```sum()```- funktiota.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -48,7 +42,7 @@ Käytä ```aggregate()```- funktiota.
 - Käytä valinnaista **filter**- argumenttia. Hae ```attribute```- funktiolla hallintoalue- tason kuntanumeron sisältävä kentän arvo ja tarkista onko se yhtäsuuri kuin väestöruudut- tason kuntanumeron sisältävä kentän arvo.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -79,7 +73,7 @@ Tarkastele korkeusmalli- (```dem2m.tif```) ja Helsingin rakennusaineistoa. Selvi
 Käytä ```raster_value()```- funktiota. Korkeusmalli on yksikanavainen rasteri.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -115,7 +109,7 @@ Rakenna lauseke paloittain. Lähde liikkeelle tästä:
 - Miten yhdistät lausekkeet siten, että saadaan tehtävänannon mukainen lopputulos?
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box

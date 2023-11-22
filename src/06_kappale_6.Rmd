@@ -1,11 +1,5 @@
 # Kappale 6: Kohteiden muokkaus - Quick Field Calculation ja virtuaalikentät
 
-## Ratkaisuavain
-
-Suorita seuraavat tehtävät niiden luonteesta riippuen joko QGISissä tai pohtimalla vastausta. Saat apua harjoituksiin kouluttajalta tai osassa tehtävissä painamalla 'Näytä vinkki'- painikkeesta. Kouluttaja antaa lopuksi harjoituksiin ratkaisuavaimen, joka pitää syöttää painamalla alla olevaa painiketta (tai painamalla alla olevia 'Näytä ratkaisu'- painikkeita). Kun avain on syötetty, voit katsoa mallivastaukset harjoituksiin.
-
-<button onclick="enterToken()" class="btn">Syötä ratkaisuavain</button>
-
 ## Tehtävä 6.1
 
 Tarkastele hallintoalueaineistoa. Luo uusi virtuaalinen kenttä (anna nimeksi esimerkiksi sama_nimen_pituus), jonka tietotyyppi on _boolean_ (totuusarvo). Kirjoita virtuaaliselle kentälle lauseke, joka on **tosi** jos kunnan suomen- ja ruotsinkielinen nimi on saman pituinen.
@@ -20,7 +14,7 @@ Käytä yhtä kuin- operaattoria (=). Vertaa sarakkeiden ```Kunta_ni1``` ja ```K
 Millä funktiolla saat palautettua merkkijonon pituuden?
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
@@ -49,7 +43,7 @@ Tarkastele hallintoalueaineistoa. Päivitä tehtävässä 4.1 luotu kenttä. Hy�
 4. Kun lauseke on syötetty, klikkaa lopuksi "Update All" painiketta.
 :::
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn token">ratkaisu</button>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
 ::: code-box
