@@ -5,6 +5,7 @@
 ::: todo
 Helpompi konsolissa tehtävä tehtävä
 :::
+Avaa QGISin Python konsoli.
 
 ## Tehtävä 12.2
 
