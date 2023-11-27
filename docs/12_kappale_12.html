@@ -244,7 +244,11 @@ type="button" onclick="navToggle()" aria-label="Toggle navigation">
 <h2><span class="header-section-number">13.1</span> Tehtävä 12.1</h2>
 <p>Tehtävässä on kolme vaihetta. Avaa QGISin Python konsoli.</p>
 <p><img src="img/kappale_12/image1.png" />
-<strong>Aineisto:</strong> <code>valtiot.gpkg</code></p>
+<strong>Aineistot:</strong></p>
+<ul>
+<li><code>valtiot.gpkg</code></li>
+<li><code>hallintoalueet.gpkg</code></li>
+</ul>
 <p><strong>Vaihe 1:</strong> Lisää <code>valtiot.gpkg</code>- aineisto QGISiin ja valitse taso. Kokeile ensin peruskomentoja konsolissa:</p>
 <div class="code-box">
 <div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="12_kappale_12.html#cb25-1" aria-hidden="true" tabindex="-1"></a>layer <span class="op">=</span> iface.activeLayer()</span></code></pre></div>
@@ -262,24 +266,21 @@ ratkaisu
 <div class="hidden-box">
 <p><code>layer = iface.activeLayer()</code></p>
 <p>Tallentaa <code>layer</code>- muuttujaan sen taso- olion, joka on klikattu aktiiviseksi QGISin tasot- paneelissa.</p>
-<pre class="print(layer)```"><code>
-Tulostaa konsoliin layer- olion tiedot.
-
-```print(layer.featureCount())```
-
-Laskee tason kohteiden määrän ```featureCount()```- funktiolla ja tulostaa sen.
-:::
-
-**Vaihe 2:** Käy for- silmukassa läpi &quot;valtiot&quot;- tason kohteet ja tulosta kohteen nimi (ADMIN- kenttä).
-
-&lt;button onclick=&quot;toggleAnswer(this)&quot; class=&quot;btn answer_btn&quot;&gt;vinkki&lt;/button&gt;
-
-::: hidden-box
-1. Tallenna valtiot- taso muuttujaan joko activeLayer()- funktiolla kuten äsken. Voit myös hakea tason nimen perusteella seuraavasti:
-
-::: code-box
-``` python
-layer = QgsProject.instance().mapLayersByName(&#39;tason_nimi&#39;)[0]</code></pre>
+<p><code>print(layer)</code></p>
+<p>Tulostaa konsoliin layer- olion tiedot.</p>
+<p><code>print(layer.featureCount())</code></p>
+<p>Laskee tason kohteiden määrän <code>featureCount()</code>- funktiolla ja tulostaa sen.</p>
+</div>
+<p><strong>Vaihe 2:</strong> Käy for- silmukassa läpi “valtiot”- tason kohteet ja tulosta kohteen nimi (ADMIN- kenttä).</p>
+<button onclick="toggleAnswer(this)" class="btn answer_btn">
+vinkki
+</button>
+<div class="hidden-box">
+<ol style="list-style-type: decimal">
+<li>Tallenna valtiot- taso muuttujaan joko activeLayer()- funktiolla kuten äsken. Voit myös hakea tason nimen perusteella seuraavasti:</li>
+</ol>
+<div class="code-box">
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="12_kappale_12.html#cb28-1" aria-hidden="true" tabindex="-1"></a>layer <span class="op">=</span> QgsProject.instance().mapLayersByName(<span class="st">&#39;tason_nimi&#39;</span>)[<span class="dv">0</span>]</span></code></pre></div>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>Kirjoita for- silmukka. Taso- olion getFeatures()- funktio (tai tarkemmin sanottuna metodi) palauttaa iteraattori- olion jota voi käyttää suoraan silmukassa:</li>
@@ -290,9 +291,9 @@ layer = QgsProject.instance().mapLayersByName(&#39;tason_nimi&#39;)[0]</code></p
 <span id="cb29-3"><a href="12_kappale_12.html#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Miten saat tulostettua &quot;ADMIN&quot;- kentän arvon?</span></span></code></pre></div>
 </div>
 <ol start="3" style="list-style-type: decimal">
-<li>Pythonin hyödyntämistä on dokumentoitu QGISin sivuilla. Dokumentaatiosta löytyy QGISin eri luokkien tietoja esimerkiksi niiden metodeista. Yllä olevassa esimerkissä for- silmukan sisällä ‘feature’- muuttujassa on sillä hetkellä läpi käytävä <code>QgsFeature</code>- olio. Millä funktiolla tai menetelmällä saat palautettua tietyn kentän arvon kohteesta? Lue <a href="https://qgis.org/pyqgis/3.2/core/Feature/QgsFeature.html">dokumentaatiota täältä</a>.
-:::</li>
+<li>Pythonin hyödyntämistä on dokumentoitu QGISin sivuilla. Dokumentaatiosta löytyy QGISin eri luokkien tietoja esimerkiksi niiden metodeista. Yllä olevassa esimerkissä for- silmukan sisällä ‘feature’- muuttujassa on sillä hetkellä läpi käytävä <code>QgsFeature</code>- olio. Millä funktiolla tai menetelmällä saat palautettua tietyn kentän arvon kohteesta? Lue <a href="https://qgis.org/pyqgis/3.2/core/Feature/QgsFeature.html">dokumentaatiota täältä</a>.</li>
 </ol>
+</div>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
