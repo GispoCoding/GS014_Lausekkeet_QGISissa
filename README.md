@@ -1,6 +1,4 @@
-# Course template
-
-This is a template repository for creating new courses on GitHub.
+# Lausekkeet QGISillä
 
 ## Repository configuration
 
