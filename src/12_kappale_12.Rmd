@@ -5,7 +5,10 @@
 Tehtävässä on kolme vaihetta. Avaa QGISin Python konsoli.
 
 ![](img/kappale_12/image1.png)
-**Aineisto:** ```valtiot.gpkg```
+**Aineistot:** 
+
+- ```valtiot.gpkg```
+- ```hallintoalueet.gpkg```
 
 **Vaihe 1:** Lisää ```valtiot.gpkg```- aineisto QGISiin ja valitse taso. Kokeile ensin peruskomentoja konsolissa:
 
@@ -36,13 +39,14 @@ Mitä komennot tekevät?
 
 Tallentaa ```layer```- muuttujaan sen taso- olion, joka on klikattu aktiiviseksi QGISin tasot- paneelissa.
 
-```print(layer)```
+``` print(layer) ```
 
 Tulostaa konsoliin layer- olion tiedot.
 
-```print(layer.featureCount())```
+``` print(layer.featureCount()) ```
 
 Laskee tason kohteiden määrän ```featureCount()```- funktiolla ja tulostaa sen.
+
 :::
 
 **Vaihe 2:** Käy for- silmukassa läpi "valtiot"- tason kohteet ja tulosta kohteen nimi (ADMIN- kenttä).
@@ -68,6 +72,7 @@ for feature in layer.getFeatures():
 :::
 
 3. Pythonin hyödyntämistä on dokumentoitu QGISin sivuilla. Dokumentaatiosta löytyy QGISin eri luokkien tietoja esimerkiksi niiden metodeista. Yllä olevassa esimerkissä for- silmukan sisällä 'feature'- muuttujassa on sillä hetkellä läpi käytävä ```QgsFeature```- olio. Millä funktiolla tai menetelmällä saat palautettua tietyn kentän arvon kohteesta? Lue [dokumentaatiota täältä](https://qgis.org/pyqgis/3.2/core/Feature/QgsFeature.html).
+
 :::
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
