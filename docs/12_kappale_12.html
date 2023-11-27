@@ -19,7 +19,7 @@
 
 <meta name="author" content="Gispo Ltd." />
 
-<meta name="date" content="2023-11-22" />
+<meta name="date" content="2023-11-27" />
 
 
 <meta name="description" content="13 Kappale 12: Python- konsoli | Lausekkeet QGISissä">
@@ -208,7 +208,6 @@ type="button" onclick="navToggle()" aria-label="Toggle navigation">
 <li><a href="14_kappale_14.html#kotitehtävä-3-haastava"><span class="toc-section-number">15.3</span> Kotitehtävä 3 (haastava)</a></li>
 <li><a href="14_kappale_14.html#kotitehtävä-4"><span class="toc-section-number">15.4</span> Kotitehtävä 4</a></li>
 <li><a href="14_kappale_14.html#kotitehtävä-5"><span class="toc-section-number">15.5</span> Kotitehtävä 5</a></li>
-<li><a href="14_kappale_14.html#kotitehtävä-6"><span class="toc-section-number">15.6</span> Kotitehtävä 6</a></li>
 </ul></li>
 <li class="has-sub"><a href="15_kappale_15.html#kappale-15-lisätehtävät"><span class="toc-section-number">16</span> Kappale 15: Lisätehtävät</a>
 <ul>
@@ -236,12 +235,10 @@ type="button" onclick="navToggle()" aria-label="Toggle navigation">
 <h1><span class="header-section-number">13</span> Kappale 12: Python- konsoli</h1>
 <div id="tehtävä-12.1" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Tehtävä 12.1</h2>
-<p>Avaa QGISin Python konsoli.</p>
+<p>Tehtävässä on kolme vaihetta. Avaa QGISin Python konsoli.</p>
 <p><img src="img/kappale_12/image1.png" />
 <strong>Aineisto:</strong> <code>valtiot.gpkg</code></p>
-<ol style="list-style-type: decimal">
-<li>Lisää <code>valtiot.gpkg</code>- aineisto QGISiin ja valitse taso. Kokeile ensin peruskomentoja konsolissa:</li>
-</ol>
+<p><strong>Vaihe 1:</strong> Lisää <code>valtiot.gpkg</code>- aineisto QGISiin ja valitse taso. Kokeile ensin peruskomentoja konsolissa:</p>
 <div class="code-box">
 <div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="12_kappale_12.html#cb26-1" aria-hidden="true" tabindex="-1"></a>layer <span class="op">=</span> iface.activeLayer()</span></code></pre></div>
 </div>
@@ -266,7 +263,7 @@ Tulostaa konsoliin layer- olion tiedot.
 Laskee tason kohteiden määrän ```featureCount()```- funktiolla ja tulostaa sen.
 :::
 
-2. Käy for- silmukassa läpi &quot;valtiot&quot;- tason 10 ensimmäistä kohdetta ja tulosta kohteen nimi (ADMIN- kenttä).
+**Vaihe 2:** Käy for- silmukassa läpi &quot;valtiot&quot;- tason kohteet ja tulosta kohteen nimi (ADMIN- kenttä).
 
 &lt;button onclick=&quot;toggleAnswer(this)&quot; class=&quot;btn answer_btn&quot;&gt;vinkki&lt;/button&gt;
 
@@ -300,9 +297,7 @@ ratkaisu
 <span id="cb31-4"><a href="12_kappale_12.html#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(feature[<span class="st">&quot;ADMIN&quot;</span>])</span></code></pre></div>
 </div>
 </div>
-<ol start="3" style="list-style-type: decimal">
-<li>Tarkastele seuraavaa skriptiä. Pohdi mitä skripti tekee sen eri vaiheissa?</li>
-</ol>
+<p><strong>Vaihe 3:</strong> Tarkastele seuraavaa skriptiä. Pohdi mitä skripti tekee sen eri vaiheissa.</p>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
 skripti
 </button>
@@ -311,65 +306,82 @@ skripti
 <div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="12_kappale_12.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb32-2"><a href="12_kappale_12.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb32-3"><a href="12_kappale_12.html#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="12_kappale_12.html#cb32-4" aria-hidden="true" tabindex="-1"></a>countries_layer <span class="op">=</span> QgsProject.instance().mapLayersByName(<span class="st">&#39;hallintoalueet&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb32-4"><a href="12_kappale_12.html#cb32-4" aria-hidden="true" tabindex="-1"></a>source_layer <span class="op">=</span> QgsProject.instance().mapLayersByName(<span class="st">&#39;hallintoalueet&#39;</span>)[<span class="dv">0</span>]</span>
 <span id="cb32-5"><a href="12_kappale_12.html#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="12_kappale_12.html#cb32-6" aria-hidden="true" tabindex="-1"></a>new_layer <span class="op">=</span> QgsVectorLayer(<span class="st">&#39;Polygon?crs=epsg:3067&#39;</span>, <span class="st">&#39;suomi_vyohyke&#39;</span>, <span class="st">&#39;memory&#39;</span>)</span>
+<span id="cb32-6"><a href="12_kappale_12.html#cb32-6" aria-hidden="true" tabindex="-1"></a>new_layer <span class="op">=</span> QgsVectorLayer(<span class="st">&#39;Polygon?crs=epsg:3067&#39;</span>, <span class="st">&#39;hanko_vyohyke&#39;</span>, <span class="st">&#39;memory&#39;</span>)</span>
 <span id="cb32-7"><a href="12_kappale_12.html#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-8"><a href="12_kappale_12.html#cb32-8" aria-hidden="true" tabindex="-1"></a>prov <span class="op">=</span> new_layer.dataProvider()</span>
 <span id="cb32-9"><a href="12_kappale_12.html#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-10"><a href="12_kappale_12.html#cb32-10" aria-hidden="true" tabindex="-1"></a>prov.addAttributes([QgsField(<span class="st">&quot;nimi&quot;</span>, QVariant.String)])</span>
 <span id="cb32-11"><a href="12_kappale_12.html#cb32-11" aria-hidden="true" tabindex="-1"></a>new_layer.updateFields()</span>
 <span id="cb32-12"><a href="12_kappale_12.html#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-13"><a href="12_kappale_12.html#cb32-13" aria-hidden="true" tabindex="-1"></a>finland_feature <span class="op">=</span> countries_layer.getFeature(<span class="dv">1</span>)</span>
+<span id="cb32-13"><a href="12_kappale_12.html#cb32-13" aria-hidden="true" tabindex="-1"></a>hanko_feature <span class="op">=</span> source_layer.getFeature(<span class="dv">1</span>)</span>
 <span id="cb32-14"><a href="12_kappale_12.html#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-15"><a href="12_kappale_12.html#cb32-15" aria-hidden="true" tabindex="-1"></a>finland_geometry <span class="op">=</span> finland_feature.geometry()</span>
+<span id="cb32-15"><a href="12_kappale_12.html#cb32-15" aria-hidden="true" tabindex="-1"></a>hanko_geometry <span class="op">=</span> hanko_feature.geometry()</span>
 <span id="cb32-16"><a href="12_kappale_12.html#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-17"><a href="12_kappale_12.html#cb32-17" aria-hidden="true" tabindex="-1"></a>buffered_geometry <span class="op">=</span> finland_geometry.<span class="bu">buffer</span>(<span class="dv">5</span> <span class="op">*</span> <span class="dv">1000</span>, <span class="dv">4</span>)</span>
+<span id="cb32-17"><a href="12_kappale_12.html#cb32-17" aria-hidden="true" tabindex="-1"></a>buffered_geometry <span class="op">=</span> hanko_geometry.<span class="bu">buffer</span>(<span class="dv">5</span> <span class="op">*</span> <span class="dv">1000</span>, <span class="dv">5</span>)</span>
 <span id="cb32-18"><a href="12_kappale_12.html#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-19"><a href="12_kappale_12.html#cb32-19" aria-hidden="true" tabindex="-1"></a>new_feature <span class="op">=</span> QgsFeature()</span>
-<span id="cb32-20"><a href="12_kappale_12.html#cb32-20" aria-hidden="true" tabindex="-1"></a>new_feature.setAttributes([<span class="st">&quot;Hanko&quot;</span>])</span>
-<span id="cb32-21"><a href="12_kappale_12.html#cb32-21" aria-hidden="true" tabindex="-1"></a>new_feature.setGeometry(buffered_geometry)</span>
-<span id="cb32-22"><a href="12_kappale_12.html#cb32-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-23"><a href="12_kappale_12.html#cb32-23" aria-hidden="true" tabindex="-1"></a>prov.addFeatures([new_feature])</span>
-<span id="cb32-24"><a href="12_kappale_12.html#cb32-24" aria-hidden="true" tabindex="-1"></a>new_layer.updateExtents()</span>
+<span id="cb32-20"><a href="12_kappale_12.html#cb32-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-21"><a href="12_kappale_12.html#cb32-21" aria-hidden="true" tabindex="-1"></a>new_feature.setAttributes([<span class="st">&quot;Hanko&quot;</span>])</span>
+<span id="cb32-22"><a href="12_kappale_12.html#cb32-22" aria-hidden="true" tabindex="-1"></a>new_feature.setGeometry(buffered_geometry)</span>
+<span id="cb32-23"><a href="12_kappale_12.html#cb32-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-24"><a href="12_kappale_12.html#cb32-24" aria-hidden="true" tabindex="-1"></a>prov.addFeatures([new_feature])</span>
 <span id="cb32-25"><a href="12_kappale_12.html#cb32-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-26"><a href="12_kappale_12.html#cb32-26" aria-hidden="true" tabindex="-1"></a>QgsProject.instance().addMapLayer(new_layer)</span></code></pre></div>
+<span id="cb32-26"><a href="12_kappale_12.html#cb32-26" aria-hidden="true" tabindex="-1"></a>new_layer.updateExtents()</span>
+<span id="cb32-27"><a href="12_kappale_12.html#cb32-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-28"><a href="12_kappale_12.html#cb32-28" aria-hidden="true" tabindex="-1"></a>QgsProject.instance().addMapLayer(new_layer)</span></code></pre></div>
 </div>
 </div>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
-<p>Skripti hakee hallintoalueet- tasosta Hanko- kohteen ja luo sen geometriasta 5 km vyöhykkeen. Vyöhyke lisätään uudelle väliaikaiselle hanko_vyohyke tasolle.
-::: code-box</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="12_kappale_12.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb33-2"><a href="12_kappale_12.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb33-3"><a href="12_kappale_12.html#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="12_kappale_12.html#cb33-4" aria-hidden="true" tabindex="-1"></a>countries_layer <span class="op">=</span> QgsProject.instance().mapLayersByName(<span class="st">&#39;hallintoalueet&#39;</span>)[<span class="dv">0</span>]</span>
-<span id="cb33-5"><a href="12_kappale_12.html#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="12_kappale_12.html#cb33-6" aria-hidden="true" tabindex="-1"></a>new_layer <span class="op">=</span> QgsVectorLayer(<span class="st">&#39;Polygon?crs=epsg:3067&#39;</span>, <span class="st">&#39;suomi_vyohyke&#39;</span>, <span class="st">&#39;memory&#39;</span>)</span>
+<p>Skripti hakee hallintoalueet- tasosta Hanko- kohteen ja luo sen geometriasta 5 km vyöhykkeen. Vyöhyke lisätään uudelle väliaikaiselle hanko_vyohyke tasolle.</p>
+<p>Lisätietoa data provider- luokasta: <a href="https://qgis.org/pyqgis/3.2/core/Data/QgsDataProvider.html">https://qgis.org/pyqgis/3.2/core/Data/QgsDataProvider.html</a></p>
+<div class="code-box">
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="12_kappale_12.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tuodaan tarvittavat QGIS-paketit</span></span>
+<span id="cb33-2"><a href="12_kappale_12.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb33-3"><a href="12_kappale_12.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb33-4"><a href="12_kappale_12.html#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="12_kappale_12.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Haetaan hallintoalueet-taso</span></span>
+<span id="cb33-6"><a href="12_kappale_12.html#cb33-6" aria-hidden="true" tabindex="-1"></a>source_layer <span class="op">=</span> QgsProject.instance().mapLayersByName(<span class="st">&#39;hallintoalueet&#39;</span>)[<span class="dv">0</span>]</span>
 <span id="cb33-7"><a href="12_kappale_12.html#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-8"><a href="12_kappale_12.html#cb33-8" aria-hidden="true" tabindex="-1"></a>prov <span class="op">=</span> new_layer.dataProvider()</span>
-<span id="cb33-9"><a href="12_kappale_12.html#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-10"><a href="12_kappale_12.html#cb33-10" aria-hidden="true" tabindex="-1"></a>prov.addAttributes([QgsField(<span class="st">&quot;nimi&quot;</span>, QVariant.String)])</span>
-<span id="cb33-11"><a href="12_kappale_12.html#cb33-11" aria-hidden="true" tabindex="-1"></a>new_layer.updateFields()</span>
-<span id="cb33-12"><a href="12_kappale_12.html#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-13"><a href="12_kappale_12.html#cb33-13" aria-hidden="true" tabindex="-1"></a>finland_feature <span class="op">=</span> countries_layer.getFeature(<span class="dv">1</span>)</span>
-<span id="cb33-14"><a href="12_kappale_12.html#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-15"><a href="12_kappale_12.html#cb33-15" aria-hidden="true" tabindex="-1"></a>finland_geometry <span class="op">=</span> finland_feature.geometry()</span>
-<span id="cb33-16"><a href="12_kappale_12.html#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-17"><a href="12_kappale_12.html#cb33-17" aria-hidden="true" tabindex="-1"></a>buffered_geometry <span class="op">=</span> finland_geometry.<span class="bu">buffer</span>(<span class="dv">5</span> <span class="op">*</span> <span class="dv">1000</span>, <span class="dv">4</span>)</span>
-<span id="cb33-18"><a href="12_kappale_12.html#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-19"><a href="12_kappale_12.html#cb33-19" aria-hidden="true" tabindex="-1"></a>new_feature <span class="op">=</span> QgsFeature()</span>
-<span id="cb33-20"><a href="12_kappale_12.html#cb33-20" aria-hidden="true" tabindex="-1"></a>new_feature.setAttributes([<span class="st">&quot;Hanko&quot;</span>])</span>
-<span id="cb33-21"><a href="12_kappale_12.html#cb33-21" aria-hidden="true" tabindex="-1"></a>new_feature.setGeometry(buffered_geometry)</span>
-<span id="cb33-22"><a href="12_kappale_12.html#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-23"><a href="12_kappale_12.html#cb33-23" aria-hidden="true" tabindex="-1"></a>prov.addFeatures([new_feature])</span>
-<span id="cb33-24"><a href="12_kappale_12.html#cb33-24" aria-hidden="true" tabindex="-1"></a>new_layer.updateExtents()</span>
-<span id="cb33-25"><a href="12_kappale_12.html#cb33-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-26"><a href="12_kappale_12.html#cb33-26" aria-hidden="true" tabindex="-1"></a>QgsProject.instance().addMapLayer(new_layer)</span></code></pre></div>
+<span id="cb33-8"><a href="12_kappale_12.html#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Luodaan uusi väliaikainen vektoritaso &quot;suomi_vyohyke&quot;, jonka koordinaattijärjestelmä on EPSG:3067</span></span>
+<span id="cb33-9"><a href="12_kappale_12.html#cb33-9" aria-hidden="true" tabindex="-1"></a>new_layer <span class="op">=</span> QgsVectorLayer(<span class="st">&#39;Polygon?crs=epsg:3067&#39;</span>, <span class="st">&#39;hanko_vyohyke&#39;</span>, <span class="st">&#39;memory&#39;</span>)</span>
+<span id="cb33-10"><a href="12_kappale_12.html#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="12_kappale_12.html#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Tallennetaan tason data provider</span></span>
+<span id="cb33-12"><a href="12_kappale_12.html#cb33-12" aria-hidden="true" tabindex="-1"></a>prov <span class="op">=</span> new_layer.dataProvider()</span>
+<span id="cb33-13"><a href="12_kappale_12.html#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="12_kappale_12.html#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Lisätään attribuuttikenttä (&quot;nimi&quot;) uuden tason ominaisuustietoihin</span></span>
+<span id="cb33-15"><a href="12_kappale_12.html#cb33-15" aria-hidden="true" tabindex="-1"></a>prov.addAttributes([QgsField(<span class="st">&quot;nimi&quot;</span>, QVariant.String)])</span>
+<span id="cb33-16"><a href="12_kappale_12.html#cb33-16" aria-hidden="true" tabindex="-1"></a>new_layer.updateFields()</span>
+<span id="cb33-17"><a href="12_kappale_12.html#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-18"><a href="12_kappale_12.html#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Haetaan Hanko- kohde hallintoaluetasolta</span></span>
+<span id="cb33-19"><a href="12_kappale_12.html#cb33-19" aria-hidden="true" tabindex="-1"></a>hanko_feature <span class="op">=</span> source_layer.getFeature(<span class="dv">1</span>)</span>
+<span id="cb33-20"><a href="12_kappale_12.html#cb33-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-21"><a href="12_kappale_12.html#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Haetaan Hanko- kohteen geometria</span></span>
+<span id="cb33-22"><a href="12_kappale_12.html#cb33-22" aria-hidden="true" tabindex="-1"></a>hanko_geometry <span class="op">=</span> hanko_feature.geometry()</span>
+<span id="cb33-23"><a href="12_kappale_12.html#cb33-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-24"><a href="12_kappale_12.html#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Luodaan puskurigeometria viiden kilometrin etäisyydellä ja viidellä segmentilla</span></span>
+<span id="cb33-25"><a href="12_kappale_12.html#cb33-25" aria-hidden="true" tabindex="-1"></a>buffered_geometry <span class="op">=</span> hanko_geometry.<span class="bu">buffer</span>(<span class="dv">5</span> <span class="op">*</span> <span class="dv">1000</span>, <span class="dv">5</span>)</span>
+<span id="cb33-26"><a href="12_kappale_12.html#cb33-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-27"><a href="12_kappale_12.html#cb33-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Luodaan uusi kohde</span></span>
+<span id="cb33-28"><a href="12_kappale_12.html#cb33-28" aria-hidden="true" tabindex="-1"></a>new_feature <span class="op">=</span> QgsFeature()</span>
+<span id="cb33-29"><a href="12_kappale_12.html#cb33-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-30"><a href="12_kappale_12.html#cb33-30" aria-hidden="true" tabindex="-1"></a>new_feature.setAttributes([<span class="st">&quot;Hanko&quot;</span>]) <span class="co"># Asetetaan kohteelle nimi- attribuutti</span></span>
+<span id="cb33-31"><a href="12_kappale_12.html#cb33-31" aria-hidden="true" tabindex="-1"></a>new_feature.setGeometry(buffered_geometry) <span class="co"># Asetetaan kohteelle vyöhykegeometria</span></span>
+<span id="cb33-32"><a href="12_kappale_12.html#cb33-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-33"><a href="12_kappale_12.html#cb33-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Lisätään uusi ominaisuus data provideriin</span></span>
+<span id="cb33-34"><a href="12_kappale_12.html#cb33-34" aria-hidden="true" tabindex="-1"></a>prov.addFeatures([new_feature])</span>
+<span id="cb33-35"><a href="12_kappale_12.html#cb33-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-36"><a href="12_kappale_12.html#cb33-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Päivitetään tason ominaisuustiedot</span></span>
+<span id="cb33-37"><a href="12_kappale_12.html#cb33-37" aria-hidden="true" tabindex="-1"></a>new_layer.updateExtents()</span>
+<span id="cb33-38"><a href="12_kappale_12.html#cb33-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-39"><a href="12_kappale_12.html#cb33-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Lisätään uusi vektoritaso QGIS-projektiin</span></span>
+<span id="cb33-40"><a href="12_kappale_12.html#cb33-40" aria-hidden="true" tabindex="-1"></a>QgsProject.instance().addMapLayer(new_layer)</span></code></pre></div>
 </div>
-<p>:::</p>
+</div>
 </div>
 <div id="tehtävä-12.2" class="section level2" number="13.2">
 <h2><span class="header-section-number">13.2</span> Tehtävä 12.2</h2>
@@ -562,7 +574,7 @@ ratkaisu
 
 <div class="footer-info">
 <h5 class="footer-title">Lausekkeet QGISissä</h5>
-<span class="footer-version">v2023-11-22</span>
+<span class="footer-version">v2023-11-27</span>
 <div class="license"><img src="img/by-nd.svg" width="80px" alt="CC-BY-ND"></div>
 </div>
 

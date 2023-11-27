@@ -19,7 +19,7 @@
 
 <meta name="author" content="Gispo Ltd." />
 
-<meta name="date" content="2023-11-22" />
+<meta name="date" content="2023-11-27" />
 
 
 <meta name="description" content="10 Kappale 9: Nimiöiden kustomointi | Lausekkeet QGISissä">
@@ -208,7 +208,6 @@ type="button" onclick="navToggle()" aria-label="Toggle navigation">
 <li><a href="14_kappale_14.html#kotitehtävä-3-haastava"><span class="toc-section-number">15.3</span> Kotitehtävä 3 (haastava)</a></li>
 <li><a href="14_kappale_14.html#kotitehtävä-4"><span class="toc-section-number">15.4</span> Kotitehtävä 4</a></li>
 <li><a href="14_kappale_14.html#kotitehtävä-5"><span class="toc-section-number">15.5</span> Kotitehtävä 5</a></li>
-<li><a href="14_kappale_14.html#kotitehtävä-6"><span class="toc-section-number">15.6</span> Kotitehtävä 6</a></li>
 </ul></li>
 <li class="has-sub"><a href="15_kappale_15.html#kappale-15-lisätehtävät"><span class="toc-section-number">16</span> Kappale 15: Lisätehtävät</a>
 <ul>
@@ -236,25 +235,49 @@ type="button" onclick="navToggle()" aria-label="Toggle navigation">
 <h1><span class="header-section-number">10</span> Kappale 9: Nimiöiden kustomointi</h1>
 <div id="tehtävä-9.1" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Tehtävä 9.1</h2>
-<div class="todo">
-<p>MUOKKAA HELPOMMAKSI GEOMETRY GENERATOR TEHTÄVÄKSI TAI SIIRRÄ LISÄTEHTÄVÄKSI</p>
-<ol start="26" style="list-style-type: decimal">
-<li>Tarkastellaan rakennusaineistosta. Hyödynnä Geometry Generatoria ja luo nimiöinti, jonka avulla saadaan näkyviin jokaisen polygonin ulkorajan segmentin pituus. Ilmoita tämä luku yhden desimaalin tarkkuudella, jotta tieto mahtuu näkymään.</li>
-</ol>
-</div>
-<p><strong>Aineisto</strong>: <code>pikku_rakennukset.gpkg</code></p>
+<p>Tarkastele lentokenttäaineistoa. Muodosta lentokenttäkohteille niiden nimeä vastaava nimiö. Luo nimiö vain niille kohteille, jotka sijaitsevat Suomessa, Ruotsissa tai Norjassa. Mikäli lentokenttä sijaitsee Suomessa, aseta tekstin väriksi sininen ja käytä fonttikokoa 8. Mikäli lentokenttä sijaitsee Ruotsissa tai Norjassa, aseta nimiön väriksi harmaa ja kooksi 5. Kaikissa muissa tapauksissa aseta nimiön kooksi nolla.</p>
+<p><strong>Aineisto</strong>: <code>lentokentat.gpkg</code></p>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
 vinkki
 </button>
 <div class="hidden-box">
-
+<p>Käytä CASE WHEN … - rakennetta.</p>
+<p><strong>Koon määrittäminen</strong>:</p>
+<ul>
+<li>Valitse <code>country</code>- sarakkeesta Suomi, Ruotsi ja Norja ja aseta niille tehtävänannossa kerrottu fonttikoko.</li>
+</ul>
+<p><strong>Värin määrittäminen</strong>:</p>
+<ul>
+<li>Valitse <code>country</code>- sarakkeesta Suomi, Ruotsi ja Norja.</li>
+<li>Väri määritetään:
+<ul>
+<li>joko RGB (red, green, blue)- muodossa jossa luku 0-255 määrittää kunkin värin arvon,</li>
+<li>tai hexadesimaaliformaatissa (esim. ‘#000000’)</li>
+<li>tai osa väreistä voidaan kirjoittaa sanana (‘red’, ‘blue’) jne.</li>
+</ul></li>
+</ul>
 </div>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb23"><pre class="sourceCode sql"><code class="sourceCode sql"></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb23-1"><a href="09_kappale_9.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Koon määrittäminen</span></span>
+<span id="cb23-2"><a href="09_kappale_9.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
+<span id="cb23-3"><a href="09_kappale_9.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span> <span class="op">=</span> <span class="st">&#39;Finland&#39;</span></span>
+<span id="cb23-4"><a href="09_kappale_9.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="dv">8</span></span>
+<span id="cb23-5"><a href="09_kappale_9.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span> <span class="kw">in</span> (<span class="st">&#39;Sweden&#39;</span>, <span class="st">&#39;Norway&#39;</span>)</span>
+<span id="cb23-6"><a href="09_kappale_9.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="dv">5</span></span>
+<span id="cb23-7"><a href="09_kappale_9.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span> <span class="dv">0</span></span>
+<span id="cb23-8"><a href="09_kappale_9.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span>
+<span id="cb23-9"><a href="09_kappale_9.html#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="09_kappale_9.html#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Värin määrittäminen</span></span>
+<span id="cb23-11"><a href="09_kappale_9.html#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
+<span id="cb23-12"><a href="09_kappale_9.html#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span><span class="op">=</span><span class="st">&#39;Finland&#39;</span></span>
+<span id="cb23-13"><a href="09_kappale_9.html#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;0, 0, 255&#39;</span></span>
+<span id="cb23-14"><a href="09_kappale_9.html#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;country&quot;</span> <span class="kw">in</span> (<span class="st">&#39;Sweden&#39;</span>, <span class="st">&#39;Norway&#39;</span>)</span>
+<span id="cb23-15"><a href="09_kappale_9.html#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;150, 150, 150&#39;</span></span>
+<span id="cb23-16"><a href="09_kappale_9.html#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
 </div>
 </div>
 
@@ -273,7 +296,7 @@ ratkaisu
 
 <div class="footer-info">
 <h5 class="footer-title">Lausekkeet QGISissä</h5>
-<span class="footer-version">v2023-11-22</span>
+<span class="footer-version">v2023-11-27</span>
 <div class="license"><img src="img/by-nd.svg" width="80px" alt="CC-BY-ND"></div>
 </div>
 

@@ -47,7 +47,6 @@ kotitehtävä-2
 kotitehtävä-3-haastava
 kotitehtävä-4
 kotitehtävä-5
-kotitehtävä-6
 kappale-15-lisätehtävät
 lisätehtävä-1-1
 lisätehtävä-2
