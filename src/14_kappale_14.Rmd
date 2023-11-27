@@ -68,7 +68,7 @@ Käytä seuraavaa logiikkaa: jos hallintoalueella
 
 **Aineistot**: 
 
-- ```hallintoaluee.gpkg```
+- ```hallintoalueet.gpkg```
 - ```natura_alueet.gpkg```
 
 

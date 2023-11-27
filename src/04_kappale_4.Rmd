@@ -129,41 +129,10 @@ day(
 :::
 :::
 
-## Lisätehtävä 1
+## Lisätehtävät
 
-Tarkastele Helsingin alueen väestöruutuaineistoa. Luo aineistoon uusi sarake ja anna sen nimeksi asukkaita_sca (datatyyppi: Decimal number). Uuden attribuuttikentän arvojen tulee kuvata sitä, miten suuri kunkin ruudun asukasmäärä on suhteessa pienimmän ja suurimman asukasmäärän omaavaan ruutuun. Skaalaa arvot välille [0,100].
+[Lisätehtävä 1](15_kappale_15.html#lisätehtävä-1)
 
-**Aineisto**: ```hsy_vaesto2020_muok.gpkg```
+[Lisätehtävä 2](15_kappale_15.html#lisätehtävä-2)
 
-<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
-
-::: hidden-box
-Lausekkeeseen tulee syöttää monta sisäkkäistä funktiota:
-
-- etsi lausekkeen muodostajasta funktio, jolla voit tehdä lineaarisen skaalauksen
-- asukkaita- sarakkeen tietotyyppi on kokonaisluku. Se tulee muuttaa lausekkeessa desimaaliluvuksi. Millä funktiolla se onnistuu?
-- millä funktiolla saat selville sarakkeen suurimman ja pienimmän luvun?
-- Käytä lopuksi ```round()``` funktiota. Miten saat tuloksen kahden desimaalin tarkkuudella?
-:::
-
-<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
-
-::: hidden-box
-::: code-box
-``` sql
-round(
-	scale_linear(
-		to_real(
-			"asukkaita"
-			),
-		minimum(
-			"asukkaita"
-			),
-		maximum(
-			"asukkaita"
-			), 0, 100
-		), 2
-	)
-```
-:::
-:::
+[Lisätehtävä 3](15_kappale_15.html#lisätehtävä-3)

@@ -356,3 +356,7 @@ QgsProject.instance().addMapLayers([layer])
 ```
 :::
 :::
+
+## Lisätehtävä
+
+[Lisätehtävä 11](15_kappale_15.html#lisätehtävä-11)

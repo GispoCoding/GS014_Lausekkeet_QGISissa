@@ -62,3 +62,7 @@ distance(
 ```
 :::
 :::
+
+## Lisätehtävä
+
+[Lisätehtävä 8](15_kappale_15.html#lisätehtävä-8)

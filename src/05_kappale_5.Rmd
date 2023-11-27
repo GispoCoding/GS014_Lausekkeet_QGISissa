@@ -118,3 +118,13 @@ Rakenna lauseke paloittain. Lähde liikkeelle tästä:
 ```
 :::
 :::
+
+## Lisätehtävät
+
+[Lisätehtävä 4](15_kappale_15.html#lisätehtävä-4)
+
+[Lisätehtävä 5](15_kappale_15.html#lisätehtävä-5)
+
+[Lisätehtävä 6](15_kappale_15.html#lisätehtävä-6)
+
+[Lisätehtävä 7](15_kappale_15.html#lisätehtävä-7)

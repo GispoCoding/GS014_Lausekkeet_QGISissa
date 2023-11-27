@@ -2,6 +2,93 @@
 
 ## Lisätehtävä 1
 
+Tarkastele Helsingin alueen väestöruutuaineistoa. Luo aineistoon uusi sarake ja anna sen nimeksi asukkaita_sca (datatyyppi: Decimal number). Uuden attribuuttikentän arvojen tulee kuvata sitä, miten suuri kunkin ruudun asukasmäärä on suhteessa pienimmän ja suurimman asukasmäärän omaavaan ruutuun. Skaalaa arvot välille [0,100].
+
+**Aineisto**: ```hsy_vaesto2020_muok.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Lausekkeeseen tulee syöttää monta sisäkkäistä funktiota:
+
+- etsi lausekkeen muodostajasta funktio, jolla voit tehdä lineaarisen skaalauksen
+- asukkaita- sarakkeen tietotyyppi on kokonaisluku. Se tulee muuttaa lausekkeessa desimaaliluvuksi. Millä funktiolla se onnistuu?
+- millä funktiolla saat selville sarakkeen suurimman ja pienimmän luvun?
+- Käytä lopuksi ```round()``` funktiota. Miten saat tuloksen kahden desimaalin tarkkuudella?
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+round(
+	scale_linear(
+		to_real(
+			"asukkaita"
+			),
+		minimum(
+			"asukkaita"
+			),
+		maximum(
+			"asukkaita"
+			), 0, 100
+		), 2
+	)
+```
+:::
+:::
+
+## Lisätehtävä 2
+
+Tarkastele hallintoalueaineistoa. Mikäli kunnalla on olemassa nimi vain yhdellä virallisella kielellä (Kunta_ni2- attribuuttikentän arvo on N_A) korvaa se sanalla ```Puuttuu```.
+
+**Aineisto**: ```hallintoalueet.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Käytä ```if()```- ehtolausekefunktiota.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+if(
+	"Kunta_ni2" = 'N_A', 'Puuttuu', "Kunta_ni2"
+	)
+```
+:::
+:::
+
+## Lisätehtävä 3
+
+Tarkastele Natura-alueaineistoa. Selvitä (**Field Calculatorin General**- ryhmän funktioiden avulla) montako kohdetta ko. karttataso sisältää.
+
+**Aineisto**: ```natura_alueet.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+Käytä ```layer_property()```- ehtolausekefunktiota.
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+layer_property(
+	'natura_alueet', 'feature_count'
+	)
+```
+:::
+:::
+
+## Lisätehtävä 4
+
 Tarkastele maanjäristysaineistoa. Luo uusi attribuuttikenttä (tyyppi: Text (string)) ja anna sen nimeksi Location Country. Muodosta lauseke, jonka avulla uuden kentän arvo pystytään johtamaan Location Name- attribuuttikentän arvosta.
 
 **Aineisto**: ```maanjaristykset.gpkg```
@@ -29,139 +116,7 @@ substr(
 :::
 :::
 
-## Lisätehtävä 2
-
-Luo funktio, jonka avulla voidaan selvittää kolmen attribuuttikentän painotettu keskiarvo.
-
-- Yksi luonnollinen käyttötapaus on laskea kolmen ikäryhmittäisen asukasluvun painotettu keskiarvo (esim. markkinoinnin kannalta työikäisillä ihmisillä on lapsia tai vanhuksia enemmän painoarvoa)
-- Rajaa huomioitavat vaestoruudut Select features by area -työkalulla!
-- Luo valmiiksi desimaaliluku-muotoinen attribuuttikenttä, johon tallennat funktion tulosteen
-- Funktion syötteet: muokattavan tason ja attribuuttikentän nimet, hyödynnettävien attribuuttikenttien nimet, sovellettavat painokertoimet
-
-**Aineisto**: ```vaestoruudut.gpkg```
-
-<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
-
-::: hidden-box
-1. Luo vaestoruudut-tasoon uusi Decimal-tyyppinen attribuuttikenttä (nimi: weighted_ave)
-2. Luo painotettu_ka-niminen funktio Field Calculatorin Function Editor -välilehdellä
-- Muista painaa lopulta Save and Load functions -painiketta!
-3. Mene vaestoruudut-tason Field Calculatoriin > Update existing field
-4. Kirjoita ao. lauseke Expression-ikkunaan ja paina OK
-
-::: code-box
-``` sql
-painotettu_ka('vaesto_valitut', 'kokeilu', 'ika10_19', 'ika30_39', 'ika70_79', 0.2, 0.7, 0.1)
-```
-:::
-:::
-
-<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
-
-::: hidden-box
-::: code-box
-``` sql
-from qgis.core import *
-from qgis.gui import *
-
-@qgsfunction(args='auto', group='Custom', referenced_columns=[])
-def painotettuka(layer, field, field1, field2, field3, value1, value2, value3, feature, parent):
-    """
-    Finds out the weighted average of three columns.
-    """
-    layer = QgsProject.instance().mapLayersByName(layer)[0]
-
-    field_idx = layer.fields().indexOf(field)
-
-    for feat in layer.getFeatures():
-
-        # HSYn datassa arvo 99 = Tieto puuttuu, joten jos jokin kenttä sisältää tämän arvon,
-        # ei painotetun keskiarvon laskeminen ole mielekästä
-        if feat[field1] == 99 or feat[field2] == 99 or feat[field3] == 99:
-            painka = 99
-        else:
-            painka = value1 * feat[field1] + value2 * feat[field2] + value3 * feat[field3]
-        
-        layer.changeAttributeValue(feat.id(), field_idx, painka)
-    
-    return
-```
-:::
-:::
-
-## Lisätehtävä 3
-
-Luo uusi sarake (nimi: tunnus, tyyppi: string) ja hyödynnä Quick Field Calculation -palkkia tuottaaksesi sarakkeen arvoksi FIN: <kunkin kunnan kuntanumero>.
-
-**Aineisto**: ```hallintoalueet.gpkg```
-
-<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
-
-::: hidden-box
-- Valitse päivitettäväksi kentäksi tunnus
-- Kirjoita lauseke-kenttään
-- Napsauta lopuksi Update all -painiketta
-:::
-
-<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
-
-::: hidden-box
-::: code-box
-``` sql
-'FIN: ' || "Kunta"
-```
-:::
-:::
-
-## Lisätehtävä 4
-
-Tarkastele hallintoalueaineistoa. Mikäli kunnalla on olemassa nimi vain yhdellä virallisella kielellä (Kunta_ni2- attribuuttikentän arvo on N_A) korvaa se sanalla ```Puuttuu```.
-
-**Aineisto**: ```hallintoalueet.gpkg```
-
-<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
-
-::: hidden-box
-Käytä ```if()```- ehtolausekefunktiota.
-:::
-
-<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
-
-::: hidden-box
-::: code-box
-``` sql
-if(
-	"Kunta_ni2" = 'N_A', 'Puuttuu', "Kunta_ni2"
-	)
-```
-:::
-:::
-
 ## Lisätehtävä 5
-
-Tarkastele Natura-alueaineistoa. Selvitä (**Field Calculatorin General**- ryhmän funktioiden avulla) montako kohdetta ko. karttataso sisältää.
-
-**Aineisto**: ```natura_alueet.gpkg```
-
-<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
-
-::: hidden-box
-Käytä ```layer_property()```- ehtolausekefunktiota.
-:::
-
-<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
-
-::: hidden-box
-::: code-box
-``` sql
-layer_property(
-	'natura_alueet', 'feature_count'
-	)
-```
-:::
-:::
-
-## Lisätehtävä 6
 
 Selvitä sisältääkö kuhunkin Natura-alueeseen liittyvä päätös vesilakia. Luo uusi attribuuttikenttä, johon voit tallentaa selvittämäsi tiedon.
 
@@ -194,9 +149,9 @@ eval(
 :::
 :::
 
-## Lisätehtävä 7
+## Lisätehtävä 6
 
-Ennen tätä tehtävää tehtävä 2.6 tulee olla tehtynä. Laske kunkin hallintoalueen asukasmäärän prosentuaalinen osuus koko tarkastelemasi maakunnan väestöstä ja tallenna se uuteen attribuuttikenttään.
+Ennen tätä tehtävää tehtävä 5.2 tulee olla tehtynä. Laske kunkin hallintoalueen asukasmäärän prosentuaalinen osuus koko tarkastelemasi maakunnan väestöstä ja tallenna se uuteen attribuuttikenttään.
 
 **Aineistot**: 
 
@@ -221,7 +176,7 @@ Ennen tätä tehtävää tehtävä 2.6 tulee olla tehtynä. Laske kunkin hallint
 :::
 :::
 
-## Lisätehtävä 8
+## Lisätehtävä 7
 
 Selvitä mitkä hallintoaluepolygonit sijaitsevat korkeintaan 20km etäisyydellä Vaasan lyseon lukiosta. Käytä **Field Calculatoria**, älä geoprosessointityökaluja!
 
@@ -253,6 +208,30 @@ intersects(
 			)
 		)
 	)
+```
+:::
+:::
+
+## Lisätehtävä 8
+
+Luo uusi sarake (nimi: tunnus, tyyppi: string) ja hyödynnä Quick Field Calculation -palkkia tuottaaksesi sarakkeen arvoksi FIN: \<kunkin kunnan kuntanumero\>.
+
+**Aineisto**: ```hallintoalueet.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+- Valitse päivitettäväksi kentäksi tunnus
+- Kirjoita lauseke-kenttään
+- Napsauta lopuksi Update all -painiketta
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+'FIN: ' || "Kunta"
 ```
 :::
 :::
@@ -334,6 +313,175 @@ format_number(
 			)
 		), 1
 	) || 'm'
+```
+:::
+:::
+
+## Lisätehtävä 11
+
+Luo funktio, jonka avulla voidaan selvittää kolmen attribuuttikentän painotettu keskiarvo.
+
+- Yksi luonnollinen käyttötapaus on laskea kolmen ikäryhmittäisen asukasluvun painotettu keskiarvo (esim. markkinoinnin kannalta työikäisillä ihmisillä on lapsia tai vanhuksia enemmän painoarvoa)
+- Rajaa huomioitavat vaestoruudut Select features by area -työkalulla!
+- Luo valmiiksi desimaaliluku-muotoinen attribuuttikenttä, johon tallennat funktion tulosteen
+- Funktion syötteet: muokattavan tason ja attribuuttikentän nimet, hyödynnettävien attribuuttikenttien nimet, sovellettavat painokertoimet
+
+**Aineisto**: ```vaestoruudut.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
+
+::: hidden-box
+1. Luo vaestoruudut-tasoon uusi Decimal-tyyppinen attribuuttikenttä (nimi: weighted_ave)
+2. Luo painotettu_ka-niminen funktio Field Calculatorin Function Editor -välilehdellä
+- Muista painaa lopulta Save and Load functions -painiketta!
+3. Mene vaestoruudut-tason Field Calculatoriin > Update existing field
+4. Kirjoita ao. lauseke Expression-ikkunaan ja paina OK
+
+::: code-box
+``` sql
+painotettu_ka('vaesto_valitut', 'kokeilu', 'ika10_19', 'ika30_39', 'ika70_79', 0.2, 0.7, 0.1)
+```
+:::
+:::
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
+
+::: hidden-box
+::: code-box
+``` sql
+from qgis.core import *
+from qgis.gui import *
+
+@qgsfunction(args='auto', group='Custom', referenced_columns=[])
+def painotettuka(layer, field, field1, field2, field3, value1, value2, value3, feature, parent):
+    """
+    Finds out the weighted average of three columns.
+    """
+    layer = QgsProject.instance().mapLayersByName(layer)[0]
+
+    field_idx = layer.fields().indexOf(field)
+
+    for feat in layer.getFeatures():
+
+        # HSYn datassa arvo 99 = Tieto puuttuu, joten jos jokin kenttä sisältää tämän arvon,
+        # ei painotetun keskiarvon laskeminen ole mielekästä
+        if feat[field1] == 99 or feat[field2] == 99 or feat[field3] == 99:
+            painka = 99
+        else:
+            painka = value1 * feat[field1] + value2 * feat[field2] + value3 * feat[field3]
+        
+        layer.changeAttributeValue(feat.id(), field_idx, painka)
+    
+    return
+```
+:::
+:::
+
+## Geoprosessointiesimerkki
+
+Alta löytyy esimerkki yksinkertaisesta geoprosessointiskriptistä. Skripti muuttaa ```rautatieviiva_suomi.gpkg```- tason ```Sahkoistys```- sarakkeen arvot selkokieliseksi ja tallentaa tiedot uuteen CSV- taulukkotiedostoon. Voit kokeilla lisätä skriptin QGISiin ja ajaa sen.
+
+**Aineisto:** ```rautatieviiva_suomi.gpkg```
+
+<button onclick="toggleAnswer(this)" class="btn answer_btn">geoprosessointiskripti</button>
+
+::: hidden-box
+::: code-box
+``` python
+from PyQt5.QtCore import QCoreApplication
+from qgis.core import (QgsProcessing,
+                       QgsProcessingAlgorithm,
+                       QgsProcessingParameterFeatureSource,
+                       QgsProcessingParameterFileDestination,
+)
+
+class SaveAttributesAlgorithm(QgsProcessingAlgorithm):
+    """Saves the selected attribute fields values of a vector layer to a CSV file."""
+    OUTPUT = 'OUTPUT'
+    INPUT = 'INPUT'
+
+    def tr(self, string):
+        """
+        Returns a translatable string with the self.tr() function.
+        """
+        return QCoreApplication.translate('Processing', string)
+
+    def createInstance(self):
+        # Must return a new copy of your algorithm.
+        return SaveAttributesAlgorithm()
+
+    def name(self):
+        """
+        Returns the unique algorithm name.
+        """
+        return 'savefeaturesascsv'
+
+    def displayName(self):
+        """
+        Returns the translated algorithm name.
+        """
+        return self.tr('Save features as CSV')
+
+    def group(self):
+        """
+        Returns the name of the group this algorithm belongs to.
+        """
+        return self.tr('Example scripts')
+
+    def groupId(self):
+        """
+        Returns the unique ID of the group this algorithm belongs
+        to.
+        """
+        return 'examplescripts'
+
+    def shortHelpString(self):
+        """
+        Returns a localised short help string for the algorithm.
+        """
+        return self.tr('Saves selected features to a CSV file')
+    
+    def initAlgorithm(self, config=None):
+        self.addParameter(
+            QgsProcessingParameterFeatureSource(
+                self.INPUT,
+                self.tr('Input layer'),
+                [QgsProcessing.TypeVectorAnyGeometry]
+            )
+        )
+        # We add a file output of type CSV.
+        self.addParameter(
+            QgsProcessingParameterFileDestination(
+                self.OUTPUT,
+                self.tr('Output File'),
+                'CSV files (*.csv)',
+            )
+        )
+    
+    def processAlgorithm(self, parameters, context, feedback):
+        source = self.parameterAsSource(parameters, self.INPUT, context)
+        csv = self.parameterAsFileOutput(parameters, self.OUTPUT, context)
+        fieldnames = [field.name() for field in source.fields()]
+        # Compute the number of steps to display within the progress bar and get features from source
+        total = 100.0 / source.featureCount() if source.featureCount() else 0
+        features = source.getFeatures()
+        with open(csv, 'w') as output_file:
+            # Write header
+            line = ','.join(name for name in fieldnames if name=="Sahkoistys") + '\n'
+            output_file.write(line)
+            for current, f in enumerate(features):
+                # Stop the algorithm if cancel button has been clicked
+                if feedback.isCanceled():
+                    break
+                # Add a feature in the sink
+                if f["Sahkoistys"]==1:
+                    line = ','.join(str('Ei sahkoa') for name in fieldnames if name=="Sahkoistys") + '\n'
+                else:
+                    line = ','.join(str('Sahkoistetty') for name in fieldnames if name=="Sahkoistys") + '\n'
+                output_file.write(line)
+                # Update the progress bar
+                feedback.setProgress(int(current * total))
+        return {self.OUTPUT: csv}
 ```
 :::
 :::
