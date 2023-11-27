@@ -2,12 +2,12 @@
 
 ## Tehtävä 12.1
 
-Avaa QGISin Python konsoli.
+Tehtävässä on kolme vaihetta. Avaa QGISin Python konsoli.
 
 ![](img/kappale_12/image1.png)
 **Aineisto:** ```valtiot.gpkg```
 
-1. Lisää ```valtiot.gpkg```- aineisto QGISiin ja valitse taso. Kokeile ensin peruskomentoja konsolissa:
+**Vaihe 1:** Lisää ```valtiot.gpkg```- aineisto QGISiin ja valitse taso. Kokeile ensin peruskomentoja konsolissa:
 
 ::: code-box
 ``` python
@@ -45,7 +45,7 @@ Tulostaa konsoliin layer- olion tiedot.
 Laskee tason kohteiden määrän ```featureCount()```- funktiolla ja tulostaa sen.
 :::
 
-2. Käy for- silmukassa läpi "valtiot"- tason 10 ensimmäistä kohdetta ja tulosta kohteen nimi (ADMIN- kenttä).
+**Vaihe 2:** Käy for- silmukassa läpi "valtiot"- tason kohteet ja tulosta kohteen nimi (ADMIN- kenttä).
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
 
@@ -83,7 +83,7 @@ for feature in layer.getFeatures():
 :::
 :::
 
-3. Tarkastele seuraavaa skriptiä. Pohdi mitä skripti tekee sen eri vaiheissa?
+**Vaihe 3:** Tarkastele seuraavaa skriptiä. Pohdi mitä skripti tekee sen eri vaiheissa.
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">skripti</button>
 
@@ -93,26 +93,28 @@ for feature in layer.getFeatures():
 from qgis.core import *
 from qgis.gui import *
 
-countries_layer = QgsProject.instance().mapLayersByName('hallintoalueet')[0]
+source_layer = QgsProject.instance().mapLayersByName('hallintoalueet')[0]
 
-new_layer = QgsVectorLayer('Polygon?crs=epsg:3067', 'suomi_vyohyke', 'memory')
+new_layer = QgsVectorLayer('Polygon?crs=epsg:3067', 'hanko_vyohyke', 'memory')
 
 prov = new_layer.dataProvider()
 
 prov.addAttributes([QgsField("nimi", QVariant.String)])
 new_layer.updateFields()
 
-finland_feature = countries_layer.getFeature(1)
+hanko_feature = source_layer.getFeature(1)
 
-finland_geometry = finland_feature.geometry()
+hanko_geometry = hanko_feature.geometry()
 
-buffered_geometry = finland_geometry.buffer(5 * 1000, 4)
+buffered_geometry = hanko_geometry.buffer(5 * 1000, 5)
 
 new_feature = QgsFeature()
+
 new_feature.setAttributes(["Hanko"])
 new_feature.setGeometry(buffered_geometry)
 
 prov.addFeatures([new_feature])
+
 new_layer.updateExtents()
 
 QgsProject.instance().addMapLayer(new_layer)
@@ -124,33 +126,50 @@ QgsProject.instance().addMapLayer(new_layer)
 
 ::: hidden-box
 Skripti hakee hallintoalueet- tasosta Hanko- kohteen ja luo sen geometriasta 5 km vyöhykkeen. Vyöhyke lisätään uudelle väliaikaiselle hanko_vyohyke tasolle.
+
+Lisätietoa data provider- luokasta: [https://qgis.org/pyqgis/3.2/core/Data/QgsDataProvider.html](https://qgis.org/pyqgis/3.2/core/Data/QgsDataProvider.html)
+
 ::: code-box
 ``` python
+# Tuodaan tarvittavat QGIS-paketit
 from qgis.core import *
 from qgis.gui import *
 
-countries_layer = QgsProject.instance().mapLayersByName('hallintoalueet')[0]
+# Haetaan hallintoalueet-taso
+source_layer = QgsProject.instance().mapLayersByName('hallintoalueet')[0]
 
-new_layer = QgsVectorLayer('Polygon?crs=epsg:3067', 'suomi_vyohyke', 'memory')
+# Luodaan uusi väliaikainen vektoritaso "suomi_vyohyke", jonka koordinaattijärjestelmä on EPSG:3067
+new_layer = QgsVectorLayer('Polygon?crs=epsg:3067', 'hanko_vyohyke', 'memory')
 
+# Tallennetaan tason data provider
 prov = new_layer.dataProvider()
 
+# Lisätään attribuuttikenttä ("nimi") uuden tason ominaisuustietoihin
 prov.addAttributes([QgsField("nimi", QVariant.String)])
 new_layer.updateFields()
 
-finland_feature = countries_layer.getFeature(1)
+# Haetaan Hanko- kohde hallintoaluetasolta
+hanko_feature = source_layer.getFeature(1)
 
-finland_geometry = finland_feature.geometry()
+# Haetaan Hanko- kohteen geometria
+hanko_geometry = hanko_feature.geometry()
 
-buffered_geometry = finland_geometry.buffer(5 * 1000, 4)
+# Luodaan puskurigeometria viiden kilometrin etäisyydellä ja viidellä segmentilla
+buffered_geometry = hanko_geometry.buffer(5 * 1000, 5)
 
+# Luodaan uusi kohde
 new_feature = QgsFeature()
-new_feature.setAttributes(["Hanko"])
-new_feature.setGeometry(buffered_geometry)
 
+new_feature.setAttributes(["Hanko"]) # Asetetaan kohteelle nimi- attribuutti
+new_feature.setGeometry(buffered_geometry) # Asetetaan kohteelle vyöhykegeometria
+
+# Lisätään uusi ominaisuus data provideriin
 prov.addFeatures([new_feature])
+
+# Päivitetään tason ominaisuustiedot
 new_layer.updateExtents()
 
+# Lisätään uusi vektoritaso QGIS-projektiin
 QgsProject.instance().addMapLayer(new_layer)
 ```
 :::
