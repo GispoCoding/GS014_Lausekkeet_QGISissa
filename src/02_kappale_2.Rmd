@@ -2,50 +2,33 @@
 
 ## Tehtävä 2.1
 
-Alla oleva lauseke ei toimi ilman funktiota `to_string()`. Mihin väliin se tarvitaan?
+Tutki alla olevaa lauseketta. Pohdi mitä eri funktiot tekevät ja mikä voisi olla funktion lopputulos? Avaa tarvittaessa QGISista lausekkeen muodostaja ja tutki funktioiden dokumentaatiota.
 
 ::: code-box
 ``` sql
 upper(
-    concat(
-        if(
-            "nimi"='Matti Matthias Meikäläinen', replace(
-                'Matti Matthias Meikäläinen', 'Matthias', 'Matias'
-                ), "nimi"
-            ), ': ', "syntymävuosi"
-        )
-    )
+	concat(
+		replace(
+			'Matti Matthias Meikäläinen', 'Matthias', 'Matias'
+			), ': Syntymävuosi ', '1975'
+		)
+	)
 ```
 :::
-
-Tarkastele kuvasta tietotyyppejä:
-
-![](img/kappale_2/image1.png)
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
 
 ::: hidden-box
-Kannattaa pohtia, mitä mikäkin lausekkeen sisältämä funktio saa syötteenä ja mitä se tuottaa ulos!
+Lähde tutkimaan lauseketta palasittain. Lähde liikkeelle sisimmästä funktiosta ( ```replace() ```). Sen tulosta käytetään ```concat()```- funktiossa ja lopuksi sen tulosta käytetään vielä ```upper()```- funktiota. 
 :::
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
-Syntymävuoden datatyyppi on kokonaisluku (integer). `concat()`- funktion argumentit tulee olla merkkijonoja (string). Kokonaisluvut saa muutettua merkkijonoksi `to_string()` funktiolla.
+``` replace() ``` - Etsii löytyykö annetusta merkkijonosta 'Matti Matthias Meikäläinen' alamerkkijono 'Matthias' ja jos löytyy korvaa sen merkkijonolla 'Matias'.
 
-::: code-box
-``` sql
-upper(
-    concat(
-        if(
-            "nimi"='Matti Matthias Meikäläinen', replace(
-                'Matti Matthias Meikäläinen', 'Matthias', 'Matias'
-                ), "nimi"
-            ), ': ', to_string(
-            "syntymävuosi"
-            )
-        )
-    )
-```
-:::
+``` concat() ``` - Yhdistää useamman merkkijonon yhdeksi merkkijonoksi.
+
+``` upper() ``` - Muuntaa merkkijonon isoiksi kirjaimiksi.
+
 :::
