@@ -19,7 +19,7 @@
 
 <meta name="author" content="Gispo Ltd." />
 
-<meta name="date" content="2023-11-27" />
+<meta name="date" content="2023-11-28" />
 
 
 <meta name="description" content="4 Kappale 3: Kohteiden valinta ja suodatus | Lausekkeet QGISissä">
@@ -262,9 +262,9 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="03_kappale_3.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;tyyppi_nimi_fi&quot;</span> <span class="kw">in</span> ( <span class="st">&#39;Jalkapallostadion&#39;</span>, <span class="st">&#39;Pallokenttä&#39;</span>, <span class="st">&#39;Jalkapallohalli&#39;</span> )</span>
-<span id="cb6-2"><a href="03_kappale_3.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span></span>
-<span id="cb6-3"><a href="03_kappale_3.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;kunta_nimi_fi&quot;</span> <span class="op">=</span> <span class="st">&#39;Turku&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="03_kappale_3.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;tyyppi_nimi_fi&quot;</span> <span class="kw">in</span> ( <span class="st">&#39;Jalkapallostadion&#39;</span>, <span class="st">&#39;Pallokenttä&#39;</span>, <span class="st">&#39;Jalkapallohalli&#39;</span> )</span>
+<span id="cb5-2"><a href="03_kappale_3.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span></span>
+<span id="cb5-3"><a href="03_kappale_3.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;kunta_nimi_fi&quot;</span> <span class="op">=</span> <span class="st">&#39;Turku&#39;</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -285,7 +285,7 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="03_kappale_3.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;saari_pAla&quot;</span> <span class="op">/</span> ( <span class="ot">&quot;pAla_ha&quot;</span> <span class="op">*</span> <span class="fl">10000.0</span> ) <span class="op">&gt;</span> <span class="fl">0.10</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="03_kappale_3.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;saari_pAla&quot;</span> <span class="op">/</span> ( <span class="ot">&quot;pAla_ha&quot;</span> <span class="op">*</span> <span class="fl">10000.0</span> ) <span class="op">&gt;</span> <span class="fl">0.10</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -315,22 +315,22 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="03_kappale_3.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;Maaku_ni1&quot;</span> <span class="op">!=</span> <span class="st">&#39;Ahvenanmaan maakunta&#39;</span></span>
-<span id="cb8-2"><a href="03_kappale_3.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span></span>
-<span id="cb8-3"><a href="03_kappale_3.html#cb8-3" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb8-4"><a href="03_kappale_3.html#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;Kieli_ni1&quot;</span> <span class="op">=</span> <span class="st">&#39;Ruotsi&#39;</span></span>
-<span id="cb8-5"><a href="03_kappale_3.html#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">or</span></span>
-<span id="cb8-6"><a href="03_kappale_3.html#cb8-6" aria-hidden="true" tabindex="-1"></a>    (</span>
-<span id="cb8-7"><a href="03_kappale_3.html#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="ot">&quot;Kunta_ni1&quot;</span> <span class="kw">like</span> <span class="st">&#39;%å%&#39;</span></span>
-<span id="cb8-8"><a href="03_kappale_3.html#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">or</span></span>
-<span id="cb8-9"><a href="03_kappale_3.html#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="ot">&quot;Kunta_ni2&quot;</span> <span class="kw">like</span> <span class="st">&#39;%å%&#39;</span></span>
-<span id="cb8-10"><a href="03_kappale_3.html#cb8-10" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb8-11"><a href="03_kappale_3.html#cb8-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-12"><a href="03_kappale_3.html#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span></span>
-<span id="cb8-13"><a href="03_kappale_3.html#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;AVI_ni1&quot;</span> <span class="kw">not</span> <span class="kw">in</span></span>
-<span id="cb8-14"><a href="03_kappale_3.html#cb8-14" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb8-15"><a href="03_kappale_3.html#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Lapin aluehallintovirasto&#39;</span>, <span class="st">&#39;Itä-Suomen aluehallintovirasto&#39;</span></span>
-<span id="cb8-16"><a href="03_kappale_3.html#cb8-16" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="03_kappale_3.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;Maaku_ni1&quot;</span> <span class="op">!=</span> <span class="st">&#39;Ahvenanmaan maakunta&#39;</span></span>
+<span id="cb7-2"><a href="03_kappale_3.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span></span>
+<span id="cb7-3"><a href="03_kappale_3.html#cb7-3" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb7-4"><a href="03_kappale_3.html#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;Kieli_ni1&quot;</span> <span class="op">=</span> <span class="st">&#39;Ruotsi&#39;</span></span>
+<span id="cb7-5"><a href="03_kappale_3.html#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">or</span></span>
+<span id="cb7-6"><a href="03_kappale_3.html#cb7-6" aria-hidden="true" tabindex="-1"></a>    (</span>
+<span id="cb7-7"><a href="03_kappale_3.html#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="ot">&quot;Kunta_ni1&quot;</span> <span class="kw">like</span> <span class="st">&#39;%å%&#39;</span></span>
+<span id="cb7-8"><a href="03_kappale_3.html#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">or</span></span>
+<span id="cb7-9"><a href="03_kappale_3.html#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="ot">&quot;Kunta_ni2&quot;</span> <span class="kw">like</span> <span class="st">&#39;%å%&#39;</span></span>
+<span id="cb7-10"><a href="03_kappale_3.html#cb7-10" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb7-11"><a href="03_kappale_3.html#cb7-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-12"><a href="03_kappale_3.html#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span></span>
+<span id="cb7-13"><a href="03_kappale_3.html#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;AVI_ni1&quot;</span> <span class="kw">not</span> <span class="kw">in</span></span>
+<span id="cb7-14"><a href="03_kappale_3.html#cb7-14" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb7-15"><a href="03_kappale_3.html#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Lapin aluehallintovirasto&#39;</span>, <span class="st">&#39;Itä-Suomen aluehallintovirasto&#39;</span></span>
+<span id="cb7-16"><a href="03_kappale_3.html#cb7-16" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
 </div>
 
@@ -349,7 +349,7 @@ ratkaisu
 
 <div class="footer-info">
 <h5 class="footer-title">Lausekkeet QGISissä</h5>
-<span class="footer-version">v2023-11-27</span>
+<span class="footer-version">v2023-11-28</span>
 <div class="license"><img src="img/by-nd.svg" width="80px" alt="CC-BY-ND"></div>
 </div>
 

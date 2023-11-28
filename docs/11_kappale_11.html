@@ -19,7 +19,7 @@
 
 <meta name="author" content="Gispo Ltd." />
 
-<meta name="date" content="2023-11-27" />
+<meta name="date" content="2023-11-28" />
 
 
 <meta name="description" content="12 Kappale 11: Kartta-atlaksen kustomointi | Lausekkeet QGISissä">
@@ -293,39 +293,39 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb24"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb24-1"><a href="11_kappale_11.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Atlaksen tarkasteltavien kattavuusobjektien suodatus</span></span>
-<span id="cb24-2"><a href="11_kappale_11.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;CONTINENT&quot;</span> <span class="op">=</span> <span class="st">&#39;Europe&#39;</span></span>
-<span id="cb24-3"><a href="11_kappale_11.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="11_kappale_11.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Dynaaminen otsikkonimiö (tekstikenttään)</span></span>
-<span id="cb24-5"><a href="11_kappale_11.html#cb24-5" aria-hidden="true" tabindex="-1"></a>[%</span>
-<span id="cb24-6"><a href="11_kappale_11.html#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">concat</span>(</span>
-<span id="cb24-7"><a href="11_kappale_11.html#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Map &#39;</span>, @atlas_featurenumber, <span class="st">&#39;/&#39;</span>, @atlas_totalfeatures</span>
-<span id="cb24-8"><a href="11_kappale_11.html#cb24-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb24-9"><a href="11_kappale_11.html#cb24-9" aria-hidden="true" tabindex="-1"></a>%]</span>
-<span id="cb24-10"><a href="11_kappale_11.html#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="11_kappale_11.html#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- Dynaaminen karttatulostenimiö, jossa listaus atlas-objektin alueelle kuuluvista lentokentistä (tekstikenttään)</span></span>
-<span id="cb24-12"><a href="11_kappale_11.html#cb24-12" aria-hidden="true" tabindex="-1"></a>Valtio: [%</span>
-<span id="cb24-13"><a href="11_kappale_11.html#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;ADMIN&quot;</span></span>
-<span id="cb24-14"><a href="11_kappale_11.html#cb24-14" aria-hidden="true" tabindex="-1"></a>%]</span>
-<span id="cb24-15"><a href="11_kappale_11.html#cb24-15" aria-hidden="true" tabindex="-1"></a>Lentokentät: [%</span>
-<span id="cb24-16"><a href="11_kappale_11.html#cb24-16" aria-hidden="true" tabindex="-1"></a>array_to_string(</span>
-<span id="cb24-17"><a href="11_kappale_11.html#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">array</span> <span class="op">:=</span> overlay_contains(</span>
-<span id="cb24-18"><a href="11_kappale_11.html#cb24-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">layer</span> <span class="op">:=</span> <span class="st">&#39;lentokentat&#39;</span>, expression <span class="op">:=</span> <span class="ot">&quot;NAME&quot;</span></span>
-<span id="cb24-19"><a href="11_kappale_11.html#cb24-19" aria-hidden="true" tabindex="-1"></a>        ), delimiter <span class="op">:=</span> <span class="st">&#39;, &#39;</span></span>
-<span id="cb24-20"><a href="11_kappale_11.html#cb24-20" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb24-21"><a href="11_kappale_11.html#cb24-21" aria-hidden="true" tabindex="-1"></a>%]</span>
-<span id="cb24-22"><a href="11_kappale_11.html#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-23"><a href="11_kappale_11.html#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co">-- Valtioiden näkyvyys</span></span>
-<span id="cb24-24"><a href="11_kappale_11.html#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;ADMIN&quot;</span> <span class="op">=</span> @atlas_pagename</span>
-<span id="cb24-25"><a href="11_kappale_11.html#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-26"><a href="11_kappale_11.html#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- Lentokenttien näkyvyys</span></span>
-<span id="cb24-27"><a href="11_kappale_11.html#cb24-27" aria-hidden="true" tabindex="-1"></a>intersects(</span>
-<span id="cb24-28"><a href="11_kappale_11.html#cb24-28" aria-hidden="true" tabindex="-1"></a>    $geometry, geometry(</span>
-<span id="cb24-29"><a href="11_kappale_11.html#cb24-29" aria-hidden="true" tabindex="-1"></a>        get_feature(</span>
-<span id="cb24-30"><a href="11_kappale_11.html#cb24-30" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;valtiot&#39;</span>, <span class="st">&#39;ADMIN&#39;</span>, @atlas_pagename</span>
-<span id="cb24-31"><a href="11_kappale_11.html#cb24-31" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb24-32"><a href="11_kappale_11.html#cb24-32" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb24-33"><a href="11_kappale_11.html#cb24-33" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb23-1"><a href="11_kappale_11.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Atlaksen tarkasteltavien kattavuusobjektien suodatus</span></span>
+<span id="cb23-2"><a href="11_kappale_11.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;CONTINENT&quot;</span> <span class="op">=</span> <span class="st">&#39;Europe&#39;</span></span>
+<span id="cb23-3"><a href="11_kappale_11.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="11_kappale_11.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Dynaaminen otsikkonimiö (tekstikenttään)</span></span>
+<span id="cb23-5"><a href="11_kappale_11.html#cb23-5" aria-hidden="true" tabindex="-1"></a>[%</span>
+<span id="cb23-6"><a href="11_kappale_11.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">concat</span>(</span>
+<span id="cb23-7"><a href="11_kappale_11.html#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Map &#39;</span>, @atlas_featurenumber, <span class="st">&#39;/&#39;</span>, @atlas_totalfeatures</span>
+<span id="cb23-8"><a href="11_kappale_11.html#cb23-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-9"><a href="11_kappale_11.html#cb23-9" aria-hidden="true" tabindex="-1"></a>%]</span>
+<span id="cb23-10"><a href="11_kappale_11.html#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="11_kappale_11.html#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- Dynaaminen karttatulostenimiö, jossa listaus atlas-objektin alueelle kuuluvista lentokentistä (tekstikenttään)</span></span>
+<span id="cb23-12"><a href="11_kappale_11.html#cb23-12" aria-hidden="true" tabindex="-1"></a>Valtio: [%</span>
+<span id="cb23-13"><a href="11_kappale_11.html#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;ADMIN&quot;</span></span>
+<span id="cb23-14"><a href="11_kappale_11.html#cb23-14" aria-hidden="true" tabindex="-1"></a>%]</span>
+<span id="cb23-15"><a href="11_kappale_11.html#cb23-15" aria-hidden="true" tabindex="-1"></a>Lentokentät: [%</span>
+<span id="cb23-16"><a href="11_kappale_11.html#cb23-16" aria-hidden="true" tabindex="-1"></a>array_to_string(</span>
+<span id="cb23-17"><a href="11_kappale_11.html#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">array</span> <span class="op">:=</span> overlay_contains(</span>
+<span id="cb23-18"><a href="11_kappale_11.html#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">layer</span> <span class="op">:=</span> <span class="st">&#39;lentokentat&#39;</span>, expression <span class="op">:=</span> <span class="ot">&quot;NAME&quot;</span></span>
+<span id="cb23-19"><a href="11_kappale_11.html#cb23-19" aria-hidden="true" tabindex="-1"></a>        ), delimiter <span class="op">:=</span> <span class="st">&#39;, &#39;</span></span>
+<span id="cb23-20"><a href="11_kappale_11.html#cb23-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-21"><a href="11_kappale_11.html#cb23-21" aria-hidden="true" tabindex="-1"></a>%]</span>
+<span id="cb23-22"><a href="11_kappale_11.html#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-23"><a href="11_kappale_11.html#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">-- Valtioiden näkyvyys</span></span>
+<span id="cb23-24"><a href="11_kappale_11.html#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;ADMIN&quot;</span> <span class="op">=</span> @atlas_pagename</span>
+<span id="cb23-25"><a href="11_kappale_11.html#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="11_kappale_11.html#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- Lentokenttien näkyvyys</span></span>
+<span id="cb23-27"><a href="11_kappale_11.html#cb23-27" aria-hidden="true" tabindex="-1"></a>intersects(</span>
+<span id="cb23-28"><a href="11_kappale_11.html#cb23-28" aria-hidden="true" tabindex="-1"></a>    $geometry, geometry(</span>
+<span id="cb23-29"><a href="11_kappale_11.html#cb23-29" aria-hidden="true" tabindex="-1"></a>        get_feature(</span>
+<span id="cb23-30"><a href="11_kappale_11.html#cb23-30" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;valtiot&#39;</span>, <span class="st">&#39;ADMIN&#39;</span>, @atlas_pagename</span>
+<span id="cb23-31"><a href="11_kappale_11.html#cb23-31" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb23-32"><a href="11_kappale_11.html#cb23-32" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb23-33"><a href="11_kappale_11.html#cb23-33" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
 </div>
 
@@ -344,7 +344,7 @@ ratkaisu
 
 <div class="footer-info">
 <h5 class="footer-title">Lausekkeet QGISissä</h5>
-<span class="footer-version">v2023-11-27</span>
+<span class="footer-version">v2023-11-28</span>
 <div class="license"><img src="img/by-nd.svg" width="80px" alt="CC-BY-ND"></div>
 </div>
 

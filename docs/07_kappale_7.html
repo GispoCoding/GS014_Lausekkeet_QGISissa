@@ -19,7 +19,7 @@
 
 <meta name="author" content="Gispo Ltd." />
 
-<meta name="date" content="2023-11-27" />
+<meta name="date" content="2023-11-28" />
 
 
 <meta name="description" content="8 Kappale 7: Symbologian kustomointi | Lausekkeet QGISissä">
@@ -260,11 +260,11 @@ vinkki
 <p><img src="img/kappale_7/image2.gif" /></p>
 <p>Käytä lausekkeessa CASE WHEN- rakennetta (määritä vuodenajat kuukauden perusteella):</p>
 <div class="code-box">
-<div class="sourceCode" id="cb18"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb18-1"><a href="07_kappale_7.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
-<span id="cb18-2"><a href="07_kappale_7.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="op">..</span>. (valitse talvikuukaudet)</span>
-<span id="cb18-3"><a href="07_kappale_7.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;Talvi&#39;</span></span>
-<span id="cb18-4"><a href="07_kappale_7.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>. (Määritä muut vuodenajat)</span>
-<span id="cb18-5"><a href="07_kappale_7.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb17-1"><a href="07_kappale_7.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
+<span id="cb17-2"><a href="07_kappale_7.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="op">..</span>. (valitse talvikuukaudet)</span>
+<span id="cb17-3"><a href="07_kappale_7.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;Talvi&#39;</span></span>
+<span id="cb17-4"><a href="07_kappale_7.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>. (Määritä muut vuodenajat)</span>
+<span id="cb17-5"><a href="07_kappale_7.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
 </div>
 <p>Paina lopuksi <strong>Classify</strong> painiketta. Muokkaa symbolien värit tehtävänannon mukaisiksi kaksoisklikkaamalla eri luokkien symbolia.</p>
 </div>
@@ -273,20 +273,20 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb19"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb19-1"><a href="07_kappale_7.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Vaihe 1 (Symbolien koko):</span></span>
-<span id="cb19-2"><a href="07_kappale_7.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;Mag&quot;</span> <span class="co">-- Lausekkeeksi riittää viittaus ```Mag``` (magnitudi)- kenttään</span></span>
-<span id="cb19-3"><a href="07_kappale_7.html#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="07_kappale_7.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Vaihe 2 (luokitus):</span></span>
-<span id="cb19-5"><a href="07_kappale_7.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
-<span id="cb19-6"><a href="07_kappale_7.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;Mo&quot;</span> <span class="kw">in</span> (<span class="dv">12</span>, <span class="dv">01</span>, <span class="dv">02</span>)</span>
-<span id="cb19-7"><a href="07_kappale_7.html#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;Talvi&#39;</span></span>
-<span id="cb19-8"><a href="07_kappale_7.html#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;Mo&quot;</span> <span class="kw">in</span> (<span class="dv">03</span>, <span class="dv">04</span>, <span class="dv">05</span>)</span>
-<span id="cb19-9"><a href="07_kappale_7.html#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;Kevät&#39;</span></span>
-<span id="cb19-10"><a href="07_kappale_7.html#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;Mo&quot;</span> <span class="kw">in</span> (<span class="dv">06</span>, <span class="dv">07</span>, <span class="dv">08</span>)</span>
-<span id="cb19-11"><a href="07_kappale_7.html#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;Kesä&#39;</span></span>
-<span id="cb19-12"><a href="07_kappale_7.html#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;Mo&quot;</span> <span class="kw">in</span> (<span class="dv">09</span>, <span class="dv">10</span>, <span class="dv">11</span>)</span>
-<span id="cb19-13"><a href="07_kappale_7.html#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;Syksy&#39;</span></span>
-<span id="cb19-14"><a href="07_kappale_7.html#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb18-1"><a href="07_kappale_7.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Vaihe 1 (Symbolien koko):</span></span>
+<span id="cb18-2"><a href="07_kappale_7.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;Mag&quot;</span> <span class="co">-- Lausekkeeksi riittää viittaus ```Mag``` (magnitudi)- kenttään</span></span>
+<span id="cb18-3"><a href="07_kappale_7.html#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="07_kappale_7.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Vaihe 2 (luokitus):</span></span>
+<span id="cb18-5"><a href="07_kappale_7.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">CASE</span></span>
+<span id="cb18-6"><a href="07_kappale_7.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;Mo&quot;</span> <span class="kw">in</span> (<span class="dv">12</span>, <span class="dv">01</span>, <span class="dv">02</span>)</span>
+<span id="cb18-7"><a href="07_kappale_7.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;Talvi&#39;</span></span>
+<span id="cb18-8"><a href="07_kappale_7.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;Mo&quot;</span> <span class="kw">in</span> (<span class="dv">03</span>, <span class="dv">04</span>, <span class="dv">05</span>)</span>
+<span id="cb18-9"><a href="07_kappale_7.html#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;Kevät&#39;</span></span>
+<span id="cb18-10"><a href="07_kappale_7.html#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;Mo&quot;</span> <span class="kw">in</span> (<span class="dv">06</span>, <span class="dv">07</span>, <span class="dv">08</span>)</span>
+<span id="cb18-11"><a href="07_kappale_7.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;Kesä&#39;</span></span>
+<span id="cb18-12"><a href="07_kappale_7.html#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="cf">WHEN</span> <span class="ot">&quot;Mo&quot;</span> <span class="kw">in</span> (<span class="dv">09</span>, <span class="dv">10</span>, <span class="dv">11</span>)</span>
+<span id="cb18-13"><a href="07_kappale_7.html#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="cf">THEN</span> <span class="st">&#39;Syksy&#39;</span></span>
+<span id="cb18-14"><a href="07_kappale_7.html#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -309,7 +309,7 @@ ratkaisu
 
 <div class="footer-info">
 <h5 class="footer-title">Lausekkeet QGISissä</h5>
-<span class="footer-version">v2023-11-27</span>
+<span class="footer-version">v2023-11-28</span>
 <div class="license"><img src="img/by-nd.svg" width="80px" alt="CC-BY-ND"></div>
 </div>
 

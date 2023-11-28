@@ -19,7 +19,7 @@
 
 <meta name="author" content="Gispo Ltd." />
 
-<meta name="date" content="2023-11-27" />
+<meta name="date" content="2023-11-28" />
 
 
 <meta name="description" content="11 Kappale 10: Karttatulosteen kustomointi | Lausekkeet QGISissä">
@@ -311,32 +311,32 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb23"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb23-1"><a href="10_kappale_10.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Lipas-kohteiden suodatukseen</span></span>
-<span id="cb23-2"><a href="10_kappale_10.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;tyyppi_nimi_fi&quot;</span> <span class="op">=</span> <span class="st">&#39;Jalkapallostadion&#39;</span></span>
-<span id="cb23-3"><a href="10_kappale_10.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="10_kappale_10.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Legendan luontiin</span></span>
-<span id="cb23-5"><a href="10_kappale_10.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">concat</span>(</span>
-<span id="cb23-6"><a href="10_kappale_10.html#cb23-6" aria-hidden="true" tabindex="-1"></a>    @symbol_label, <span class="st">&#39; (&#39;</span>, @symbol_count, <span class="st">&#39; kpl) - &#39;</span>, <span class="fu">round</span>(</span>
-<span id="cb23-7"><a href="10_kappale_10.html#cb23-7" aria-hidden="true" tabindex="-1"></a>        aggregate(</span>
-<span id="cb23-8"><a href="10_kappale_10.html#cb23-8" aria-hidden="true" tabindex="-1"></a>            @layer, <span class="st">&#39;sum&#39;</span>, $area, <span class="kw">filter</span><span class="op">:=</span>  <span class="ot">&quot;Maaku_ni1&quot;</span> <span class="op">=</span> @symbol_label</span>
-<span id="cb23-9"><a href="10_kappale_10.html#cb23-9" aria-hidden="true" tabindex="-1"></a>            ) <span class="op">/</span> <span class="fl">10000.0</span></span>
-<span id="cb23-10"><a href="10_kappale_10.html#cb23-10" aria-hidden="true" tabindex="-1"></a>        ), <span class="st">&#39; ha&#39;</span></span>
-<span id="cb23-11"><a href="10_kappale_10.html#cb23-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-12"><a href="10_kappale_10.html#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-13"><a href="10_kappale_10.html#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- Jalkapallostadion-listan luontiin</span></span>
-<span id="cb23-14"><a href="10_kappale_10.html#cb23-14" aria-hidden="true" tabindex="-1"></a>Suomen jalkapallostadionit: [%</span>
-<span id="cb23-15"><a href="10_kappale_10.html#cb23-15" aria-hidden="true" tabindex="-1"></a>with_variable(</span>
-<span id="cb23-16"><a href="10_kappale_10.html#cb23-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;extent&#39;</span>, map_get(</span>
-<span id="cb23-17"><a href="10_kappale_10.html#cb23-17" aria-hidden="true" tabindex="-1"></a>        item_variables(</span>
-<span id="cb23-18"><a href="10_kappale_10.html#cb23-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Map 1&#39;</span></span>
-<span id="cb23-19"><a href="10_kappale_10.html#cb23-19" aria-hidden="true" tabindex="-1"></a>            ), <span class="st">&#39;map_extent&#39;</span></span>
-<span id="cb23-20"><a href="10_kappale_10.html#cb23-20" aria-hidden="true" tabindex="-1"></a>        ), aggregate(</span>
-<span id="cb23-21"><a href="10_kappale_10.html#cb23-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;lipas_kohteet&#39;</span>, <span class="st">&#39;concatenate&#39;</span>, <span class="ot">&quot;nimi_fi&quot;</span>, intersects(</span>
-<span id="cb23-22"><a href="10_kappale_10.html#cb23-22" aria-hidden="true" tabindex="-1"></a>                $geometry, @extent</span>
-<span id="cb23-23"><a href="10_kappale_10.html#cb23-23" aria-hidden="true" tabindex="-1"></a>                ), <span class="st">&#39;, &#39;</span></span>
-<span id="cb23-24"><a href="10_kappale_10.html#cb23-24" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb23-25"><a href="10_kappale_10.html#cb23-25" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-26"><a href="10_kappale_10.html#cb23-26" aria-hidden="true" tabindex="-1"></a>%]</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb22-1"><a href="10_kappale_10.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Lipas-kohteiden suodatukseen</span></span>
+<span id="cb22-2"><a href="10_kappale_10.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;tyyppi_nimi_fi&quot;</span> <span class="op">=</span> <span class="st">&#39;Jalkapallostadion&#39;</span></span>
+<span id="cb22-3"><a href="10_kappale_10.html#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="10_kappale_10.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Legendan luontiin</span></span>
+<span id="cb22-5"><a href="10_kappale_10.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">concat</span>(</span>
+<span id="cb22-6"><a href="10_kappale_10.html#cb22-6" aria-hidden="true" tabindex="-1"></a>    @symbol_label, <span class="st">&#39; (&#39;</span>, @symbol_count, <span class="st">&#39; kpl) - &#39;</span>, <span class="fu">round</span>(</span>
+<span id="cb22-7"><a href="10_kappale_10.html#cb22-7" aria-hidden="true" tabindex="-1"></a>        aggregate(</span>
+<span id="cb22-8"><a href="10_kappale_10.html#cb22-8" aria-hidden="true" tabindex="-1"></a>            @layer, <span class="st">&#39;sum&#39;</span>, $area, <span class="kw">filter</span><span class="op">:=</span>  <span class="ot">&quot;Maaku_ni1&quot;</span> <span class="op">=</span> @symbol_label</span>
+<span id="cb22-9"><a href="10_kappale_10.html#cb22-9" aria-hidden="true" tabindex="-1"></a>            ) <span class="op">/</span> <span class="fl">10000.0</span></span>
+<span id="cb22-10"><a href="10_kappale_10.html#cb22-10" aria-hidden="true" tabindex="-1"></a>        ), <span class="st">&#39; ha&#39;</span></span>
+<span id="cb22-11"><a href="10_kappale_10.html#cb22-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb22-12"><a href="10_kappale_10.html#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="10_kappale_10.html#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- Jalkapallostadion-listan luontiin</span></span>
+<span id="cb22-14"><a href="10_kappale_10.html#cb22-14" aria-hidden="true" tabindex="-1"></a>Suomen jalkapallostadionit: [%</span>
+<span id="cb22-15"><a href="10_kappale_10.html#cb22-15" aria-hidden="true" tabindex="-1"></a>with_variable(</span>
+<span id="cb22-16"><a href="10_kappale_10.html#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;extent&#39;</span>, map_get(</span>
+<span id="cb22-17"><a href="10_kappale_10.html#cb22-17" aria-hidden="true" tabindex="-1"></a>        item_variables(</span>
+<span id="cb22-18"><a href="10_kappale_10.html#cb22-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Map 1&#39;</span></span>
+<span id="cb22-19"><a href="10_kappale_10.html#cb22-19" aria-hidden="true" tabindex="-1"></a>            ), <span class="st">&#39;map_extent&#39;</span></span>
+<span id="cb22-20"><a href="10_kappale_10.html#cb22-20" aria-hidden="true" tabindex="-1"></a>        ), aggregate(</span>
+<span id="cb22-21"><a href="10_kappale_10.html#cb22-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;lipas_kohteet&#39;</span>, <span class="st">&#39;concatenate&#39;</span>, <span class="ot">&quot;nimi_fi&quot;</span>, intersects(</span>
+<span id="cb22-22"><a href="10_kappale_10.html#cb22-22" aria-hidden="true" tabindex="-1"></a>                $geometry, @extent</span>
+<span id="cb22-23"><a href="10_kappale_10.html#cb22-23" aria-hidden="true" tabindex="-1"></a>                ), <span class="st">&#39;, &#39;</span></span>
+<span id="cb22-24"><a href="10_kappale_10.html#cb22-24" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb22-25"><a href="10_kappale_10.html#cb22-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb22-26"><a href="10_kappale_10.html#cb22-26" aria-hidden="true" tabindex="-1"></a>%]</span></code></pre></div>
 </div>
 </div>
 
@@ -355,7 +355,7 @@ ratkaisu
 
 <div class="footer-info">
 <h5 class="footer-title">Lausekkeet QGISissä</h5>
-<span class="footer-version">v2023-11-27</span>
+<span class="footer-version">v2023-11-28</span>
 <div class="license"><img src="img/by-nd.svg" width="80px" alt="CC-BY-ND"></div>
 </div>
 

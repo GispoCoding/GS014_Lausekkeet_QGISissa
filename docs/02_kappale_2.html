@@ -19,7 +19,7 @@
 
 <meta name="author" content="Gispo Ltd." />
 
-<meta name="date" content="2023-11-27" />
+<meta name="date" content="2023-11-28" />
 
 
 <meta name="description" content="3 Kappale 2: Lausekkeiden kirjoittaminen | Lausekkeet QGISissä">
@@ -242,44 +242,29 @@ type="button" onclick="navToggle()" aria-label="Toggle navigation">
 <h1><span class="header-section-number">3</span> Kappale 2: Lausekkeiden kirjoittaminen</h1>
 <div id="tehtävä-2.1" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Tehtävä 2.1</h2>
-<p>Alla oleva lauseke ei toimi ilman funktiota <code>to_string()</code>. Mihin väliin se tarvitaan?</p>
+<p>Tutki alla olevaa lauseketta. Pohdi mitä eri funktiot tekevät ja mikä voisi olla funktion lopputulos? Avaa tarvittaessa QGISista lausekkeen muodostaja ja tutki funktioiden dokumentaatiota.</p>
 <div class="code-box">
 <div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="02_kappale_2.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">upper</span>(</span>
 <span id="cb4-2"><a href="02_kappale_2.html#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">concat</span>(</span>
-<span id="cb4-3"><a href="02_kappale_2.html#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(</span>
-<span id="cb4-4"><a href="02_kappale_2.html#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="ot">&quot;nimi&quot;</span><span class="op">=</span><span class="st">&#39;Matti Matthias Meikäläinen&#39;</span>, <span class="kw">replace</span>(</span>
-<span id="cb4-5"><a href="02_kappale_2.html#cb4-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;Matti Matthias Meikäläinen&#39;</span>, <span class="st">&#39;Matthias&#39;</span>, <span class="st">&#39;Matias&#39;</span></span>
-<span id="cb4-6"><a href="02_kappale_2.html#cb4-6" aria-hidden="true" tabindex="-1"></a>                ), <span class="ot">&quot;nimi&quot;</span></span>
-<span id="cb4-7"><a href="02_kappale_2.html#cb4-7" aria-hidden="true" tabindex="-1"></a>            ), <span class="st">&#39;: &#39;</span>, <span class="ot">&quot;syntymävuosi&quot;</span></span>
-<span id="cb4-8"><a href="02_kappale_2.html#cb4-8" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-9"><a href="02_kappale_2.html#cb4-9" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<span id="cb4-3"><a href="02_kappale_2.html#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">replace</span>(</span>
+<span id="cb4-4"><a href="02_kappale_2.html#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Matti Matthias Meikäläinen&#39;</span>, <span class="st">&#39;Matthias&#39;</span>, <span class="st">&#39;Matias&#39;</span></span>
+<span id="cb4-5"><a href="02_kappale_2.html#cb4-5" aria-hidden="true" tabindex="-1"></a>            ), <span class="st">&#39;: Syntymävuosi &#39;</span>, <span class="st">&#39;1975&#39;</span></span>
+<span id="cb4-6"><a href="02_kappale_2.html#cb4-6" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-7"><a href="02_kappale_2.html#cb4-7" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 </div>
-<p>Tarkastele kuvasta tietotyyppejä:</p>
-<p><img src="img/kappale_2/image1.png" /></p>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
 vinkki
 </button>
 <div class="hidden-box">
-<p>Kannattaa pohtia, mitä mikäkin lausekkeen sisältämä funktio saa syötteenä ja mitä se tuottaa ulos!</p>
+<p>Lähde tutkimaan lauseketta palasittain. Lähde liikkeelle sisimmästä funktiosta ( <code>replace()</code>). Sen tulosta käytetään <code>concat()</code>- funktiossa ja lopuksi sen tulosta käytetään vielä <code>upper()</code>- funktiota.</p>
 </div>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
 ratkaisu
 </button>
 <div class="hidden-box">
-<p>Syntymävuoden datatyyppi on kokonaisluku (integer). <code>concat()</code>- funktion argumentit tulee olla merkkijonoja (string). Kokonaisluvut saa muutettua merkkijonoksi <code>to_string()</code> funktiolla.</p>
-<div class="code-box">
-<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="02_kappale_2.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">upper</span>(</span>
-<span id="cb5-2"><a href="02_kappale_2.html#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">concat</span>(</span>
-<span id="cb5-3"><a href="02_kappale_2.html#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(</span>
-<span id="cb5-4"><a href="02_kappale_2.html#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="ot">&quot;nimi&quot;</span><span class="op">=</span><span class="st">&#39;Matti Matthias Meikäläinen&#39;</span>, <span class="kw">replace</span>(</span>
-<span id="cb5-5"><a href="02_kappale_2.html#cb5-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;Matti Matthias Meikäläinen&#39;</span>, <span class="st">&#39;Matthias&#39;</span>, <span class="st">&#39;Matias&#39;</span></span>
-<span id="cb5-6"><a href="02_kappale_2.html#cb5-6" aria-hidden="true" tabindex="-1"></a>                ), <span class="ot">&quot;nimi&quot;</span></span>
-<span id="cb5-7"><a href="02_kappale_2.html#cb5-7" aria-hidden="true" tabindex="-1"></a>            ), <span class="st">&#39;: &#39;</span>, to_string(</span>
-<span id="cb5-8"><a href="02_kappale_2.html#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="ot">&quot;syntymävuosi&quot;</span></span>
-<span id="cb5-9"><a href="02_kappale_2.html#cb5-9" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb5-10"><a href="02_kappale_2.html#cb5-10" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb5-11"><a href="02_kappale_2.html#cb5-11" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
-</div>
+<p><code>replace()</code> - Etsii löytyykö annetusta merkkijonosta ‘Matti Matthias Meikäläinen’ alamerkkijono ‘Matthias’ ja jos löytyy korvaa sen merkkijonolla ‘Matias’.</p>
+<p><code>concat()</code> - Yhdistää useamman merkkijonon yhdeksi merkkijonoksi.</p>
+<p><code>upper()</code> - Muuntaa merkkijonon isoiksi kirjaimiksi.</p>
 </div>
 
 </div>
@@ -297,7 +282,7 @@ ratkaisu
 
 <div class="footer-info">
 <h5 class="footer-title">Lausekkeet QGISissä</h5>
-<span class="footer-version">v2023-11-27</span>
+<span class="footer-version">v2023-11-28</span>
 <div class="license"><img src="img/by-nd.svg" width="80px" alt="CC-BY-ND"></div>
 </div>
 

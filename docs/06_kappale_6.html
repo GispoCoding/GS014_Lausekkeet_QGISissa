@@ -19,7 +19,7 @@
 
 <meta name="author" content="Gispo Ltd." />
 
-<meta name="date" content="2023-11-27" />
+<meta name="date" content="2023-11-28" />
 
 
 <meta name="description" content="7 Kappale 6: Kohteiden muokkaus - Quick Field Calculation ja virtuaalikentät | Lausekkeet QGISissä">
@@ -256,7 +256,7 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="06_kappale_6.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;Kunta_ni1&quot;</span> <span class="op">=</span> <span class="ot">&quot;Kunta_ni2&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="06_kappale_6.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;Kunta_ni1&quot;</span> <span class="op">=</span> <span class="ot">&quot;Kunta_ni2&quot;</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -282,17 +282,17 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb17"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb17-1"><a href="06_kappale_6.html#cb17-1" aria-hidden="true" tabindex="-1"></a>distance(</span>
-<span id="cb17-2"><a href="06_kappale_6.html#cb17-2" aria-hidden="true" tabindex="-1"></a>    centroid(</span>
-<span id="cb17-3"><a href="06_kappale_6.html#cb17-3" aria-hidden="true" tabindex="-1"></a>        $geometry</span>
-<span id="cb17-4"><a href="06_kappale_6.html#cb17-4" aria-hidden="true" tabindex="-1"></a>        ), centroid(</span>
-<span id="cb17-5"><a href="06_kappale_6.html#cb17-5" aria-hidden="true" tabindex="-1"></a>        geometry(</span>
-<span id="cb17-6"><a href="06_kappale_6.html#cb17-6" aria-hidden="true" tabindex="-1"></a>            get_feature(</span>
-<span id="cb17-7"><a href="06_kappale_6.html#cb17-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;hallintoalueet&#39;</span>, <span class="st">&#39;Kunta_ni1&#39;</span>, <span class="st">&#39;Tampere&#39;</span></span>
-<span id="cb17-8"><a href="06_kappale_6.html#cb17-8" aria-hidden="true" tabindex="-1"></a>                )</span>
-<span id="cb17-9"><a href="06_kappale_6.html#cb17-9" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb17-10"><a href="06_kappale_6.html#cb17-10" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb17-11"><a href="06_kappale_6.html#cb17-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">&lt;</span> <span class="dv">100000</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="06_kappale_6.html#cb16-1" aria-hidden="true" tabindex="-1"></a>distance(</span>
+<span id="cb16-2"><a href="06_kappale_6.html#cb16-2" aria-hidden="true" tabindex="-1"></a>    centroid(</span>
+<span id="cb16-3"><a href="06_kappale_6.html#cb16-3" aria-hidden="true" tabindex="-1"></a>        $geometry</span>
+<span id="cb16-4"><a href="06_kappale_6.html#cb16-4" aria-hidden="true" tabindex="-1"></a>        ), centroid(</span>
+<span id="cb16-5"><a href="06_kappale_6.html#cb16-5" aria-hidden="true" tabindex="-1"></a>        geometry(</span>
+<span id="cb16-6"><a href="06_kappale_6.html#cb16-6" aria-hidden="true" tabindex="-1"></a>            get_feature(</span>
+<span id="cb16-7"><a href="06_kappale_6.html#cb16-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;hallintoalueet&#39;</span>, <span class="st">&#39;Kunta_ni1&#39;</span>, <span class="st">&#39;Tampere&#39;</span></span>
+<span id="cb16-8"><a href="06_kappale_6.html#cb16-8" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb16-9"><a href="06_kappale_6.html#cb16-9" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb16-10"><a href="06_kappale_6.html#cb16-10" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb16-11"><a href="06_kappale_6.html#cb16-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">&lt;</span> <span class="dv">100000</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -315,7 +315,7 @@ ratkaisu
 
 <div class="footer-info">
 <h5 class="footer-title">Lausekkeet QGISissä</h5>
-<span class="footer-version">v2023-11-27</span>
+<span class="footer-version">v2023-11-28</span>
 <div class="license"><img src="img/by-nd.svg" width="80px" alt="CC-BY-ND"></div>
 </div>
 
