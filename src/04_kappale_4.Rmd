@@ -2,14 +2,14 @@
 
 ## Tehtävä 4.1
 
-Tarkastele hallintoalueaineistoa. Luo uusi attribuuttikenttä (boolean), joka pitää sisällää tiedon siitä, sijaitseeko kukin hallintoalue 50km säteellä Tampereesta.
+Tarkastele hallintoalueaineistoa. Luo uusi attribuuttikenttä (boolean), joka pitää sisällää tiedon siitä, sijaitseeko kukin hallintoalue 50km säteellä Tampereesta. Laske etäisyys polygonien painopisteiden välillä (centroid).
 
 **Aineisto**: ```hallintoalueet.gpkg```
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
 
 ::: hidden-box
-Luo lauseke pala palalta. Laske etäisyys polygonien painopisteiden välillä (centroid).
+Luo lauseke pala palalta.
 
 - Hae Tampere- kohde (```get_feature()```- funktio)
 - Hae Tampere- kohteen geometria (```geometry()```- funktio)
