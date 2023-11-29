@@ -131,8 +131,8 @@ day(
 
 ## Lisätehtävät
 
-[Lisätehtävä 1](15_kappale_15.html#lisätehtävä-1)
+[Lisätehtävä 1](15_kappale_15.html#lisätehtävä-1-1)
 
-[Lisätehtävä 2](15_kappale_15.html#lisätehtävä-2)
+[Lisätehtävä 2](15_kappale_15.html#lisätehtävä-2-1)
 
-[Lisätehtävä 3](15_kappale_15.html#lisätehtävä-3)
+[Lisätehtävä 3](15_kappale_15.html#lisätehtävä-3-1)
