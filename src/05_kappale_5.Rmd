@@ -112,11 +112,18 @@ Rakenna lauseke paloittain. Lähde liikkeelle tästä:
 <button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
 ::: hidden-box
+Lauseke:
 ::: code-box
 ``` sql
 ("dem2m@1" < 1) * 1 + ("dem2m@1" >= 1) * 2
 ```
 :::
+Käytä seuraavia asetuksia:
+
+- Cell size: 2
+- Output extent: klikkaa nuolesta -> Calculate from Layer -> dem2m
+- Output CRS: EPSG:3067
+- Output: tallenna .tif tiedostoon
 :::
 
 ## Lisätehtävät
