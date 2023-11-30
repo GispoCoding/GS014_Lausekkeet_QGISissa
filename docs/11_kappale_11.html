@@ -305,7 +305,7 @@ ratkaisu
 <span id="cb23-10"><a href="11_kappale_11.html#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-11"><a href="11_kappale_11.html#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- Dynaaminen karttatulostenimiö, jossa listaus atlas-objektin alueelle kuuluvista lentokentistä (tekstikenttään)</span></span>
 <span id="cb23-12"><a href="11_kappale_11.html#cb23-12" aria-hidden="true" tabindex="-1"></a>Valtio: [%</span>
-<span id="cb23-13"><a href="11_kappale_11.html#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;ADMIN&quot;</span></span>
+<span id="cb23-13"><a href="11_kappale_11.html#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;NAME&quot;</span></span>
 <span id="cb23-14"><a href="11_kappale_11.html#cb23-14" aria-hidden="true" tabindex="-1"></a>%]</span>
 <span id="cb23-15"><a href="11_kappale_11.html#cb23-15" aria-hidden="true" tabindex="-1"></a>Lentokentät: [%</span>
 <span id="cb23-16"><a href="11_kappale_11.html#cb23-16" aria-hidden="true" tabindex="-1"></a>array_to_string(</span>
@@ -316,13 +316,13 @@ ratkaisu
 <span id="cb23-21"><a href="11_kappale_11.html#cb23-21" aria-hidden="true" tabindex="-1"></a>%]</span>
 <span id="cb23-22"><a href="11_kappale_11.html#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-23"><a href="11_kappale_11.html#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">-- Valtioiden näkyvyys</span></span>
-<span id="cb23-24"><a href="11_kappale_11.html#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;ADMIN&quot;</span> <span class="op">=</span> @atlas_pagename</span>
+<span id="cb23-24"><a href="11_kappale_11.html#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;NAME&quot;</span> <span class="op">=</span> @atlas_pagename</span>
 <span id="cb23-25"><a href="11_kappale_11.html#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-26"><a href="11_kappale_11.html#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- Lentokenttien näkyvyys</span></span>
 <span id="cb23-27"><a href="11_kappale_11.html#cb23-27" aria-hidden="true" tabindex="-1"></a>intersects(</span>
 <span id="cb23-28"><a href="11_kappale_11.html#cb23-28" aria-hidden="true" tabindex="-1"></a>    $geometry, geometry(</span>
 <span id="cb23-29"><a href="11_kappale_11.html#cb23-29" aria-hidden="true" tabindex="-1"></a>        get_feature(</span>
-<span id="cb23-30"><a href="11_kappale_11.html#cb23-30" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;valtiot&#39;</span>, <span class="st">&#39;ADMIN&#39;</span>, @atlas_pagename</span>
+<span id="cb23-30"><a href="11_kappale_11.html#cb23-30" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;valtiot&#39;</span>, <span class="st">&#39;NAME&#39;</span>, @atlas_pagename</span>
 <span id="cb23-31"><a href="11_kappale_11.html#cb23-31" aria-hidden="true" tabindex="-1"></a>            )</span>
 <span id="cb23-32"><a href="11_kappale_11.html#cb23-32" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb23-33"><a href="11_kappale_11.html#cb23-33" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
