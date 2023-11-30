@@ -60,7 +60,7 @@ if(
 
 ## Tehtävä 5.3
 
-Lataa otos Helsingin rakennusaineistosta [tästä linkistä](https://drive.google.com/uc?export=download&id=1Wr2fvPNWA7ST09VcGYt6Qz-3sn5x2S-y). Tarkastele korkeusmalli- (```dem2m.tif```) ja lataamaasi rakennusaineistoa. Selvitä korkeusmallin pikselin arvo rakennusten painopisteissä.
+Lataa otos Helsingin rakennusaineistosta (``` rakennukset_dem.gpkg ```) [tästä linkistä](https://drive.google.com/uc?export=download&id=1Wr2fvPNWA7ST09VcGYt6Qz-3sn5x2S-y). Tarkastele korkeusmalli- (```dem2m.tif```) ja lataamaasi rakennusaineistoa. Selvitä korkeusmallin pikselin arvo rakennusten painopisteissä.
 
 **Aineistot**: 
 
