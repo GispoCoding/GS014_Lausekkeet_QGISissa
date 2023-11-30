@@ -62,7 +62,7 @@ concat(
 
 -- Dynaaminen karttatulostenimiö, jossa listaus atlas-objektin alueelle kuuluvista lentokentistä (tekstikenttään)
 Valtio: [%
-"ADMIN"
+"NAME"
 %]
 Lentokentät: [%
 array_to_string(
@@ -73,13 +73,13 @@ array_to_string(
 %]
 
 -- Valtioiden näkyvyys
-"ADMIN" = @atlas_pagename
+"NAME" = @atlas_pagename
 
 -- Lentokenttien näkyvyys
 intersects(
 	$geometry, geometry(
 		get_feature(
-			'valtiot', 'ADMIN', @atlas_pagename
+			'valtiot', 'NAME', @atlas_pagename
 			)
 		)
 	)
