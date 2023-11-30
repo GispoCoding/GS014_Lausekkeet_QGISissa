@@ -113,6 +113,7 @@ Rakenna lauseke paloittain. Lähde liikkeelle tästä:
 
 ::: hidden-box
 Lauseke:
+
 ::: code-box
 ``` sql
 ("dem2m@1" < 1) * 1 + ("dem2m@1" >= 1) * 2
