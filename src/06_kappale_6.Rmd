@@ -19,7 +19,7 @@ Millä funktiolla saat palautettua merkkijonon pituuden?
 ::: hidden-box
 ::: code-box
 ``` sql
-"Kunta_ni1" = "Kunta_ni2"
+length("Kunta_ni1") = length("Kunta_ni2")
 ```
 :::
 :::
