@@ -19,7 +19,7 @@
 
 <meta name="author" content="Gispo Ltd." />
 
-<meta name="date" content="2023-11-30" />
+<meta name="date" content="2023-12-04" />
 
 
 <meta name="description" content="15 Kappale 14: Kotitehtävät | Lausekkeet QGISissä">
@@ -268,15 +268,18 @@ ratkaisu
 </div>
 <div id="kotitehtävä-2" class="section level2" number="15.2">
 <h2><span class="header-section-number">15.2</span> Kotitehtävä 2</h2>
-<p>Tarkastele Helsingin alueen väestöruutuaineistoa. Hyödynnä lausekkeita ja laske ruutukohtaisen asukasmäärän (<code>asukkaita</code>- kenttä) keskihajonta.</p>
+<p>Tarkastele Helsingin alueen väestöruutuaineistoa. Hyödynnä lausekkeita ja laske asukasmäärän (<code>asukkaita</code>- kenttä) keskihajonta.</p>
 <p><strong>Aineisto</strong>: <code>hsy_vaesto2020_muok.gpkg</code></p>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
 vinkki
 </button>
 <div class="hidden-box">
 <ul>
-<li>Käytä <code>buffer()</code>- funktiota.</li>
-<li>Millä funktiolla voit laskea pinta-alan?</li>
+<li>Millä funktiolla voit laskea sarakkeen keskihajonnan?</li>
+<li>Keskihajonnan voi laskea myös “käsin” matemaattisilla funktioilla. Tällöin voi rakentaa lausekkeen matemaattisista funktioista:
+<ul>
+<li>σ=√∑ni=1(xi−¯¯¯x)2n</li>
+</ul></li>
 </ul>
 </div>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
@@ -284,11 +287,26 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb38"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb38-1"><a href="14_kappale_14.html#cb38-1" aria-hidden="true" tabindex="-1"></a>area(</span>
-<span id="cb38-2"><a href="14_kappale_14.html#cb38-2" aria-hidden="true" tabindex="-1"></a>    buffer(</span>
-<span id="cb38-3"><a href="14_kappale_14.html#cb38-3" aria-hidden="true" tabindex="-1"></a>        $geometry, <span class="dv">50</span></span>
-<span id="cb38-4"><a href="14_kappale_14.html#cb38-4" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb38-5"><a href="14_kappale_14.html#cb38-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb38-1"><a href="14_kappale_14.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Matemaattisilla funktioilla:</span></span>
+<span id="cb38-2"><a href="14_kappale_14.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(</span>
+<span id="cb38-3"><a href="14_kappale_14.html#cb38-3" aria-hidden="true" tabindex="-1"></a>    ( <span class="dv">1</span> <span class="op">/</span> ( <span class="fu">count</span>(</span>
+<span id="cb38-4"><a href="14_kappale_14.html#cb38-4" aria-hidden="true" tabindex="-1"></a>        <span class="ot">&quot;fid&quot;</span></span>
+<span id="cb38-5"><a href="14_kappale_14.html#cb38-5" aria-hidden="true" tabindex="-1"></a>        ) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb38-6"><a href="14_kappale_14.html#cb38-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb38-7"><a href="14_kappale_14.html#cb38-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb38-8"><a href="14_kappale_14.html#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span></span>
+<span id="cb38-9"><a href="14_kappale_14.html#cb38-9" aria-hidden="true" tabindex="-1"></a>    (</span>
+<span id="cb38-10"><a href="14_kappale_14.html#cb38-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sum</span>(</span>
+<span id="cb38-11"><a href="14_kappale_14.html#cb38-11" aria-hidden="true" tabindex="-1"></a>            ( <span class="ot">&quot;asukkaita&quot;</span> <span class="op">-</span> mean(</span>
+<span id="cb38-12"><a href="14_kappale_14.html#cb38-12" aria-hidden="true" tabindex="-1"></a>                <span class="ot">&quot;asukkaita&quot;</span></span>
+<span id="cb38-13"><a href="14_kappale_14.html#cb38-13" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb38-14"><a href="14_kappale_14.html#cb38-14" aria-hidden="true" tabindex="-1"></a>            ) ^<span class="dv">2</span></span>
+<span id="cb38-15"><a href="14_kappale_14.html#cb38-15" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb38-16"><a href="14_kappale_14.html#cb38-16" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb38-17"><a href="14_kappale_14.html#cb38-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb38-18"><a href="14_kappale_14.html#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-19"><a href="14_kappale_14.html#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="co">-- Aggregate- ryhmän funktiolla:</span></span>
+<span id="cb38-20"><a href="14_kappale_14.html#cb38-20" aria-hidden="true" tabindex="-1"></a>stdev(<span class="ot">&quot;asukkaita&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -491,7 +509,7 @@ ratkaisu
 
 <div class="footer-info">
 <h5 class="footer-title">Lausekkeet QGISissä</h5>
-<span class="footer-version">v2023-11-30</span>
+<span class="footer-version">v2023-12-04</span>
 <div class="license"><img src="img/by-nd.svg" width="80px" alt="CC-BY-ND"></div>
 </div>
 
