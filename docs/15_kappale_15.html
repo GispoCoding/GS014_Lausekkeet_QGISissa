@@ -200,11 +200,11 @@ type="button" onclick="navToggle()" aria-label="Toggle navigation">
 <ul>
 <li><a href="12_kappale_12.html#tehtävä-12.1"><span class="toc-section-number">13.1</span> Tehtävä 12.1</a></li>
 <li><a href="12_kappale_12.html#tehtävä-12.2"><span class="toc-section-number">13.2</span> Tehtävä 12.2</a></li>
-<li><a href="12_kappale_12.html#lisätehtävä-3"><span class="toc-section-number">13.3</span> Lisätehtävä</a></li>
 </ul></li>
 <li class="has-sub"><a href="13_kappale_13.html#kappale-13-oman-funktion-luominen"><span class="toc-section-number">14</span> Kappale 13: Oman funktion luominen</a>
 <ul>
 <li><a href="13_kappale_13.html#tehtävä-13.1"><span class="toc-section-number">14.1</span> Tehtävä 13.1</a></li>
+<li><a href="13_kappale_13.html#lisätehtävä-3"><span class="toc-section-number">14.2</span> Lisätehtävä</a></li>
 </ul></li>
 <li class="has-sub"><a href="14_kappale_14.html#kappale-14-kotitehtävät"><span class="toc-section-number">15</span> Kappale 14: Kotitehtävät</a>
 <ul>
@@ -537,28 +537,26 @@ ratkaisu
 <p>Luo funktio, jonka avulla voidaan selvittää kolmen attribuuttikentän painotettu keskiarvo.</p>
 <ul>
 <li>Yksi luonnollinen käyttötapaus on laskea kolmen ikäryhmittäisen asukasluvun painotettu keskiarvo (esim. markkinoinnin kannalta työikäisillä ihmisillä on lapsia tai vanhuksia enemmän painoarvoa)</li>
-<li>Rajaa huomioitavat vaestoruudut Select features by area -työkalulla!</li>
-<li>Luo valmiiksi desimaaliluku-muotoinen attribuuttikenttä, johon tallennat funktion tulosteen</li>
-<li>Funktion syötteet: muokattavan tason ja attribuuttikentän nimet, hyödynnettävien attribuuttikenttien nimet, sovellettavat painokertoimet</li>
+<li>Rajaa huomioitavat väestöruudut Select features by area -työkalulla!</li>
+<li>Funktion syötteet: kolme attribuuttikenttää, kolme painokerrointa</li>
 </ul>
-<p><strong>Aineisto</strong>: <code>vaestoruudut.gpkg</code></p>
+<p><strong>Aineisto</strong>: <code>hsy_vaesto2020_muok.gpkg</code></p>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
 vinkki
 </button>
 <div class="hidden-box">
 <ol style="list-style-type: decimal">
-<li>Luo vaestoruudut-tasoon uusi Decimal-tyyppinen attribuuttikenttä (nimi: weighted_ave)</li>
-<li>Luo painotettu_ka-niminen funktio Field Calculatorin Function Editor -välilehdellä</li>
+<li>Luo painotettuka-niminen funktio Field Calculatorin Function Editor -välilehdellä</li>
 </ol>
 <ul>
 <li>Muista painaa lopulta Save and Load functions -painiketta!</li>
 </ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Mene vaestoruudut-tason Field Calculatoriin &gt; Update existing field</li>
+<ol start="2" style="list-style-type: decimal">
+<li>Mene hsy_vaesto2020_muok-tason Field Calculatoriin ja määritä uusi Decimal- kenttä</li>
 <li>Kirjoita ao. lauseke Expression-ikkunaan ja paina OK</li>
 </ol>
 <div class="code-box">
-<div class="sourceCode" id="cb54"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb54-1"><a href="15_kappale_15.html#cb54-1" aria-hidden="true" tabindex="-1"></a>painotettu_ka(<span class="st">&#39;vaesto_valitut&#39;</span>, <span class="st">&#39;kokeilu&#39;</span>, <span class="st">&#39;ika10_19&#39;</span>, <span class="st">&#39;ika30_39&#39;</span>, <span class="st">&#39;ika70_79&#39;</span>, <span class="fl">0.2</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb54-1"><a href="15_kappale_15.html#cb54-1" aria-hidden="true" tabindex="-1"></a>painotettuka(<span class="ot">&quot;ika10_19&quot;</span>, <span class="ot">&quot;ika30_39&quot;</span>, <span class="ot">&quot;ika70_79&quot;</span>, <span class="fl">0.2</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>)</span></code></pre></div>
 </div>
 </div>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
@@ -570,26 +568,17 @@ ratkaisu
 <span id="cb55-2"><a href="15_kappale_15.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> qgis.gui import <span class="op">*</span></span>
 <span id="cb55-3"><a href="15_kappale_15.html#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-4"><a href="15_kappale_15.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="ot">@qgsfunction(args=&#39;auto&#39;, group=&#39;Custom&#39;, referenced_columns=[])</span></span>
-<span id="cb55-5"><a href="15_kappale_15.html#cb55-5" aria-hidden="true" tabindex="-1"></a>def painotettuka(<span class="kw">layer</span>, field, field1, field2, field3, value1, value2, value3, feature, <span class="kw">parent</span>):</span>
+<span id="cb55-5"><a href="15_kappale_15.html#cb55-5" aria-hidden="true" tabindex="-1"></a>def painotettuka(field1, field2, field3, value1, value2, value3, feature, <span class="kw">parent</span>):</span>
 <span id="cb55-6"><a href="15_kappale_15.html#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;&quot;&quot;</span></span>
 <span id="cb55-7"><a href="15_kappale_15.html#cb55-7" aria-hidden="true" tabindex="-1"></a>    Finds <span class="kw">out</span> <span class="kw">the</span> weighted average <span class="kw">of</span> three <span class="kw">columns</span>.</span>
 <span id="cb55-8"><a href="15_kappale_15.html#cb55-8" aria-hidden="true" tabindex="-1"></a>    <span class="ot">&quot;&quot;&quot;</span></span>
-<span id="cb55-9"><a href="15_kappale_15.html#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">layer</span> <span class="op">=</span> QgsProject.<span class="kw">instance</span>().mapLayersByName(<span class="kw">layer</span>)[<span class="dv">0</span>]</span>
-<span id="cb55-10"><a href="15_kappale_15.html#cb55-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-11"><a href="15_kappale_15.html#cb55-11" aria-hidden="true" tabindex="-1"></a>    field_idx <span class="op">=</span> <span class="kw">layer</span>.fields().indexOf(field)</span>
-<span id="cb55-12"><a href="15_kappale_15.html#cb55-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-13"><a href="15_kappale_15.html#cb55-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feat <span class="kw">in</span> <span class="kw">layer</span>.getFeatures():</span>
-<span id="cb55-14"><a href="15_kappale_15.html#cb55-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-15"><a href="15_kappale_15.html#cb55-15" aria-hidden="true" tabindex="-1"></a>        # HSYn datassa arvo <span class="dv">99</span> <span class="op">=</span> Tieto puuttuu, joten jos jokin kenttä sisältää tämän arvon,</span>
-<span id="cb55-16"><a href="15_kappale_15.html#cb55-16" aria-hidden="true" tabindex="-1"></a>        # ei painotetun keskiarvon laskeminen ole mielekästä</span>
-<span id="cb55-17"><a href="15_kappale_15.html#cb55-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> feat[field1] <span class="op">==</span> <span class="dv">99</span> <span class="kw">or</span> feat[field2] <span class="op">==</span> <span class="dv">99</span> <span class="kw">or</span> feat[field3] <span class="op">==</span> <span class="dv">99</span>:</span>
-<span id="cb55-18"><a href="15_kappale_15.html#cb55-18" aria-hidden="true" tabindex="-1"></a>            painka <span class="op">=</span> <span class="dv">99</span></span>
-<span id="cb55-19"><a href="15_kappale_15.html#cb55-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb55-20"><a href="15_kappale_15.html#cb55-20" aria-hidden="true" tabindex="-1"></a>            painka <span class="op">=</span> value1 <span class="op">*</span> feat[field1] <span class="op">+</span> value2 <span class="op">*</span> feat[field2] <span class="op">+</span> value3 <span class="op">*</span> feat[field3]</span>
-<span id="cb55-21"><a href="15_kappale_15.html#cb55-21" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb55-22"><a href="15_kappale_15.html#cb55-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">layer</span>.changeAttributeValue(feat.<span class="kw">id</span>(), field_idx, painka)</span>
-<span id="cb55-23"><a href="15_kappale_15.html#cb55-23" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb55-24"><a href="15_kappale_15.html#cb55-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span></span></code></pre></div>
+<span id="cb55-9"><a href="15_kappale_15.html#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-10"><a href="15_kappale_15.html#cb55-10" aria-hidden="true" tabindex="-1"></a>    # HSYn datassa arvo <span class="dv">99</span> <span class="op">=</span> Tieto puuttuu, joten jos jokin kenttä sisältää tämän arvon,</span>
+<span id="cb55-11"><a href="15_kappale_15.html#cb55-11" aria-hidden="true" tabindex="-1"></a>    # ei painotetun keskiarvon laskeminen ole mielekästä</span>
+<span id="cb55-12"><a href="15_kappale_15.html#cb55-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="dv">99</span> <span class="kw">in</span> (field1, field2, field3):</span>
+<span id="cb55-13"><a href="15_kappale_15.html#cb55-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> <span class="kw">NULL</span></span>
+<span id="cb55-14"><a href="15_kappale_15.html#cb55-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb55-15"><a href="15_kappale_15.html#cb55-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> value1 <span class="op">*</span> field1 <span class="op">+</span> value2 <span class="op">*</span> field2 <span class="op">+</span> value3 <span class="op">*</span> field3</span></code></pre></div>
 </div>
 </div>
 </div>

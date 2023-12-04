@@ -43,9 +43,9 @@ tehtävä-11.1
 kappale-12-python--konsoli
 tehtävä-12.1
 tehtävä-12.2
-lisätehtävä-3
 kappale-13-oman-funktion-luominen
 tehtävä-13.1
+lisätehtävä-3
 kappale-14-kotitehtävät
 kotitehtävä-1
 kotitehtävä-2
