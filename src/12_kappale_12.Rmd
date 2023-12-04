@@ -184,7 +184,7 @@ QgsProject.instance().addMapLayer(new_layer)
 
 ## Tehtävä 12.2
 
-Tutki alla olevaa skriptipohjaa. Selvitä itsellesi, mitä skriptillä pyritään saamaan aikaan. Avaa QGISin python- editori ja kopioi skriptipohja siihen. Tallenna skripti tietokoneellesi esimerkiksi natura_skripti.py- tiedostoon. Tee skriptiin kommentteina tallennetut muokkauspyynnöt (10 kpl) ja testaa toimiiko skripti.
+Tutki alla olevaa skriptipohjaa. Selvitä itsellesi, mitä skriptillä pyritään saamaan aikaan. Avaa QGISin python- editori ja kopioi skriptipohja siihen. Tallenna skripti tietokoneellesi esimerkiksi natura_skripti.py- tiedostoon. Tee skriptiin numeroituina kommentteina tallennetut muokkauspyynnöt (10 kpl) ja testaa toimiiko skripti.
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">skriptipohja</button>
 
@@ -198,13 +198,13 @@ layera = QgsProject.instance().mapLayersByName('natura_alueet')[0]
 ## 1. Luo layerb muuttuja, joka viittaa kunta-nimiseen karttatasoon
 layerb =
 
-# Create a new layer, specify the geometry type
+# Luodaan uusi taso ja määritetään sen geometriatyyppi
 layer = QgsVectorLayer('Polygon?crs=epsg:3067', 'tulostaso' , 'memory')
 
-# Set the provider to accept the data source
+# Asetetaan provider hyväksymään datalähde
 prov = layer.dataProvider()
 
-# Create the attribute fields
+# Luodaan attribuuttikentät
 ## 2. Lisää kolmas attribuutti, nimeltään area_dif ja tyypiltään Double
 prov.addAttributes([QgsField("id",  QVariant.Int), QgsField("name",  QVariant.String)])
 layer.updateFields()
@@ -213,17 +213,17 @@ layer.updateFields()
 print("Ominaisuustietosarakkeita yhteensä:")
 print(len(layer.fields()))
 
-# Initialize the variables before entering for loop
+# Alustetaan muuttujat ennen silmukkaa
 laskuri = 0
 tempsum = 0
 
-# Goes through all features in the layera (feat variable refers to each feature in the given layer once)
-# At each round, all the indented rows will be executed
+# Käy kaikki layera- tason kohteet (a- muuttuja viittaa sillä hetkellä käsiteltävään kohteeseen)
+# Sisennettyt rivit ajetaan joka kierroksella
 for a in layera.getFeatures():
-    # Get the geometry of feature a
+    # Haetaan kohteen a geometria
     kpl = a.geometry()
-    # Goes through all features in the layerb (feat variable refers to each feature in the given layer once)
-    # At each round, all the indented rows will be executed
+    # Käy kaikki layerb- tason kohteet (b- muuttuja viittaa sillä hetkellä käsiteltävään kohteeseen)
+    # Sisennettyt rivit ajetaan joka kierroksella
     for b in layerb.getFeatures():
         ## 3. Tallenna kohteen b geometriaobjekti muuttujaan kpl2
         kpl2 =
@@ -231,7 +231,7 @@ for a in layera.getFeatures():
         if :
             ## 5. Kasvata laskuri muuttujan arvoa, joka kerta, kun kpl leikkaa kpl2:sta
             laskuri =
-            # The intersecting part as a geometry object
+            # Tallennetaan päälle menevä osa geometriana
             geomleik = kpl.intersection(kpl2)
             ## 6. Tallenna geomhu-nimiseen muuttujaan geomleik objektin konveksi peite (convex hull)
             geomhu =
@@ -239,25 +239,25 @@ for a in layera.getFeatures():
             temp =
             ## 8. Pidä yllä tietoa siitä, kuinka paljon uutta pinta-alaa on syntynyt tähän mennessä konveksien peitteiden luonnista
             tempsum =
-            # Add new feature to the layer
+            # Luodaan uusi kohde
             feat = QgsFeature()
             ## 9. Muokkaa siten, että ao. käsky asettaa myös area_dif attribuuttikentän arvoksi temp muuttujan sisältämä arvo
             feat.setAttributes([laskuri, a['Nimi']])
-            # Set geometry for the new feature to be added to the layer
+            # Määritetään geometria uudelle kohteelle
             ## 10. Lisää sen muuttujan nimi (sulkeiden sisään), josta geometriatieto tulee hakea, jotta uuden tason kohteiden
             ## geometriat tulevat vastaamaan leikkaavien polygonien konvekseja peitteitä
             feat.setGeometry()
-            # Add new feature to the layer
+            # Lisätään kohde uudelle tasolla
             prov.addFeatures([feat])
-            # Update extent of the layer
+            # Päivitetään tason laajuus
             layer.updateExtents()
 
 print("Konveksin peitteen luomisesta seurasi")
-# Convert m2 to km2
+# Muunnetaan neliömetrit neliökilometreiksi
 print(round((tempsum / 1000000.0), 1))
 print("km2 pinta-alan lisäys.")
  
-# Add the layer to the Layers panel
+# Lisätään uusi taso tasot- paneeliin
 QgsProject.instance().addMapLayers([layer])
 ```
 :::
@@ -301,62 +301,58 @@ from qgis.gui import *
 layera = QgsProject.instance().mapLayersByName('natura_alueet')[0]
 layerb = QgsProject.instance().mapLayersByName('kunta')[0]
 
-# Create new layer, specify the geometry type
+# Luodaan uusi taso ja määritetään sen geometriatyyppi
 layer = QgsVectorLayer('Polygon?crs=epsg:3067', 'tulostaso' , 'memory')
 
-# Set the provider to accept the data source
+# Asetetaan provider hyväksymään datalähde
 prov = layer.dataProvider()
 
-# Create the attribute fields
+# Luodaan attribuuttikentät
 prov.addAttributes([QgsField("id",  QVariant.Int), QgsField("name",  QVariant.String), QgsField("area_dif",  QVariant.Double)])
 layer.updateFields()
 
 print("Ominaisuustietosarakkeita yhteensä:")
 print(len(layer.fields()))
 
-# Initialize the variables before entering for loop
+# Alustetaan muuttujat ennen silmukkaa
 laskuri = 0
 tempsum = 0
 
-# Goes through all features in the layera (feat variable refers to each feature in the given layer once)
-# At each round, all the indented rows will be executed
+# Käy kaikki layera- tason kohteet (a- muuttuja viittaa sillä hetkellä käsiteltävään kohteeseen)
+# Sisennettyt rivit ajetaan joka kierroksella
 for a in layera.getFeatures():
-    # Get the geometry of feature a
+    # Haetaan kohteen a geometria
     kpl = a.geometry()
-    # Goes through all features in the layerb (feat variable refers to each feature in the given layer once)
-    # At each round, all the indented rows will be executed
+    # Käy kaikki layerb- tason kohteet (b- muuttuja viittaa sillä hetkellä käsiteltävään kohteeseen)
+    # Sisennettyt rivit ajetaan joka kierroksella
     for b in layerb.getFeatures():
-        # Get the geometry of feature b
         kpl2 = b.geometry()
-        # Check if kpl intersects with kpl2
         if kpl.intersects(kpl2):
-            # Counter to stay track on how many intersecting features we have found
             laskuri = laskuri + 1
-            # The intersecting part as a geometry object
             geomleik = kpl.intersection(kpl2)
-            # Create the convex hull of the intersecting geometry object
+
             geomhu = geomleik.convexHull()
-            # Calculate the increase on area size when moving from intersecting object to its convex hull
+
             temp = geomhu.area() - geomleik.area()
-            # Stay track on the total increase on area size
+
             tempsum = tempsum + temp
-            # Add new feature to the layer
+            # Luodaan uusi kohde
             feat = QgsFeature()
-             # Set attribute values for the new feature to be added to the layer
+
             feat.setAttributes([laskuri, a['Nimi'], temp])
-            # Set geometry for the new feature to be added to the layer
+            # Määritetään geometria uudelle kohteelle
             feat.setGeometry(geomhu)
-            # Add new feature to the layer
+            # Lisätään kohde uudelle tasolla
             prov.addFeatures([feat])
-            # Update extent of the layer
+            # Päivitetään tason laajuus
             layer.updateExtents()
 
 print("Konveksin peitteen luomisesta seurasi")
-# Convert m2 to km2
+# Muunnetaan neliömetrit neliökilometreiksi
 print(round((tempsum / 1000000.0), 1))
 print("km2 pinta-alan lisäys.")
  
-# Add the layer to the Layers panel
+# Lisätään uusi taso tasot- paneeliin
 QgsProject.instance().addMapLayers([layer])
 ```
 :::
