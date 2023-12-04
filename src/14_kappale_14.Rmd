@@ -30,7 +30,7 @@ area(
 
 ## Kotitehtävä 2
 
-Tarkastele Helsingin alueen väestöruutuaineistoa. Hyödynnä lausekkeita ja laske ruutukohtaisen asukasmäärän (```asukkaita```- kenttä) keskihajonta.
+Tarkastele Helsingin alueen väestöruutuaineistoa. Hyödynnä lausekkeita ja laske asukasmäärän (```asukkaita```- kenttä) keskihajonta.
 
 **Aineisto**: ```hsy_vaesto2020_muok.gpkg```
 
@@ -38,8 +38,9 @@ Tarkastele Helsingin alueen väestöruutuaineistoa. Hyödynnä lausekkeita ja la
 <button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
 
 ::: hidden-box
-- Käytä ```buffer()```- funktiota.
-- Millä funktiolla voit laskea pinta-alan?
+- Millä funktiolla voit laskea sarakkeen keskihajonnan?
+- Keskihajonnan voi laskea myös "käsin" matemaattisilla funktioilla. Tällöin voi rakentaa lausekkeen matemaattisista funktioista:
+  - σ=√∑ni=1(xi−¯¯¯x)2n
 :::
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
@@ -47,11 +48,26 @@ Tarkastele Helsingin alueen väestöruutuaineistoa. Hyödynnä lausekkeita ja la
 ::: hidden-box
 ::: code-box
 ``` sql
-area(
-	buffer(
-		$geometry, 50
+-- Matemaattisilla funktioilla:
+sqrt(
+	( 1 / ( count(
+		"fid"
+		) - 1
+	)
+	)
+	*
+	(
+		sum(
+			( "asukkaita" - mean(
+				"asukkaita"
+				)
+			) ^2
+			)
 		)
 	)
+
+-- Aggregate- ryhmän funktiolla:
+stdev("asukkaita")
 ```
 :::
 :::

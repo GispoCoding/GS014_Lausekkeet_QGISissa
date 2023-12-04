@@ -2,6 +2,10 @@
 
 ## Tehtävä 10.1
 
+::: todo
+karttatulostenimiö
+:::
+
 Tuota kuvan mukainen karttatuloste.
 
 ![](img/kappale_10/image1.png)

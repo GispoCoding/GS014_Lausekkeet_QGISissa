@@ -184,7 +184,7 @@ QgsProject.instance().addMapLayer(new_layer)
 
 ## Tehtävä 12.2
 
-Tutki alla olevaa skriptipohjaa. Selvitä itsellesi, mitä skriptillä pyritään saamaan aikaan. Luo tietokoneellesi uusi python (.py)- tiedosto ja kopio skriptipohja siihen. Tee tiedostoon kommentteina tallennetut muokkauspyynnöt (10 kpl). Avaa muokkaamasi tiedosto QGISin python-konsolissa ja suorita se.
+Tutki alla olevaa skriptipohjaa. Selvitä itsellesi, mitä skriptillä pyritään saamaan aikaan. Avaa QGISin python- editori ja kopioi skriptipohja siihen. Tallenna skripti tietokoneellesi esimerkiksi natura_skripti.py- tiedostoon. Tee skriptiin kommentteina tallennetut muokkauspyynnöt (10 kpl) ja testaa toimiiko skripti.
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">skriptipohja</button>
 
