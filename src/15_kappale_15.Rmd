@@ -322,24 +322,22 @@ format_number(
 Luo funktio, jonka avulla voidaan selvittää kolmen attribuuttikentän painotettu keskiarvo.
 
 - Yksi luonnollinen käyttötapaus on laskea kolmen ikäryhmittäisen asukasluvun painotettu keskiarvo (esim. markkinoinnin kannalta työikäisillä ihmisillä on lapsia tai vanhuksia enemmän painoarvoa)
-- Rajaa huomioitavat vaestoruudut Select features by area -työkalulla!
-- Luo valmiiksi desimaaliluku-muotoinen attribuuttikenttä, johon tallennat funktion tulosteen
-- Funktion syötteet: muokattavan tason ja attribuuttikentän nimet, hyödynnettävien attribuuttikenttien nimet, sovellettavat painokertoimet
+- Rajaa huomioitavat väestöruudut Select features by area -työkalulla!
+- Funktion syötteet: kolme attribuuttikenttää, kolme painokerrointa
 
-**Aineisto**: ```vaestoruudut.gpkg```
+**Aineisto**: ```hsy_vaesto2020_muok.gpkg```
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
 
 ::: hidden-box
-1. Luo vaestoruudut-tasoon uusi Decimal-tyyppinen attribuuttikenttä (nimi: weighted_ave)
-2. Luo painotettu_ka-niminen funktio Field Calculatorin Function Editor -välilehdellä
+1. Luo painotettuka-niminen funktio Field Calculatorin Function Editor -välilehdellä
 - Muista painaa lopulta Save and Load functions -painiketta!
-3. Mene vaestoruudut-tason Field Calculatoriin > Update existing field
-4. Kirjoita ao. lauseke Expression-ikkunaan ja paina OK
+2. Mene hsy_vaesto2020_muok-tason Field Calculatoriin ja määritä uusi Decimal- kenttä
+3. Kirjoita ao. lauseke Expression-ikkunaan ja paina OK
 
 ::: code-box
 ``` sql
-painotettu_ka('vaesto_valitut', 'kokeilu', 'ika10_19', 'ika30_39', 'ika70_79', 0.2, 0.7, 0.1)
+painotettuka("ika10_19", "ika30_39", "ika70_79", 0.2, 0.7, 0.1)
 ```
 :::
 :::
@@ -353,26 +351,17 @@ from qgis.core import *
 from qgis.gui import *
 
 @qgsfunction(args='auto', group='Custom', referenced_columns=[])
-def painotettuka(layer, field, field1, field2, field3, value1, value2, value3, feature, parent):
+def painotettuka(field1, field2, field3, value1, value2, value3, feature, parent):
     """
     Finds out the weighted average of three columns.
     """
-    layer = QgsProject.instance().mapLayersByName(layer)[0]
 
-    field_idx = layer.fields().indexOf(field)
-
-    for feat in layer.getFeatures():
-
-        # HSYn datassa arvo 99 = Tieto puuttuu, joten jos jokin kenttä sisältää tämän arvon,
-        # ei painotetun keskiarvon laskeminen ole mielekästä
-        if feat[field1] == 99 or feat[field2] == 99 or feat[field3] == 99:
-            painka = 99
-        else:
-            painka = value1 * feat[field1] + value2 * feat[field2] + value3 * feat[field3]
-        
-        layer.changeAttributeValue(feat.id(), field_idx, painka)
-    
-    return
+    # HSYn datassa arvo 99 = Tieto puuttuu, joten jos jokin kenttä sisältää tämän arvon,
+    # ei painotetun keskiarvon laskeminen ole mielekästä
+    if 99 in (field1, field2, field3):
+        return NULL
+    else:
+        return value1 * field1 + value2 * field2 + value3 * field3
 ```
 :::
 :::
