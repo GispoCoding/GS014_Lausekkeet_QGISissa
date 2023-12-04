@@ -361,3 +361,7 @@ QgsProject.instance().addMapLayers([layer])
 ```
 :::
 :::
+
+## Lisätehtävä
+
+[Geoprosessointiesimerkki](15_kappale_15.html#geoprosessointiesimerkki)
