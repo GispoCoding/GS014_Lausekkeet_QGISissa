@@ -81,7 +81,11 @@ for feature in layer.getFeatures():
 ::: code-box
 ``` python
 layer = QgsProject.instance().mapLayersByName('valtiot')[0]
+```
+:::
 
+::: code-box
+``` python
 for feature in layer.getFeatures():
     print(feature["ADMIN"])
 ```
@@ -133,6 +137,15 @@ QgsProject.instance().addMapLayer(new_layer)
 Skripti hakee hallintoalueet- tasosta Hanko- kohteen ja luo sen geometriasta 5 km vyöhykkeen. Vyöhyke lisätään uudelle väliaikaiselle hanko_vyohyke tasolle.
 
 Lisätietoa data provider- luokasta: [https://qgis.org/pyqgis/3.2/core/Data/QgsDataProvider.html](https://qgis.org/pyqgis/3.2/core/Data/QgsDataProvider.html)
+
+Voit ajaa skriptin seuraavasti:
+
+![](img/kappale_12/image2.png)
+
+1. Avaa Python- konsoli.
+2. Avaa Python- skriptieditori.
+3. Kopioi skripti editoriin.
+4. Aja skripti.
 
 ::: code-box
 ``` python
@@ -267,18 +280,6 @@ QgsProject.instance().addMapLayers([layer])
 
 - ```natura_alueet.gpkg```
 - ```hallintoalueet.gpkg``` **HUOM!** Valitse kaksi itseäsi kiinnostavaa kuntaa ja tallenna omaksi geopackageksi, jonka nimi on 'kunta.gpkg'
-
-<button onclick="toggleAnswer(this)" class="btn answer_btn">vinkki</button>
-
-::: hidden-box
-Täydennä skriptipohjaan merkityt kohdat.
-![](img/kappale_12/image2.png)
-
-1. Avaa Python- konsoli.
-2. Avaa Python- skriptieditori.
-3. Avaa luomasi Python- tiedosto.
-4. Aja skripti.
-:::
 
 <button onclick="toggleAnswer(this)" class="btn answer_btn">ratkaisu</button>
 
