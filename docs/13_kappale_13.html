@@ -257,110 +257,6 @@ type="button" onclick="navToggle()" aria-label="Toggle navigation">
 <li><code>oppilaitokset.gpkg</code></li>
 <li><code>hallintoalueet.gpkg</code></li>
 </ul>
-<p>Voit myös katsoa mallia esimerkkifunktioista:</p>
-<button onclick="toggleAnswer(this)" class="btn answer_btn">
-esimerkkifunktioita
-</button>
-<div class="hidden-box">
-<div class="code-box">
-<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="13_kappale_13.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Template for custom function modifying vector layer (name is taso1) so that its attribute field (name is kentta1) will always get</span></span>
-<span id="cb35-2"><a href="13_kappale_13.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the value it had previously + the constant we give to the function as parameter.</span></span>
-<span id="cb35-3"><a href="13_kappale_13.html#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="13_kappale_13.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb35-5"><a href="13_kappale_13.html#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb35-6"><a href="13_kappale_13.html#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="13_kappale_13.html#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="at">@qgsfunction</span>(args<span class="op">=</span><span class="st">&#39;auto&#39;</span>, group<span class="op">=</span><span class="st">&#39;Custom&#39;</span>, referenced_columns<span class="op">=</span>[])</span>
-<span id="cb35-8"><a href="13_kappale_13.html#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> function_name(layer_input1, field_name, value_input1, feature, parent):</span>
-<span id="cb35-9"><a href="13_kappale_13.html#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb35-10"><a href="13_kappale_13.html#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Info text</span></span>
-<span id="cb35-11"><a href="13_kappale_13.html#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
-<span id="cb35-12"><a href="13_kappale_13.html#cb35-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Saves the layer to be modified into a variable called layerva</span></span>
-<span id="cb35-13"><a href="13_kappale_13.html#cb35-13" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> QgsProject.instance().mapLayersByName(layer_input1)[<span class="dv">0</span>]</span>
-<span id="cb35-14"><a href="13_kappale_13.html#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-15"><a href="13_kappale_13.html#cb35-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Adds a new column to the layer_inout1 with the name we specified as input</span></span>
-<span id="cb35-16"><a href="13_kappale_13.html#cb35-16" aria-hidden="true" tabindex="-1"></a>    layer_provider<span class="op">=</span>layer.dataProvider()</span>
-<span id="cb35-17"><a href="13_kappale_13.html#cb35-17" aria-hidden="true" tabindex="-1"></a>    layer_provider.addAttributes([QgsField(field_name, QVariant.Integer)])</span>
-<span id="cb35-18"><a href="13_kappale_13.html#cb35-18" aria-hidden="true" tabindex="-1"></a>    layer.updateFields()</span>
-<span id="cb35-19"><a href="13_kappale_13.html#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-20"><a href="13_kappale_13.html#cb35-20" aria-hidden="true" tabindex="-1"></a>    col_ind <span class="op">=</span> <span class="bu">len</span>(layer.fields().names()) <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb35-21"><a href="13_kappale_13.html#cb35-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-22"><a href="13_kappale_13.html#cb35-22" aria-hidden="true" tabindex="-1"></a>    layer.startEditing()</span>
-<span id="cb35-23"><a href="13_kappale_13.html#cb35-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-24"><a href="13_kappale_13.html#cb35-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Goes through all features in the layer (feat variable refers to each feature in the given layer once)</span></span>
-<span id="cb35-25"><a href="13_kappale_13.html#cb35-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># At each round, all the indented rows will be executed</span></span>
-<span id="cb35-26"><a href="13_kappale_13.html#cb35-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feat <span class="kw">in</span> layerva.getFeatures():</span>
-<span id="cb35-27"><a href="13_kappale_13.html#cb35-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-28"><a href="13_kappale_13.html#cb35-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Adds given value to the value of the given field of the current feature</span></span>
-<span id="cb35-29"><a href="13_kappale_13.html#cb35-29" aria-hidden="true" tabindex="-1"></a>        uusi <span class="op">=</span> feat[field_input1] <span class="op">+</span> value_input1</span>
-<span id="cb35-30"><a href="13_kappale_13.html#cb35-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-31"><a href="13_kappale_13.html#cb35-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">id</span> <span class="op">=</span> feat.<span class="bu">id</span>()</span>
-<span id="cb35-32"><a href="13_kappale_13.html#cb35-32" aria-hidden="true" tabindex="-1"></a>        attr_value <span class="op">=</span> {col_ind:uusi}</span>
-<span id="cb35-33"><a href="13_kappale_13.html#cb35-33" aria-hidden="true" tabindex="-1"></a>        layer_provider.changeAttributeValues({<span class="bu">id</span>:attr_value})</span>
-<span id="cb35-34"><a href="13_kappale_13.html#cb35-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-35"><a href="13_kappale_13.html#cb35-35" aria-hidden="true" tabindex="-1"></a>    layer.commitChanges()</span>
-<span id="cb35-36"><a href="13_kappale_13.html#cb35-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-37"><a href="13_kappale_13.html#cb35-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Specifies what the function returns. As we only modify values of the layer &gt; nothing gets returned</span></span>
-<span id="cb35-38"><a href="13_kappale_13.html#cb35-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span>
-<span id="cb35-39"><a href="13_kappale_13.html#cb35-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-40"><a href="13_kappale_13.html#cb35-40" aria-hidden="true" tabindex="-1"></a><span class="co"># How to call this function from Expression window?</span></span>
-<span id="cb35-41"><a href="13_kappale_13.html#cb35-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-42"><a href="13_kappale_13.html#cb35-42" aria-hidden="true" tabindex="-1"></a>function_name(taso1, kentta1, <span class="dv">10</span>)</span>
-<span id="cb35-43"><a href="13_kappale_13.html#cb35-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-44"><a href="13_kappale_13.html#cb35-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-45"><a href="13_kappale_13.html#cb35-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-46"><a href="13_kappale_13.html#cb35-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-47"><a href="13_kappale_13.html#cb35-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Template for custom function calculating the mean of the absolute value of the attribute field (name is kentta1)</span></span>
-<span id="cb35-48"><a href="13_kappale_13.html#cb35-48" aria-hidden="true" tabindex="-1"></a><span class="co"># of the vector layer (name is taso1).</span></span>
-<span id="cb35-49"><a href="13_kappale_13.html#cb35-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-50"><a href="13_kappale_13.html#cb35-50" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb35-51"><a href="13_kappale_13.html#cb35-51" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb35-52"><a href="13_kappale_13.html#cb35-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Import necessary python packages</span></span>
-<span id="cb35-53"><a href="13_kappale_13.html#cb35-53" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb35-54"><a href="13_kappale_13.html#cb35-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-55"><a href="13_kappale_13.html#cb35-55" aria-hidden="true" tabindex="-1"></a><span class="at">@qgsfunction</span>(args<span class="op">=</span><span class="st">&#39;auto&#39;</span>, group<span class="op">=</span><span class="st">&#39;Custom&#39;</span>, referenced_columns<span class="op">=</span>[])</span>
-<span id="cb35-56"><a href="13_kappale_13.html#cb35-56" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> function_name(layer_input1, field_input1, feature, parent):</span>
-<span id="cb35-57"><a href="13_kappale_13.html#cb35-57" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb35-58"><a href="13_kappale_13.html#cb35-58" aria-hidden="true" tabindex="-1"></a><span class="co">    Info text</span></span>
-<span id="cb35-59"><a href="13_kappale_13.html#cb35-59" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
-<span id="cb35-60"><a href="13_kappale_13.html#cb35-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Saves the layer to be modified into a variable called layerva</span></span>
-<span id="cb35-61"><a href="13_kappale_13.html#cb35-61" aria-hidden="true" tabindex="-1"></a>    layerva <span class="op">=</span> QgsProject.instance().mapLayersByName(layer_input1)[<span class="dv">0</span>]</span>
-<span id="cb35-62"><a href="13_kappale_13.html#cb35-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-63"><a href="13_kappale_13.html#cb35-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Saves the index of the field to be modified into a variable called field_idx</span></span>
-<span id="cb35-64"><a href="13_kappale_13.html#cb35-64" aria-hidden="true" tabindex="-1"></a>    field_idx <span class="op">=</span> layerva.fields().indexOf(field_input1)</span>
-<span id="cb35-65"><a href="13_kappale_13.html#cb35-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-66"><a href="13_kappale_13.html#cb35-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Creates an empty list</span></span>
-<span id="cb35-67"><a href="13_kappale_13.html#cb35-67" aria-hidden="true" tabindex="-1"></a>    lista <span class="op">=</span> <span class="bu">list</span>()</span>
-<span id="cb35-68"><a href="13_kappale_13.html#cb35-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-69"><a href="13_kappale_13.html#cb35-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Goes through all features in the layer (feat variable refers to each feature in the given layer once)</span></span>
-<span id="cb35-70"><a href="13_kappale_13.html#cb35-70" aria-hidden="true" tabindex="-1"></a>    <span class="co"># At each round, all the indented rows will be executed</span></span>
-<span id="cb35-71"><a href="13_kappale_13.html#cb35-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feat <span class="kw">in</span> layerva.getFeatures():</span>
-<span id="cb35-72"><a href="13_kappale_13.html#cb35-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-73"><a href="13_kappale_13.html#cb35-73" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Conditional statement:</span></span>
-<span id="cb35-74"><a href="13_kappale_13.html#cb35-74" aria-hidden="true" tabindex="-1"></a>        <span class="co"># if value of the given field for current feature is positive or zero, set temp variable to match current value</span></span>
-<span id="cb35-75"><a href="13_kappale_13.html#cb35-75" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> feat[field_input1] <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
-<span id="cb35-76"><a href="13_kappale_13.html#cb35-76" aria-hidden="true" tabindex="-1"></a>            temp <span class="op">=</span> feat[field_input1]</span>
-<span id="cb35-77"><a href="13_kappale_13.html#cb35-77" aria-hidden="true" tabindex="-1"></a>        <span class="co"># if value of the given field for current feature is not positive or zero, set temp variable to match current value multiplied with -1</span></span>
-<span id="cb35-78"><a href="13_kappale_13.html#cb35-78" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb35-79"><a href="13_kappale_13.html#cb35-79" aria-hidden="true" tabindex="-1"></a>            temp <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">*</span> feat[field_input1]</span>
-<span id="cb35-80"><a href="13_kappale_13.html#cb35-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-81"><a href="13_kappale_13.html#cb35-81" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Adds the value saved in the temp variable to the list called lista</span></span>
-<span id="cb35-82"><a href="13_kappale_13.html#cb35-82" aria-hidden="true" tabindex="-1"></a>        lista.append(temp)</span>
-<span id="cb35-83"><a href="13_kappale_13.html#cb35-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-84"><a href="13_kappale_13.html#cb35-84" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Note that if we would also want to change the value of field_input1, we would use:</span></span>
-<span id="cb35-85"><a href="13_kappale_13.html#cb35-85" aria-hidden="true" tabindex="-1"></a>        <span class="co">#uusi_arvo = 99</span></span>
-<span id="cb35-86"><a href="13_kappale_13.html#cb35-86" aria-hidden="true" tabindex="-1"></a>        <span class="co">#layerva.changeAttributeValue(feat.id(), field_idx, uusi_arvo)</span></span>
-<span id="cb35-87"><a href="13_kappale_13.html#cb35-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-88"><a href="13_kappale_13.html#cb35-88" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculates the mean of the values in the list and saves it to the variable called ka</span></span>
-<span id="cb35-89"><a href="13_kappale_13.html#cb35-89" aria-hidden="true" tabindex="-1"></a>    ka <span class="op">=</span> numpy.mean(lista)</span>
-<span id="cb35-90"><a href="13_kappale_13.html#cb35-90" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb35-91"><a href="13_kappale_13.html#cb35-91" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Specifies what the function returns (in this case a real value saved in the variable ka)</span></span>
-<span id="cb35-92"><a href="13_kappale_13.html#cb35-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ka</span>
-<span id="cb35-93"><a href="13_kappale_13.html#cb35-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-94"><a href="13_kappale_13.html#cb35-94" aria-hidden="true" tabindex="-1"></a><span class="co"># How to call this function from Expression window?</span></span>
-<span id="cb35-95"><a href="13_kappale_13.html#cb35-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-96"><a href="13_kappale_13.html#cb35-96" aria-hidden="true" tabindex="-1"></a>function_name(taso1, kentta1)</span></code></pre></div>
-</div>
-</div>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
 vinkki
 </button>
@@ -369,42 +265,42 @@ vinkki
 <p><img src="img/kappale_13/image2.gif" />
 Käytä tätä pohjaa funktiolle:</p>
 <div class="code-box">
-<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="13_kappale_13.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb36-2"><a href="13_kappale_13.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb36-3"><a href="13_kappale_13.html#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-4"><a href="13_kappale_13.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dekoraattorifunktio (@qgsfunction). Tärkeää määrittää usesgeometry avainsana-argumentti &#39;True&#39;:ksi</span></span>
-<span id="cb36-5"><a href="13_kappale_13.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="at">@qgsfunction</span>(args<span class="op">=</span><span class="st">&#39;auto&#39;</span>, group<span class="op">=</span><span class="st">&#39;Custom&#39;</span>, referenced_columns<span class="op">=</span>[], usesgeometry<span class="op">=</span><span class="va">True</span>) </span>
-<span id="cb36-6"><a href="13_kappale_13.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> koululista(layer1, layer2, max_distance, feature, parent):</span>
-<span id="cb36-7"><a href="13_kappale_13.html#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb36-8"><a href="13_kappale_13.html#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns list of schools located closer to the each administrative area&#39;s centroid than given distance.</span></span>
-<span id="cb36-9"><a href="13_kappale_13.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
-<span id="cb36-10"><a href="13_kappale_13.html#cb36-10" aria-hidden="true" tabindex="-1"></a>    admin_layer <span class="op">=</span> ... <span class="co"># Tallenna annettu hallintoalue- taso muuttujaan.</span></span>
-<span id="cb36-11"><a href="13_kappale_13.html#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Millä metodilla haet QGIS- projektin instanssista tason nimen perusteella?</span></span>
-<span id="cb36-12"><a href="13_kappale_13.html#cb36-12" aria-hidden="true" tabindex="-1"></a>    schools_layer <span class="op">=</span> ... <span class="co"># Tallenna annettu oppilaitos- taso muuttujaan samalla tavalla.</span></span>
-<span id="cb36-13"><a href="13_kappale_13.html#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-14"><a href="13_kappale_13.html#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Funktio suoritetaan joka kohteelle. Tällä hetkellä käsiteltävä kohde on </span></span>
-<span id="cb36-15"><a href="13_kappale_13.html#cb36-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># automaattisesti tallennettu (@qgsfunction- dekoraattori) feature- muuttujaan.</span></span>
-<span id="cb36-16"><a href="13_kappale_13.html#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-17"><a href="13_kappale_13.html#cb36-17" aria-hidden="true" tabindex="-1"></a>    admin_centroid <span class="op">=</span> ... <span class="co"># Laske painopiste hallintoalue- kohteelle. Millä metodilla voit laskea geometrialle painopisteen?</span></span>
-<span id="cb36-18"><a href="13_kappale_13.html#cb36-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-19"><a href="13_kappale_13.html#cb36-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Käy läpi for- silmukasssa oppilaitoskohteet. Lisää kohteet listaan &#39;school_names&#39;, jos</span></span>
-<span id="cb36-20"><a href="13_kappale_13.html#cb36-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># kohteen hallintoalueen painopisteen etäisyys oppilaitoskohteesta on alle &#39;max_distance&#39;- argumentin.</span></span>
-<span id="cb36-21"><a href="13_kappale_13.html#cb36-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Voit käyttää joko &quot;perinteistä&quot; for- silmukkaa</span></span>
-<span id="cb36-22"><a href="13_kappale_13.html#cb36-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-23"><a href="13_kappale_13.html#cb36-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> school_feature <span class="kw">in</span> school_layer.(...): <span class="co"># Millä metodilla saat palautettua tason kohteet?</span></span>
-<span id="cb36-24"><a href="13_kappale_13.html#cb36-24" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> ...:</span>
-<span id="cb36-25"><a href="13_kappale_13.html#cb36-25" aria-hidden="true" tabindex="-1"></a>        ...</span>
-<span id="cb36-26"><a href="13_kappale_13.html#cb36-26" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb36-27"><a href="13_kappale_13.html#cb36-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tai &quot;list comprehension&quot;- toiminnallisuutta:</span></span>
-<span id="cb36-28"><a href="13_kappale_13.html#cb36-28" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-29"><a href="13_kappale_13.html#cb36-29" aria-hidden="true" tabindex="-1"></a>    school_names <span class="op">=</span> [school_feature[...] <span class="cf">for</span> school_feature <span class="kw">in</span> school_layer.(...) <span class="cf">if</span> ...]</span>
-<span id="cb36-30"><a href="13_kappale_13.html#cb36-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-31"><a href="13_kappale_13.html#cb36-31" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="st">&#39;, &#39;</span>.join(school_names) <span class="co"># Yhdistä school_names listan alkiot, erottimena pilkku ja välilyönti</span></span>
-<span id="cb36-32"><a href="13_kappale_13.html#cb36-32" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-33"><a href="13_kappale_13.html#cb36-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (result): <span class="co"># Jos tulos ei ole tyhjä merkkijono, palautetaan tulos</span></span>
-<span id="cb36-34"><a href="13_kappale_13.html#cb36-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
-<span id="cb36-35"><a href="13_kappale_13.html#cb36-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: <span class="co"># Jos tulos on tyhjä, palautetaan NULL</span></span>
-<span id="cb36-36"><a href="13_kappale_13.html#cb36-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> NULL</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="13_kappale_13.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb35-2"><a href="13_kappale_13.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb35-3"><a href="13_kappale_13.html#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="13_kappale_13.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dekoraattorifunktio (@qgsfunction). Tärkeää määrittää usesgeometry avainsana-argumentti &#39;True&#39;:ksi</span></span>
+<span id="cb35-5"><a href="13_kappale_13.html#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="at">@qgsfunction</span>(args<span class="op">=</span><span class="st">&#39;auto&#39;</span>, group<span class="op">=</span><span class="st">&#39;Custom&#39;</span>, referenced_columns<span class="op">=</span>[], usesgeometry<span class="op">=</span><span class="va">True</span>) </span>
+<span id="cb35-6"><a href="13_kappale_13.html#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> koululista(layer1, layer2, max_distance, feature, parent):</span>
+<span id="cb35-7"><a href="13_kappale_13.html#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb35-8"><a href="13_kappale_13.html#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns list of schools located closer to the each administrative area&#39;s centroid than given distance.</span></span>
+<span id="cb35-9"><a href="13_kappale_13.html#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb35-10"><a href="13_kappale_13.html#cb35-10" aria-hidden="true" tabindex="-1"></a>    admin_layer <span class="op">=</span> ... <span class="co"># Tallenna annettu hallintoalue- taso muuttujaan.</span></span>
+<span id="cb35-11"><a href="13_kappale_13.html#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Millä metodilla haet QGIS- projektin instanssista tason nimen perusteella?</span></span>
+<span id="cb35-12"><a href="13_kappale_13.html#cb35-12" aria-hidden="true" tabindex="-1"></a>    schools_layer <span class="op">=</span> ... <span class="co"># Tallenna annettu oppilaitos- taso muuttujaan samalla tavalla.</span></span>
+<span id="cb35-13"><a href="13_kappale_13.html#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="13_kappale_13.html#cb35-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Funktio suoritetaan joka kohteelle. Tällä hetkellä käsiteltävä kohde on </span></span>
+<span id="cb35-15"><a href="13_kappale_13.html#cb35-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># automaattisesti tallennettu (@qgsfunction- dekoraattori) feature- muuttujaan.</span></span>
+<span id="cb35-16"><a href="13_kappale_13.html#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="13_kappale_13.html#cb35-17" aria-hidden="true" tabindex="-1"></a>    admin_centroid <span class="op">=</span> ... <span class="co"># Laske painopiste hallintoalue- kohteelle. Millä metodilla voit laskea geometrialle painopisteen?</span></span>
+<span id="cb35-18"><a href="13_kappale_13.html#cb35-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-19"><a href="13_kappale_13.html#cb35-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Käy läpi for- silmukasssa oppilaitoskohteet. Lisää kohteet listaan &#39;school_names&#39;, jos</span></span>
+<span id="cb35-20"><a href="13_kappale_13.html#cb35-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># kohteen hallintoalueen painopisteen etäisyys oppilaitoskohteesta on alle &#39;max_distance&#39;- argumentin.</span></span>
+<span id="cb35-21"><a href="13_kappale_13.html#cb35-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Voit käyttää joko &quot;perinteistä&quot; for- silmukkaa</span></span>
+<span id="cb35-22"><a href="13_kappale_13.html#cb35-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-23"><a href="13_kappale_13.html#cb35-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> school_feature <span class="kw">in</span> school_layer.(...): <span class="co"># Millä metodilla saat palautettua tason kohteet?</span></span>
+<span id="cb35-24"><a href="13_kappale_13.html#cb35-24" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> ...:</span>
+<span id="cb35-25"><a href="13_kappale_13.html#cb35-25" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb35-26"><a href="13_kappale_13.html#cb35-26" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb35-27"><a href="13_kappale_13.html#cb35-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tai &quot;list comprehension&quot;- toiminnallisuutta:</span></span>
+<span id="cb35-28"><a href="13_kappale_13.html#cb35-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-29"><a href="13_kappale_13.html#cb35-29" aria-hidden="true" tabindex="-1"></a>    school_names <span class="op">=</span> [school_feature[...] <span class="cf">for</span> school_feature <span class="kw">in</span> school_layer.(...) <span class="cf">if</span> ...]</span>
+<span id="cb35-30"><a href="13_kappale_13.html#cb35-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-31"><a href="13_kappale_13.html#cb35-31" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="st">&#39;, &#39;</span>.join(school_names) <span class="co"># Yhdistä school_names listan alkiot, erottimena pilkku ja välilyönti</span></span>
+<span id="cb35-32"><a href="13_kappale_13.html#cb35-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-33"><a href="13_kappale_13.html#cb35-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (result): <span class="co"># Jos tulos ei ole tyhjä merkkijono, palautetaan tulos</span></span>
+<span id="cb35-34"><a href="13_kappale_13.html#cb35-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb35-35"><a href="13_kappale_13.html#cb35-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: <span class="co"># Jos tulos on tyhjä, palautetaan NULL</span></span>
+<span id="cb35-36"><a href="13_kappale_13.html#cb35-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> NULL</span></code></pre></div>
 </div>
 </div>
 <button onclick="toggleAnswer(this)" class="btn answer_btn">
@@ -412,28 +308,28 @@ ratkaisu
 </button>
 <div class="hidden-box">
 <div class="code-box">
-<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="13_kappale_13.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb37-2"><a href="13_kappale_13.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb37-3"><a href="13_kappale_13.html#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="13_kappale_13.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="at">@qgsfunction</span>(args<span class="op">=</span><span class="st">&#39;auto&#39;</span>, group<span class="op">=</span><span class="st">&#39;Custom&#39;</span>, referenced_columns<span class="op">=</span>[], usesgeometry<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-5"><a href="13_kappale_13.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> koululista(layer1, layer2, max_distance, feature, parent):</span>
-<span id="cb37-6"><a href="13_kappale_13.html#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
-<span id="cb37-7"><a href="13_kappale_13.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns list of schools located closer to the each administrative area&#39;s centroid than given distance.</span></span>
-<span id="cb37-8"><a href="13_kappale_13.html#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
-<span id="cb37-9"><a href="13_kappale_13.html#cb37-9" aria-hidden="true" tabindex="-1"></a>    admin_layer <span class="op">=</span> QgsProject.instance().mapLayersByName(layer1)[<span class="dv">0</span>] <span class="co"># Tallenna annettu hallintoalue- taso muuttujaan</span></span>
-<span id="cb37-10"><a href="13_kappale_13.html#cb37-10" aria-hidden="true" tabindex="-1"></a>    schools_layer <span class="op">=</span> QgsProject.instance().mapLayersByName(layer2)[<span class="dv">0</span>] <span class="co"># Tallenna annettu oppilaitos- taso muuttujaan</span></span>
-<span id="cb37-11"><a href="13_kappale_13.html#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-12"><a href="13_kappale_13.html#cb37-12" aria-hidden="true" tabindex="-1"></a>    admin_centroid <span class="op">=</span> feature.geometry().centroid() <span class="co"># Laske painopiste hallintoalue- kohteelle</span></span>
-<span id="cb37-13"><a href="13_kappale_13.html#cb37-13" aria-hidden="true" tabindex="-1"></a>                                                   </span>
-<span id="cb37-14"><a href="13_kappale_13.html#cb37-14" aria-hidden="true" tabindex="-1"></a>    school_names <span class="op">=</span> [school_feature[<span class="st">&#39;onimi&#39;</span>] <span class="cf">for</span> school_feature <span class="kw">in</span> schools_layer.getFeatures() <span class="co"># Käy läpi for- silmukassa oppilaitoskohteet ja</span></span>
-<span id="cb37-15"><a href="13_kappale_13.html#cb37-15" aria-hidden="true" tabindex="-1"></a>                   <span class="cf">if</span> admin_centroid.distance(school_feature.geometry()) <span class="op">&lt;</span> max_distance] <span class="co"># tarkista onko etäisyys painopisteeseen alle annetun argumentin</span></span>
-<span id="cb37-16"><a href="13_kappale_13.html#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-17"><a href="13_kappale_13.html#cb37-17" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="st">&#39;, &#39;</span>.join(school_names) <span class="co"># Yhdistä school_names listan alkiot, erottimena pilkku ja välilyönti</span></span>
-<span id="cb37-18"><a href="13_kappale_13.html#cb37-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb37-19"><a href="13_kappale_13.html#cb37-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (result): <span class="co"># Jos tulos ei ole tyhjä merkkijono, palautetaan tulos</span></span>
-<span id="cb37-20"><a href="13_kappale_13.html#cb37-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
-<span id="cb37-21"><a href="13_kappale_13.html#cb37-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: <span class="co"># Jos tulos on tyhjä, palautetaan NULL</span></span>
-<span id="cb37-22"><a href="13_kappale_13.html#cb37-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> NULL</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="13_kappale_13.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.core <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb36-2"><a href="13_kappale_13.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qgis.gui <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb36-3"><a href="13_kappale_13.html#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="13_kappale_13.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="at">@qgsfunction</span>(args<span class="op">=</span><span class="st">&#39;auto&#39;</span>, group<span class="op">=</span><span class="st">&#39;Custom&#39;</span>, referenced_columns<span class="op">=</span>[], usesgeometry<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb36-5"><a href="13_kappale_13.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> koululista(layer1, layer2, max_distance, feature, parent):</span>
+<span id="cb36-6"><a href="13_kappale_13.html#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb36-7"><a href="13_kappale_13.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns list of schools located closer to the each administrative area&#39;s centroid than given distance.</span></span>
+<span id="cb36-8"><a href="13_kappale_13.html#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb36-9"><a href="13_kappale_13.html#cb36-9" aria-hidden="true" tabindex="-1"></a>    admin_layer <span class="op">=</span> QgsProject.instance().mapLayersByName(layer1)[<span class="dv">0</span>] <span class="co"># Tallenna annettu hallintoalue- taso muuttujaan</span></span>
+<span id="cb36-10"><a href="13_kappale_13.html#cb36-10" aria-hidden="true" tabindex="-1"></a>    schools_layer <span class="op">=</span> QgsProject.instance().mapLayersByName(layer2)[<span class="dv">0</span>] <span class="co"># Tallenna annettu oppilaitos- taso muuttujaan</span></span>
+<span id="cb36-11"><a href="13_kappale_13.html#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="13_kappale_13.html#cb36-12" aria-hidden="true" tabindex="-1"></a>    admin_centroid <span class="op">=</span> feature.geometry().centroid() <span class="co"># Laske painopiste hallintoalue- kohteelle</span></span>
+<span id="cb36-13"><a href="13_kappale_13.html#cb36-13" aria-hidden="true" tabindex="-1"></a>                                                   </span>
+<span id="cb36-14"><a href="13_kappale_13.html#cb36-14" aria-hidden="true" tabindex="-1"></a>    school_names <span class="op">=</span> [school_feature[<span class="st">&#39;onimi&#39;</span>] <span class="cf">for</span> school_feature <span class="kw">in</span> schools_layer.getFeatures() <span class="co"># Käy läpi for- silmukassa oppilaitoskohteet ja</span></span>
+<span id="cb36-15"><a href="13_kappale_13.html#cb36-15" aria-hidden="true" tabindex="-1"></a>                   <span class="cf">if</span> admin_centroid.distance(school_feature.geometry()) <span class="op">&lt;</span> max_distance] <span class="co"># tarkista onko etäisyys painopisteeseen alle annetun argumentin</span></span>
+<span id="cb36-16"><a href="13_kappale_13.html#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="13_kappale_13.html#cb36-17" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="st">&#39;, &#39;</span>.join(school_names) <span class="co"># Yhdistä school_names listan alkiot, erottimena pilkku ja välilyönti</span></span>
+<span id="cb36-18"><a href="13_kappale_13.html#cb36-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-19"><a href="13_kappale_13.html#cb36-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (result): <span class="co"># Jos tulos ei ole tyhjä merkkijono, palautetaan tulos</span></span>
+<span id="cb36-20"><a href="13_kappale_13.html#cb36-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb36-21"><a href="13_kappale_13.html#cb36-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: <span class="co"># Jos tulos on tyhjä, palautetaan NULL</span></span>
+<span id="cb36-22"><a href="13_kappale_13.html#cb36-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> NULL</span></code></pre></div>
 </div>
 </div>
 </div>
